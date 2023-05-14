@@ -1,9 +1,26 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import { Inter } from 'next/font/google'
-import styles from '@/styles/Home.module.css'
-
-const inter = Inter({ subsets: ['latin'] })
+import Head from "next/head";
+import Image from "next/image";
+import Navbar from "@/components/layout/navbar";
+import Offers from "@/components/layout/home/offers";
+import NavBarLink from "@/components/layout/navbar/navbarlink";
+import styles from "@/styles/Home.module.css";
+import Typewriter from "typewriter-effect";
+import {
+  Avatar,
+  Box,
+  Divider,
+  Flex,
+  Grid,
+  Heading,
+  Button,
+  IconButton,
+  Text,
+} from "@chakra-ui/react";
+import Link from "next/link";
+import { keyframes } from "@emotion/react";
+import { EmailIcon } from "@chakra-ui/icons";
+import { motion } from "framer-motion";
+import Footer from "@/components/layout/footer";
 
 export default function Home() {
   return (
@@ -14,101 +31,118 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className={`${styles.main} ${inter.className}`}>
-        <div className={styles.description}>
-          <p>
-            Get started by editing&nbsp;
-            <code className={styles.code}>src/pages/index.tsx</code>
-          </p>
-          <div>
-            <a
-              href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
+      <>
+        <motion.div
+          key="my-page"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1 }}
+        >
+          <Box backgroundColor="#37254b" minH="100vh">
+            <Navbar />
+            <Flex
+              flexDirection={["column", "column", "column", "row"]}
+              justifyContent={["center", "space-between"]}
+              alignItems={["center", "center"]}
+              marginTop={["1rem", "2rem", "3rem"]}
+              marginLeft={["0", "2rem"]}
+              padding={["0rem", "1rem"]}
+              gap="3rem"
             >
-              By{' '}
+              <Flex
+                flexDirection="column"
+                alignItems={["center", "flex-start"]}
+                textAlign={["center", "left"]}
+                marginTop={["2rem", "5rem"]}
+                marginBottom={["2rem", "0"]}
+                gap={["1rem", "3rem"]}
+                width={["100%", "80%", "70%"]}
+                maxWidth={["100%", "800px"]}
+              >
+                <Text
+                  as="div"
+                  color="white"
+                  fontSize={["2rem", "3rem", "4rem"]}
+                  opacity="0.5"
+                  lineHeight={["2.5rem", "70px"]}
+                  textShadow="-4px -10px black"
+                  height={["300px", "270px", "250px"]}
+                >
+                  <Typewriter
+                    options={{
+                      strings: [
+                        "Hi there!,<br> What subject do you teach passionately?<br>",
+                        "Are you looking<br> for a cover teacher?",
+                        "<Click the button below 👇 to get started!",
+                      ],
+                      cursor: "",
+                      autoStart: true,
+                      loop: true,
+                      skipAddStyles: true,
+                      // pauseFor: 2000,
+                    }}
+                  />
+                </Text>
+                <Link href="/who_am_i">
+                  <Button
+                    bg="black"
+                    color="#fff"
+                    fontWeight="bold"
+                    transition="0.3s"
+                    _hover={{
+                      bg: "rgba(0, 0, 0, .6)",
+                      border: "2px solid #fff",
+                      boxShadow: "7px 8px 9px black",
+                    }}
+                    w={{ base: "100%", md: "auto" }}
+                  >
+                    Let&apos;s get started
+                  </Button>
+                </Link>
+              </Flex>
+              <Box
+                width={["100%", "100%"]}
+                maxWidth={["100%", "90%"]}
+                display="flex"
+                marginLeft="auto"
+              >
+                <Image
+                  src="/images/homeimg.png"
+                  alt="homeimg"
+                  width="1000"
+                  height="1000"
+                />
+              </Box>
+            </Flex>
+          </Box>
+          <Box
+            height={["auto", "auto", "100vh"]}
+            paddingTop="4rem"
+            position="relative"
+            bg="white"
+            py={{ base: "3rem" }}
+          >
+            <Box
+              position="absolute"
+              top={[-2, -5, -10]}
+              left={-10}
+              width={["100%", "100%"]}
+              maxWidth={["70%", "80%", "90%"]}
+              display="flex"
+              // marginLeft="auto"
+            >
               <Image
-                src="/vercel.svg"
-                alt="Vercel Logo"
-                className={styles.vercelLogo}
-                width={100}
-                height={24}
-                priority
+                src="/images/topcorner3.svg"
+                alt="homeimg"
+                width="500"
+                height="500"
               />
-            </a>
-          </div>
-        </div>
-
-        <div className={styles.center}>
-          <Image
-            className={styles.logo}
-            src="/next.svg"
-            alt="Next.js Logo"
-            width={180}
-            height={37}
-            priority
-          />
-        </div>
-
-        <div className={styles.grid}>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2>
-              Docs <span>-&gt;</span>
-            </h2>
-            <p>
-              Find in-depth information about Next.js features and&nbsp;API.
-            </p>
-          </a>
-
-          <a
-            href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2>
-              Learn <span>-&gt;</span>
-            </h2>
-            <p>
-              Learn about Next.js in an interactive course with&nbsp;quizzes!
-            </p>
-          </a>
-
-          <a
-            href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2>
-              Templates <span>-&gt;</span>
-            </h2>
-            <p>
-              Discover and deploy boilerplate example Next.js&nbsp;projects.
-            </p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2>
-              Deploy <span>-&gt;</span>
-            </h2>
-            <p>
-              Instantly deploy your Next.js site to a shareable URL
-              with&nbsp;Vercel.
-            </p>
-          </a>
-        </div>
-      </main>
+            </Box>
+            <Offers />
+          </Box>
+          <Footer/>
+        </motion.div>
+      </>
     </>
-  )
+  );
 }

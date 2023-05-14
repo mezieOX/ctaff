@@ -18,6 +18,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/middleware.js", "src/components/teacherDashboard/profile/otherDetails"],
   "exclude": ["node_modules"]
 }
