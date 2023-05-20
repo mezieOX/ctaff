@@ -9,20 +9,18 @@ import {
   Alert,
   AlertIcon,
   AlertTitle,
-  AlertDescription,
   Select,
-  FormLabel,
   FormControl,
   GridItem,
   useToast
 } from "@chakra-ui/react";
-import TextInput from "../../../components/form/textField";
 import Link from "next/link";
-import { animateUnderline } from "@/components/layout/navbar/navbarlink";
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { ColorRing } from "react-loader-spinner";
 import axios from "axios";
+import { animateUnderline } from "@/components/layout/navbar/navbarlink";
+import TextInput from "../../../components/form/textField";
 
 const SignUpPis = ({pis}: {pis: string}) => {
   const { isOpen: showLoginErr, onClose, onOpen } = useDisclosure();

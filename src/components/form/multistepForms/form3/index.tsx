@@ -12,12 +12,15 @@ import Education from "./skills";
 import Languages from "./languages";
 import OtherCertifications from "./otherCertifications";
 import { motion } from "framer-motion";
+import { ColorRing } from "react-loader-spinner";
 import ConfimationDialogue from "../../multistepForms/form1/confirmationDialog";
 
 const Form3 = ({
   handleTeacherFormSubmit,
+  showloadingring
 }: {
-  handleTeacherFormSubmit: any;
+  handleTeacherFormSubmit: any,
+  showloadingring: boolean
 }) => {
   const toast = useToast();
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -127,6 +130,11 @@ const Form3 = ({
     statetype?: string
   ) => {
     if (statetype === "language") {
+      if(field == "language" && value == ""){
+        let languageSet = [...languages]
+        languageSet[index].fluency = 0
+        setLanguages(languageSet)
+      }
       setLanguages(
         languages.map((form, i) =>
           i === index ? { ...form, [field]: value } : form
@@ -138,6 +146,11 @@ const Form3 = ({
         ),
       )
     }else {
+      if(field == "skill" && value == ""){
+        let skillSet = [...skills]
+        skillSet[index].level = 0
+        setSkills(skillSet)
+      }
       setSkills(skills.map((form, i) =>
           i === index ? { ...form, [field]: value } : form
         ),
@@ -168,7 +181,28 @@ const Form3 = ({
   };
 
   const handleForm3Submit = () => {
-    // e.preventDefault();
+        let formData = new FormData()
+    // formData.append('level', allData.educationalDetails.level)
+    // formData.append('olevelCertificate', allData.educationalDetails.olevelResult)
+    // for (const obj of allData.educationalDetails.details){
+    //   for (const data in obj) {
+    //     if (data == "certificate") {
+    //       formData.append("educationalCertificates", obj[data] as any);
+    //       continue;
+    //     }
+    //     formData.append(`edu${data}`, obj[data] as any);
+    //   }
+    // }
+    // for (const obj of allData.employmentDetails){
+    //   for (const data in obj) {
+        // if (data == "certificate") {
+        //   formData.append("employmentCertificates", obj[data] as any);
+        //   continue;
+        // }
+    //     formData.append(`emplmnt${data}`, obj[data] as any);
+    //   }
+    // }
+
     let allData = {
       // skills: [ ...skills],
       skills: skills.filter((obj) => obj.skill !== ""),
@@ -177,8 +211,32 @@ const Form3 = ({
         (obj) => obj.description !== "" || obj.certiFile !== ""
       ),
     };
-    handleTeacherFormSubmit(allData);
-    // console.log(data)
+
+    for (const obj of allData.skills){
+      for (const data in obj) {
+        formData.append(data, obj[data] as any);
+      }
+    }
+
+    for (const obj of allData.languages){
+      for (const data in obj) {
+        formData.append(data, obj[data] as any);
+      }
+    }
+
+    for (const obj of allData.otherCertifications){
+      for (const data in obj) {
+        if (data == "certiFile") {
+          formData.append("otherCertifications", obj[data] as any);
+          continue;
+        }
+        formData.append(data, obj[data] as any);
+      }
+    }
+        onClose();
+
+
+    handleTeacherFormSubmit(formData);
   };
 
   return (
@@ -247,20 +305,13 @@ const Form3 = ({
           
           <Flex justifyContent="flex-end" gap="5px" marginTop="3rem">
             <Button
-              type="button"
-              w="7rem"
-              isDisabled={false}
-              colorScheme="purple"
-            >
-              Previous
-            </Button>
-            <Button
               type="submit"
               w="7rem"
-              isDisabled={false}
+              isDisabled={showloadingring}
               colorScheme="purple"
             >
-              Next
+              {!showloadingring && "Next"}
+              {showloadingring && <ColorRing width={30} height={30} />}
             </Button>
           </Flex>
         </form>

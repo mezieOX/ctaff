@@ -14,18 +14,9 @@ interface AvailabiltyInputProps{
 }
 
 const AvailabilityInput = ({label, name, handleChange, details}: AvailabiltyInputProps) => {
-  // console.log('register', ref)
-  // const {
-  //   // formState: { errors },
-  //   register,
-  //   // handleSubmit,
-  // } = useForm<string>({
-  //   mode: "onChange",
-  //   resolver: yupResolver(PersonalDetailsSchema),
-  // });
 
   return (
-<FormControl mr="5%" isRequired>
+<FormControl mr="5%">
                 <FormLabel fontWeight={"normal"}>
                     What {label} are you available at?
                 </FormLabel>

@@ -14,21 +14,21 @@ import {
 
 const steps = [
   { title: 'First', description: 'Basic Info' },
-  { title: 'Second', description: 'Date & Time' },
-  { title: 'Third', description: 'Select Rooms' },
+  { title: 'Second', description: 'User Details' },
+  { title: 'Third', description: 'More Info.' },
   { title: 'Fourth', description: 'Availability Info.' },
 ]
 
-export default function ProgressSteps() {
+export default function ProgressSteps({step}: {step: any}) {
   const { activeStep } = useSteps({
-    index: 1,
+    index: +step,
     count: steps.length,
   })
 
   return (
     <Stepper size="lg" colorScheme="gray" index={activeStep} color="white" mb="2rem">
-      {steps.map((step, index) => (
-        <Step key={index}>
+      {steps.map((step, index) => 
+        <Step key={index} gap="1px">
           <StepIndicator>
             <StepStatus
               complete={<StepIcon />}
@@ -37,14 +37,14 @@ export default function ProgressSteps() {
             />
           </StepIndicator>
 
-          <Box flexShrink="0">
-            <StepTitle>{step.title}</StepTitle>
-            <StepDescription color="white">{step.description}</StepDescription>
+          <Box flexShrink="1">
+            <StepTitle fontSize={["14px"]}>{step.title}</StepTitle>
+            <StepDescription fontSize={["11px", "12px"]} color="white">{step.description}</StepDescription>
           </Box>
 
           <StepSeparator />
         </Step>
-      ))}
+      )}
     </Stepper>
   );
 }

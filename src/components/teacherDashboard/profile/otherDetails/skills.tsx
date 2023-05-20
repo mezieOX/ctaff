@@ -17,6 +17,7 @@ import {
 } from "@chakra-ui/react";
 import { FaPlus } from "react-icons/fa";
 import { DeleteIcon } from "@chakra-ui/icons";
+import { useState } from "react";
 
 export interface SkillsFormProps {
   handleCollapseAll: any;
@@ -39,6 +40,12 @@ const Skills = ({
   isSkillsCollapsed,
   forms,
 }: SkillsFormProps) => {
+
+  const [details, setDetails] = useState({
+    skills: [{skill: "dancind", level: 0}],
+    
+  })
+
   return (
     <Box borderBottom="5px solid #37254b" pb="2rem" mb="2rem">
       <Flex flexDir="column">

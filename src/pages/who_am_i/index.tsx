@@ -42,7 +42,7 @@ const WhoAmI = () => {
   const handleOptionChange = (e: any) => {
     let val = e.target.value
     if(val === "applicant")
-      router.push('/verifyemail/register/inputemail')
+      router.push('/verifyemail/register/teacher/inputemail')
     else if(val === "individual")
       router.push('/signup/teacher_finder')
     else

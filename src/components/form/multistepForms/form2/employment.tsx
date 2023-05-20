@@ -1,12 +1,11 @@
 import {
   Button,
   Flex,
-  FormControl,
   SimpleGrid,
   FormLabel,
   Text,
-  Input,
-  Select,
+  FormControl,  
+  Textarea,  
   Divider,
   Collapse,
   Checkbox,
@@ -127,7 +126,7 @@ const Employment = ({
               index={index}
               statetype="employment"
             />
-            <UserDetailsInput
+            {/* <UserDetailsInput
               isRequired="no"
               name="certificate"
               type="file"
@@ -136,7 +135,28 @@ const Employment = ({
               form={form}
               index={index}
               statetype="employment"
-            />
+            /> */}
+            <Flex flexDir="column" marginTop="1rem">
+              <FormControl>
+
+              <FormLabel fontWeight={"normal"}>Description:</FormLabel>
+              <Textarea
+                value={form["description"]}
+                pattern="^\S(.*\S)?$"
+                onChange={(e) =>
+                  handleFormChange(
+                    "description",
+                    e.target.value,
+                    index,
+                    "employment"
+                    )
+                  }
+                  placeholder="Add a description of the job."
+                  size="sm"
+                  />
+                  </FormControl>
+            </Flex>
+
             <SimpleGrid columns={2} spacing="20px">
               <UserDetailsInput
                 type="date"

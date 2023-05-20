@@ -3,7 +3,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { motion } from "framer-motion";
 import { useState } from "react";
-import React from "react";
+import { ColorRing } from "react-loader-spinner";
 import {
   Button,
   Heading,
@@ -30,7 +30,7 @@ import { PersonalDetailsSchema } from "../../../../utils/validationSchemas/perso
 
 type FormData = yup.InferType<typeof PersonalDetailsSchema>;
 
-function Form1({ handleTeacherFormSubmit }: { handleTeacherFormSubmit: any }) {
+function Form1({ handleTeacherFormSubmit, showloadingring }: { handleTeacherFormSubmit: any, showloadingring: boolean }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   let [picture, setPicture] = useState(null);
 
@@ -161,7 +161,6 @@ function Form1({ handleTeacherFormSubmit }: { handleTeacherFormSubmit: any }) {
     }
 
     handleTeacherFormSubmit(data)
-
   }
 
   return (
@@ -354,10 +353,11 @@ function Form1({ handleTeacherFormSubmit }: { handleTeacherFormSubmit: any }) {
               id="form1-submit"
               type="submit"
               w="7rem"
-              isDisabled={false}
+              isDisabled={showloadingring}
               colorScheme="purple"
             >
-              Next
+              {!showloadingring && "Next"}
+              {showloadingring && <ColorRing width={30} height={30} />}
             </Button>
           </Flex>
         </form>

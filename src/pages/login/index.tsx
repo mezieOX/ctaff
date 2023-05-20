@@ -10,12 +10,16 @@ import {
   AlertTitle,
   AlertDescription,
   useDisclosure,
+  useToast,
 } from "@chakra-ui/react";
+import { useRouter } from "next/router";
 import TextInput from "../../../src/components/form/textField";
 import Link from "next/link";
 import { animateUnderline } from "@/components/layout/navbar/navbarlink";
 import { useState, useEffect } from "react";
+import { ColorRing } from "react-loader-spinner";
 import { motion } from "framer-motion";
+import axios from "axios";
 
 const Login = () => {
   const [loginInputs, setLoginInputs] = useState({
@@ -23,22 +27,65 @@ const Login = () => {
     password: "",
   });
 
+  const toast = useToast();
+  const router = useRouter();
   const { isOpen: showLoginErr, onClose, onOpen } = useDisclosure();
+  const [showloadingring, setshowloadingring] = useState(false);
+  const [errmessage, seterrmessage] = useState("");
+  const [messageType, setMessageType] = useState("");
+  const messages = [
+    "A mail has been sent to you. Follow the link to continue to login",
+    "Invalid Email or password",
+  ];
 
-  useEffect(() => {
-    onOpen();
-    const showErrTimer = setTimeout(() => {
-      onClose();
-    }, 6000);
+  let url = process.env.NEXT_PUBLIC_API_URL;
 
-    return () => {
-      clearTimeout(showErrTimer);
-    };
-  }, []);
+  // useEffect(() => {
+  //   onOpen();
+  //   const showErrTimer = setTimeout(() => {
+  //     onClose();
+  //   }, 6000);
+
+  //   return () => {
+  //     clearTimeout(showErrTimer);
+  //   };
+  // }, []);
 
   const handleLogin = async (e: any) => {
     e.preventDefault();
-    console.log(loginInputs);
+    setshowloadingring(true);
+    onClose();
+    // console.log(loginInputs);
+    try {
+      let { data } = await axios.post(`${url}/users/login`, { ...loginInputs });
+      setshowloadingring(false);
+      onClose();
+      if (data.role == "teacher") {
+        router.push("/dashboard/teacher");
+      }
+      console.log(data);
+    } catch (err: any) {
+      setshowloadingring(false);
+      if (err.response?.status == 400) {
+        seterrmessage(messages[1]);
+        setMessageType("error");
+        onOpen();
+      } else if (err.response?.status == 401) {
+        setMessageType("info");
+        seterrmessage(messages[0]);
+        onOpen();
+      } else {
+        onClose();
+        toast({
+          title: "An error ocurred. Please check your internet connection",
+          position: "top",
+          variant: "left-accent",
+          status: "error",
+          duration: 10000,
+          isClosable: true,
+        });
+      }
+    }
   };
 
   // console.log(onOpen)
@@ -92,12 +139,9 @@ const Login = () => {
               onSubmit={handleLogin}
             >
               {showLoginErr && (
-                <Alert status="error">
+                <Alert status={messageType == "error" ? "error" : "info"}>
                   <AlertIcon />
-                  <AlertTitle>Invalid Email or password!</AlertTitle>
-                  <AlertDescription display={{ base: "none", lg: "flex" }}>
-                    Recheck credentials and try again.
-                  </AlertDescription>
+                  <AlertTitle>{errmessage}</AlertTitle>
                 </Alert>
               )}
               <TextInput
@@ -120,7 +164,7 @@ const Login = () => {
               />
 
               <Link
-                href="/verifyemail/password-reset/inputemail"
+                href="/verifyemail/password-reset/teach_finder/inputemail"
                 style={{ marginLeft: "auto" }}
                 shallow
               >
@@ -153,9 +197,11 @@ const Login = () => {
                 type="submit"
                 transition=".5s"
                 color="#fff"
+                isDisabled={showloadingring}
                 _hover={{ opacity: ".7" }}
               >
-                Login
+                {!showloadingring && "Log in"}
+                {showloadingring && <ColorRing width={30} height={30} />}
               </Button>
               <Link href="/who_am_i" shallow>
                 <Text

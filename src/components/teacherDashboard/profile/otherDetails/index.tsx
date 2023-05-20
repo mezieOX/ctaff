@@ -174,7 +174,9 @@ const OtherDetails = () => {
         (obj) => obj.description !== "" || obj.certiFile !== ""
       ),
     };
-    handleTeacherFormSubmit(allData);
+
+    alert(JSON.stringify(allData, null, 2))
+    // handleTeacherFormSubmit(allData);
     // console.log(data)
   };
 

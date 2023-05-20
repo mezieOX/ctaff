@@ -12,7 +12,7 @@ import { motion } from "framer-motion";
 import axios from "axios";
 import Loader from "@/components/layout/loader";
 
-const VerifyEmail = () => {
+const VerifyEmail = ({ verifType }: { verifType: string}) => {
   const router = useRouter();
   const toast = useToast();
   const { token: tok } = router.query;
@@ -42,56 +42,56 @@ const VerifyEmail = () => {
 
     if (pin.length === 6) {
       setloading(true);
-      (async function () {
-        try {
-          const res: any = await axios.post(`${url}/users/verifyOtp`, {
-            token: tok,
-            otp: +pin,
-          });
-          // console.log(res)
-          const { token, registrationStep } = res.data;
-          setloading(false);
-          router.push(`/register/${registrationStep}/${token}`);
-        } catch (err: any) {
-          setloading(false);
-          if (err.response.status == 400) {
-            toast({
-              title: "Invalid otp",
-              position: "top",
-              variant: "left-accent",
-              status: "error",
-              duration: 10000,
-              isClosable: true,
+        (async function () {
+          try {
+            if (verifType == "register"){
+              const res: any = await axios.post(`${url}/users/verifyOtp`, {
+                token: tok,
+                otp: +pin,
+              });
+            // console.log(res)
+              const { token, registrationStep } = res.data;
+              setloading(false);
+              router.push(`/register/${registrationStep}/${token}`);
+            }else if(verifType == "password-reset"){
+              const res: any = await axios.post(`${url}/users/verifyPasswordResetOtp`, {
+              token: tok,
+              otp: +pin,
             });
-          } else if (err.response.status == 401) {
-            router.push("/404");
-          } else {
-            toast({
-              title: "Something failed",
-              position: "top",
-              variant: "left-accent",
-              status: "error",
-              duration: 10000,
-              isClosable: true,
-            });
+            // console.log(res)
+            const { token } = res.data;
+            setloading(false);
+            router.push(`/password/reset/${token}`);
+            }
+          } catch (err: any) {
+            setloading(false);
+            if (err.response.status == 400) {
+              toast({
+                title: "Invalid otp",
+                position: "top",
+                variant: "left-accent",
+                status: "error",
+                duration: 10000,
+                isClosable: true,
+              });
+            } else if (err.response.status == 401) {
+              router.push("/404");
+            } else {
+              toast({
+                title: "Something failed",
+                position: "top",
+                variant: "left-accent",
+                status: "error",
+                duration: 10000,
+                isClosable: true,
+              });
+            }
           }
-          // setShowloadingring(false);
-          // console.log(err.response.status);
-          // toast({
-          //   title:
-          //     "An error occured. Please check internet connection and ensure your email is correct",
-          //   position: "top",
-          //   variant: "left-accent",
-          //   status: "error",
-          //   duration: 10000,
-          //   isClosable: true,
-          // });
-        }
-      })();
+        })();
 
       console.log("hello");
     }
-  }, [pin, toast, tok, router, url]);
+  }, [pin, toast, tok, router, url, verifType]);
 
   if(loading){
     return <Loader />
@@ -146,10 +146,19 @@ export default VerifyEmail;
 
 export async function getServerSideProps(context: any) {
   const {
-    params: { token },
+    params: { verifType, token },
   } = context;
 
   const url = process.env.API_URL;
+
+  if (verifType != "register" && verifType != "password-reset") {
+    return {
+      redirect: {
+        destination: "/404",
+        permanent: false,
+      },
+    };
+  }
 
   try {
     const res = await axios.post(`${url}/users/isValidToken`, {
@@ -168,6 +177,7 @@ export async function getServerSideProps(context: any) {
 
   return {
     props: {
+      verifType,
       token,
     },
   };

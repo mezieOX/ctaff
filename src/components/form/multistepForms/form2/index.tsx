@@ -11,10 +11,11 @@ import { useState } from "react";
 import Education from "./education";
 import Employment from "./employment";
 import { motion } from "framer-motion";
+import { ColorRing } from "react-loader-spinner";
 import ConfimationDialogue from "../../multistepForms/form1/confirmationDialog";
 
 interface EmploymentState {
-  certificate: string;
+  description: string;
   city: string;
   employers: string;
   position: string;
@@ -24,8 +25,10 @@ interface EmploymentState {
 
 const Form2 = ({
   handleTeacherFormSubmit,
+  showloadingring
 }: {
-  handleTeacherFormSubmit: any;
+  handleTeacherFormSubmit: any,
+  showloadingring: any
 }) => {
   const toast = useToast();
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -105,7 +108,7 @@ const Form2 = ({
       setEmploymentDetails([
         ...employmentDetails,
         {
-          certificate: "",
+          description: "",
           city: "",
           employers: "",
           position: "",
@@ -247,19 +250,43 @@ const Form2 = ({
   };
 
   const handleForm2Submit = () => {
-    // e.preventDefault();
     let allData = {
       educationalDetails: { ...educationalDetails },
       employmentDetails: [...employmentDetails],
     };
-    handleTeacherFormSubmit(allData);
-    // console.log(data)
+    let formData = new FormData()
+    formData.append('level', allData.educationalDetails.level)
+    formData.append('olevelCertificate', allData.educationalDetails.olevelResult)
+    for (const obj of allData.educationalDetails.details){
+      for (const data in obj) {
+        if (data == "certificate") {
+          formData.append("educationalCertificates", obj[data] as any);
+          continue;
+        }
+        formData.append(`edu${data}`, obj[data] as any);
+      }
+    }
+    for (const obj of allData.employmentDetails){
+      for (const data in obj) {
+        // if (data == "certificate") {
+        //   formData.append("employmentCertificates", obj[data] as any);
+        //   continue;
+        // }
+        formData.append(`emplmnt${data}`, obj[data] as any);
+      }
+    }
+
+    onClose()
+
+    handleTeacherFormSubmit(formData);
+    // alert(JSON.stringify(allData, null, 2))
+    console.log(allData)
   };
 
   const handleAddForm = (statetype?: string) => {
     setEmploymentDetails([
       {
-        certificate: "",
+        description: "",
         city: "",
         employers: "",
         position: "",
@@ -335,20 +362,13 @@ const Form2 = ({
 
           <Flex justifyContent="flex-end" gap="5px" marginTop="3rem">
             <Button
-              type="button"
-              w="7rem"
-              isDisabled={false}
-              colorScheme="purple"
-            >
-              Previous
-            </Button>
-            <Button
               type="submit"
               w="7rem"
-              isDisabled={false}
+              isDisabled={showloadingring}
               colorScheme="purple"
             >
-              Next
+              {!showloadingring && "Next"}
+              {showloadingring && <ColorRing width={30} height={30} />}
             </Button>
           </Flex>
         </form>

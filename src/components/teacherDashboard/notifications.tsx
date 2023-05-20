@@ -18,44 +18,24 @@ import NotificationModal from './notificationModal'
 interface NotificationsInterface {
   isOpen: boolean;
   onClose: any;
+  arr: any[];
+  modalMessage: string;
+  openModal: boolean;
+  handleCloseModal: any;
+  handleNotificationClick: any
+  cutText: any
 }
 
-const Notifications = ({ isOpen, onClose }: NotificationsInterface) => {
-
-  const [openModal, setOpenModal] = useState(false)
-  const [modalMessage, setModalMessage] = useState("")
-
-  const cutText = (text: string) => {
-    return text.slice(0, 50)
-  }
-
-  const  handleCloseModal = () => {
-    setOpenModal(false)
-  }
-
-  const [arr, setArr] = useState([
-    {notif: 'You have been Invited You have been Invitedv vYou have been invited', viewed: false},
-    {notif: 'You have been Invited You have been Invitedv vYou have been invited', viewed: false},
-    {notif: 'You have been Invited You have been Invitedv vYou have been invited', viewed: false},
-    {notif: 'You have been Invited You have been Invitedv vYou have been invited', viewed: false},
-    {notif: 'You have been Invited You have been Invitedv vYou have been invited', viewed: false},
-    {notif: 'You have been Invited You have been Invitedv vYou have been invited', viewed: false},
-    {notif: 'You have been Invited You have been Invitedv vYou have been invited', viewed: false},
-    {notif: 'You have been Invited You have been Invitedv vYou have been invited', viewed: false},
-    {notif: 'You have been Invited You have been Invitedv vYou have been invited', viewed: false},
-    {notif: 'You have been Invited You have been Invitedv vYou have been invited', viewed: false},
-    {notif: 'You have been Invited You have been Invitedv vYou have been invited', viewed: false},
-  ])
-
-
-  const handleNotificationClick = (index: number) => {
-    setModalMessage(arr[index].notif)
-    setOpenModal(true)
-    let newArr = arr.filter((item, i) => i === index? item.viewed = true: item)
-
-    setArr(newArr)
-    // console.log(newArr)
-  }
+const Notifications = ({
+  isOpen,
+  onClose,
+  arr,
+  modalMessage,
+  openModal,
+  handleCloseModal,
+  handleNotificationClick,
+  cutText,
+}: NotificationsInterface) => {
   return (
     <>
       <NotificationModal
@@ -91,7 +71,7 @@ const Notifications = ({ isOpen, onClose }: NotificationsInterface) => {
                 <Box key={i}>
                   {/* <Link href="/"> */}
                   <Box
-                  as="div"
+                    as="div"
                     onClick={() => handleNotificationClick(i)}
                     bg={item.viewed ? "gray.100" : "gray.400"}
                     _hover={{ bg: item.viewed ? "gray.100" : "gray.500" }}

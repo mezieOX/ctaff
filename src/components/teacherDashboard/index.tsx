@@ -3,7 +3,7 @@ import Head from "next/head";
 import Router from "next/router";
 import { useEffect, useState } from "react";
 import {
-  CircularProgress,
+  Box,
   Flex,
   IconButton,
   Text,
@@ -11,6 +11,8 @@ import {
   Avatar,
   AvatarBadge,
 } from "@chakra-ui/react";
+import Link from 'next/link'
+import Image from 'next/image'
 import { FaBell } from "react-icons/fa";
 import { FiMenu } from "react-icons/fi";
 import { css } from "@emotion/react";
@@ -19,7 +21,7 @@ import SideBar from './../layout/sidebar/index';
 import Notifications from './notifications';
 import DashBoardHome from './dashboardHome';
 
-const DashBoardLayout: NextPage = ({children, pageTitle}: {children?: any, pageTitle: string}) => {
+const DashBoardLayout = ({children, pageTitle}: {children?: any, pageTitle: string}) => {
   const [sidebar, setSideBar] = useState("large");
   const [showSidebar, setShowSideBar] = useState(false);
   const [mobileSideBarActive, setMobileSideBarActive] = useState(false);
@@ -34,12 +36,52 @@ const DashBoardLayout: NextPage = ({children, pageTitle}: {children?: any, pageT
     setMobileSideBarActive(true);
   };
 
+    const [arr, setArr] = useState([
+    {notif: 'You have been Invited You have been Invitedv vYou have been invited', viewed: false},
+    {notif: 'You have been Invited You have been Invitedv vYou have been invited', viewed: false},
+    {notif: 'You have been Invited You have been Invitedv vYou have been invited', viewed: false},
+    {notif: 'You have been Invited You have been Invitedv vYou have been invited', viewed: false},
+  ])
+
+  const [openModal, setOpenModal] = useState(false)
+  const [modalMessage, setModalMessage] = useState("")
+
+  const cutText = (text: string) => {
+    return text.slice(0, 50)
+  }
+
+  const  handleCloseModal = () => {
+    setOpenModal(false)
+  }
+
+
+
+  const handleNotificationClick = (index: number) => {
+    setModalMessage(arr[index].notif)
+    setOpenModal(true)
+    let newArr = arr.filter((item, i) => i === index? item.viewed = true: item)
+
+    setArr(newArr)
+    // console.log(newArr)
+  }
+
+
+
   return (
     <>
       <Head>
         <title>{title}</title>
       </Head>
-      <Notifications isOpen={isOpen} onClose={onClose} />
+      <Notifications 
+        isOpen={isOpen} 
+        onClose={onClose} 
+        arr={arr}   
+        modalMessage={modalMessage}
+        openModal={openModal}
+        handleCloseModal={handleCloseModal}
+        handleNotificationClick={handleNotificationClick}
+        cutText={cutText}
+      />
 
       <Flex>
         <IconButton
@@ -103,6 +145,21 @@ const DashBoardLayout: NextPage = ({children, pageTitle}: {children?: any, pageT
               </>
             }
           />
+        <Link href="/dashboard/teacher">
+          <Box             
+            pos="absolute"
+            top="30"
+            left="60"
+          >
+            <Image
+              src="/images/iykelnHub.png"
+              width={40}
+              height={45}
+              alt="homeimg"
+            />
+          </Box>
+        </Link>
+
           {children}
         </Flex>
       </Flex>

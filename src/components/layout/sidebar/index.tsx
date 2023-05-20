@@ -176,7 +176,7 @@ console.log(router)
             onMouseEnter={mouseEnterEvent}
             onMouseLeave={mouseLeaveEvent}
           >
-            <Avatar name="Tinubu Agbado" size="sm" src="/charles.jpg" />
+            <Avatar name="Tinubu Agbado" size="sm" src="none.jpg" />
             <Flex
               flexDir="column"
               // display={sideBarDisplay}

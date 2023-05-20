@@ -8,39 +8,45 @@ import {
   Heading,
   Button,
   useToast,
-  Text
+  Text,
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { motion } from "framer-motion";
 import axios from "axios";
-import {ColorRing} from 'react-loader-spinner'
+import { ColorRing } from "react-loader-spinner";
 import { useRouter } from "next/router";
 
-const InputYourEmail = ({ token, user }: { token: string, user: string}) => {
-  const router = useRouter()
+const InputYourEmail = ({
+  verifType,
+  user,
+}: {
+  verifType: string;
+  user: string;
+}) => {
+  const router = useRouter();
   let url = process.env.NEXT_PUBLIC_API_URL;
 
   const [value, setValue] = useState("");
   const [showloadingring, setShowloadingring] = useState(false);
-    const toast = useToast()
+  const toast = useToast();
 
-  const handleSubmit = async(e: any) => {
-    e.preventDefault()
-    setShowloadingring(true)
-
-    try{
-      const res = await axios.post(`${url}/users`, {email: value.trim(), role: user})
+  const registerUser = async () => {
+    try {
+      const res = await axios.post(`${url}/users/sendVerificationSignupOtp`, {
+        email: value.trim(),
+        role: user,
+      });
       // console.log(res)
-      const {token, registrationStep} = res.data
-      setShowloadingring(false)
-      if(registrationStep){
-        router.push(`/register/${registrationStep}/${token}`)
-      }else{
-        router.push(`/verifyemail/otp/${token}`)
+      const { token, registrationStep } = res.data;
+      setShowloadingring(false);
+      if (registrationStep) {
+        router.push(`/register/${registrationStep}/${token}`);
+      } else {
+        router.push(`/verifyemail/otp/register/${token}`);
       }
-    }catch(err){
-      setShowloadingring(false)
-      console.log(err)
+    } catch (err: any) {
+      setShowloadingring(false);
+      console.log(err);
       toast({
         title:
           "An error occured. Please check internet connection and ensure your email is correct",
@@ -50,6 +56,55 @@ const InputYourEmail = ({ token, user }: { token: string, user: string}) => {
         duration: 10000,
         isClosable: true,
       });
+    }
+  };
+
+  const forgotPassword = async () => {
+    try {
+      const res = await axios.post(
+        `${url}/users/sendVerificationForgotPasswordOtp`,
+        {
+          email: value.trim(),
+        }
+      );
+      const { token } = res.data;
+      setShowloadingring(false);
+        router.push(`/verifyemail/otp/password-reset/${token}`);
+    } catch (err: any) {
+      if (err.response?.status == 400) {
+        setShowloadingring(false);
+        toast({
+          title: "Email does not exist!",
+          position: "top",
+          variant: "left-accent",
+          status: "error",
+          duration: 10000,
+          isClosable: true,
+        });
+      } else {
+        setShowloadingring(false);
+        console.log(err);
+        toast({
+          title:
+            "An error occured. Please check internet connection and ensure your email is correct",
+          position: "top",
+          variant: "left-accent",
+          status: "error",
+          duration: 10000,
+          isClosable: true,
+        });
+      }
+    }
+  };
+
+  const handleSubmit = async (e: any) => {
+    e.preventDefault();
+    setShowloadingring(true);
+
+    if (verifType == "register") {
+      registerUser();
+    } else if (verifType == "password-reset") {
+      forgotPassword();
     }
   };
 
@@ -79,7 +134,7 @@ const InputYourEmail = ({ token, user }: { token: string, user: string}) => {
           display="flex"
           gap="1rem"
         >
-          {token == "password-reset" && <Text> Forgot Password? </Text>}
+          {verifType == "password-reset" && <Text> Forgot Password? </Text>}
           <Text> Input Your email. </Text>
         </Heading>
         <Flex
@@ -122,7 +177,8 @@ const InputYourEmail = ({ token, user }: { token: string, user: string}) => {
                     transition=".3s"
                     _hover={{ fontSize: { base: "1rem", md: "1.5rem" } }}
                   >
-                    {!showloadingring && 'Submit'}{showloadingring && <ColorRing width={30} height={30}/>}
+                    {!showloadingring && "Submit"}
+                    {showloadingring && <ColorRing width={30} height={30} />}
                   </Button>
                 </InputRightElement>
               </InputGroup>
@@ -140,13 +196,10 @@ export default InputYourEmail;
 
 export async function getServerSideProps(context: any) {
   const {
-    params: { token, user },
+    params: { verifType, user },
   } = context;
 
-  if (
-    token != "register" &&
-    token != "password-reset" 
-  ) {
+  if (verifType != "register" && verifType != "password-reset") {
     return {
       redirect: {
         destination: "/404",
@@ -155,11 +208,7 @@ export async function getServerSideProps(context: any) {
     };
   }
 
-  if (
-    user != "teacher" && 
-    user != "teach_finder" && 
-    user != "school"
-  ) {
+  if (user != "teacher" && user != "teach_finder" && user != "school") {
     return {
       redirect: {
         destination: "/404",
@@ -170,8 +219,8 @@ export async function getServerSideProps(context: any) {
 
   return {
     props: {
-      token,
-      user
+      verifType,
+      user,
     },
   };
 }

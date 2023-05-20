@@ -1,18 +1,29 @@
 import { motion } from "framer-motion";
+import { useRouter } from "next/router";
 import {
   Box,
   Flex,
   Heading,
   Button,
+  useToast
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
+import { ColorRing } from "react-loader-spinner";
 import {forgotPasswordSchema} from '../../../../src/utils/validationSchemas/forgotPasswordSchema'
 import RegisterFormInputs from "@/components/form/multistepForms/form1/inputs";
+import axios from "axios";
 
 const ForgotPassword = () => {
   const [show, setShow] = useState(false);
+  const router = useRouter();
+  const toast = useToast()
+  const { token } = router.query;
+  const [showloadingring, setShowloadingring] = useState(false);
+
+  let url = process.env.NEXT_PUBLIC_API_URL;
+
 
   const formOptions = { resolver: yupResolver(forgotPasswordSchema) }
   const { register, handleSubmit, formState } = useForm(formOptions)
@@ -21,9 +32,46 @@ const ForgotPassword = () => {
 
   console.log(errors)
 
-  function onSubmit(data: any) {
-    console.log(JSON.stringify(data, null, 4))
-    return false
+  async function onSubmit(data: any) {
+
+    const {password, confirmPwd} = data
+    console.log(password)
+    try{
+      let res = await axios.post(`${url}/users/reset-password`, {
+        password,
+        confirmPassword: confirmPwd,
+        token
+      })
+
+      router.push('/login')
+    }catch(err: any){
+      if (err.response?.status == 400) {
+        setShowloadingring(false);
+        toast({
+          title: "Invalid Passwords!",
+          position: "top",
+          variant: "left-accent",
+          status: "error",
+          duration: 10000,
+          isClosable: true,
+        });
+      }else if(err.response?.status == 401){
+        setShowloadingring(false);
+        router.push('/404')
+      }else {
+        setShowloadingring(false);
+        console.log(err);
+        toast({
+          title:
+            "An error occured. Please check internet connection",
+          position: "top",
+          variant: "left-accent",
+          status: "error",
+          duration: 10000,
+          isClosable: true,
+        });
+      }
+    }
   }
 
   return (
@@ -82,8 +130,10 @@ const ForgotPassword = () => {
                 transition=".5s"
                 color="#fff"
                 _hover={{ opacity: ".7" }}
-              >
-                Reset password
+                isDisabled={showloadingring}
+              >{!showloadingring && "Reset password"}
+                    {showloadingring && <ColorRing width={30} height={30} />}
+                
               </Button>
             </form>
           </Box>
@@ -94,3 +144,32 @@ const ForgotPassword = () => {
 };
 
 export default ForgotPassword;
+
+export async function getServerSideProps(context: any) {
+  const {
+    params: { token },
+  } = context;
+
+  const url = process.env.API_URL;
+
+  try {
+    const res = await axios.post(`${url}/users/isValidToken`, {
+      token
+    })
+  } catch (err: any) {
+    if(err.response.status == 401){
+      return {
+        redirect: {
+          destination: "/404",
+          permanent: false,
+        },
+      };
+    }
+  }
+
+  return {
+    props: {
+      token,
+    },
+  };
+}

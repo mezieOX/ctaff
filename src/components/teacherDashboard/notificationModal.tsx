@@ -17,6 +17,7 @@ interface NotificationModalInterface {
 }
 
 
+
 export default function NotificationModal({ isOpen, onClose, message }: NotificationModalInterface) {
 //   const { isOpen, onOpen, onClose } = useDisclosure();
 

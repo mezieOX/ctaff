@@ -119,36 +119,39 @@ const Skills = ({
                 />
               </FormControl>
             </Flex>
-              
-            {<Flex flexDir="column" marginTop="1rem">
-              <FormLabel fontWeight={"normal"}>Level:</FormLabel>
 
-              <Slider
-                aria-label="slider-ex-6"
-                value={form["level"]}
-                onChange={(val) => handleFormChange("level", val, index, "")}
-                marginTop="2rem"
-                mx="auto"
-                w="90%"
-              >
-                <SliderMark
-                  value={form["level"]}
-                  textAlign="center"
-                  bg="purple"
-                  rounded="lg"
-                  color="white"
-                  mt="-10"
-                  ml="-5"
-                  w="12"
+            {
+              <Flex flexDir="column" marginTop="1rem">
+                <FormLabel fontWeight={"normal"}>Level:</FormLabel>
+
+                <Slider
+                  isDisabled={!form["skill"]}
+                  aria-label="slider-ex-6"
+                  value={!form["skill"]? 0: form["level"]}
+                  onChange={(val) => handleFormChange("level", val, index, "")}
+                  marginTop="2rem"
+                  mx="auto"
+                  w="90%"
                 >
-                  {form["level"]}%
-                </SliderMark>
-                <SliderTrack>
-                  <SliderFilledTrack />
-                </SliderTrack>
-                <SliderThumb bg="gray" color="gray" />
-              </Slider>
-            </Flex>}
+                  <SliderMark
+                    value={!form["skill"]? 0: form["level"]}
+                    textAlign="center"
+                    bg="purple"
+                    rounded="lg"
+                    color="white"
+                    mt="-10"
+                    ml="-5"
+                    w="12"
+                  >
+                    {!form["skill"]? 0: form["level"]}%
+                  </SliderMark>
+                  <SliderTrack>
+                    <SliderFilledTrack />
+                  </SliderTrack>
+                  <SliderThumb bg="gray" color="gray" />
+                </Slider>
+              </Flex>
+            }
           </Collapse>
         </Flex>
       ))}

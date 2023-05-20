@@ -131,6 +131,7 @@ LanguageFormProps) => {
               <FormLabel fontWeight={"normal"}>Fluency:</FormLabel>
 
               <Slider
+                isDisabled={!form["language"]}
                 aria-label="slider-ex-6"
                 value={form["fluency"]}
                 onChange={(val) =>
@@ -141,7 +142,7 @@ LanguageFormProps) => {
                 w="90%"
               >
                 <SliderMark
-                  value={form["fluency"]}
+                  value={!form["language"]? 0: form["fluency"]}
                   textAlign="center"
                   bg="purple"
                   rounded="lg"
@@ -150,7 +151,7 @@ LanguageFormProps) => {
                   ml="-5"
                   w="12"
                 >
-                  {form["fluency"]}%
+                  {!form["language"]? 0: form["fluency"]}%
                 </SliderMark>
                 <SliderTrack>
                   <SliderFilledTrack />

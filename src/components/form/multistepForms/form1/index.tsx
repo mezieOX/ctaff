@@ -21,14 +21,19 @@ import {
 } from "@chakra-ui/react";
 import RegisterFormInputs from "./inputs";
 import ConfimationDialogue from "./confirmationDialog";
+import { ColorRing } from "react-loader-spinner";
 import { PersonalDetailsSchema } from "../../../../utils/validationSchemas/personalDetailsSchema";
 
 type FormData = yup.InferType<typeof PersonalDetailsSchema>;
 
 export default function Form1({
   handleTeacherFormSubmit,
+  email,
+  showloadingring
 }: {
-  handleTeacherFormSubmit: any;
+  showloadingring: boolean
+  handleTeacherFormSubmit: any,
+  email: any
 }) {
   const {
     register,
@@ -43,14 +48,21 @@ export default function Form1({
 
   const toast = useToast();
 
-  let teacherData;
-
   const onSubmit = (data: FormData) => {
     // onOpen()
     let allData = { ...data, picture };
+    let formData = new FormData()
+    for (const data in allData) {
+      if(data == 'picture'){
+        formData.append('profilePicture', allData[data] as any)
+        continue
+      }
+      formData.append(data, allData[data] as any)
+    }
     // teacherData = {...data, picture}
-    // console.log({...data, picture})
-    handleTeacherFormSubmit(allData);
+    // console.log(formData.get('picture'))
+    onClose()
+    handleTeacherFormSubmit(formData);
   };
 
   const handleFileChange = (e: any) => {
@@ -96,7 +108,10 @@ export default function Form1({
         w="100%"
       >
         <Heading w="100%" textAlign={"center"} fontWeight="normal" mb="2%">
-          Basic details<Text fontWeight="300" fontSize="15px">(Inputs should not start or end with spaces)</Text>
+          Basic details
+          <Text fontWeight="300" fontSize="15px">
+            (Inputs should not start or end with spaces)
+          </Text>
         </Heading>
 
         <form
@@ -126,7 +141,7 @@ export default function Form1({
               <FormLabel htmlFor="null" fontWeight={"normal"}>
                 Gender
               </FormLabel>
-              <RadioGroup onChange={(e) => console.log(e)}>
+              <RadioGroup>
                 <Stack direction={["column", "column", "row"]}>
                   <Radio value="male" {...register("gender")}>
                     Male
@@ -145,7 +160,7 @@ export default function Form1({
             </FormControl>
             <RegisterFormInputs
               disabled={true}
-              value="frank@gmail.com"
+              value={email ?? ""}
               name="email"
               label="Email"
               type="email"
@@ -213,10 +228,11 @@ export default function Form1({
               id="form1-submit"
               type="submit"
               w="7rem"
-              isDisabled={false}
+              isDisabled={showloadingring}
               colorScheme="purple"
             >
-              Next
+              {!showloadingring && "Next"}
+              {showloadingring && <ColorRing width={30} height={30} />}
             </Button>
           </Flex>
         </form>
