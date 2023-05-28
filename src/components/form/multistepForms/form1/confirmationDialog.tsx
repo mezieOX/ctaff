@@ -21,7 +21,7 @@ interface ConfimationDialogueInterface {
 
 export default function ConfimationDialogue({isOpen, onOpen, onClose,handleSubmit}: ConfimationDialogueInterface) {
 //   const { isOpen, onOpen, onClose } = useDisclosure();
-  const cancelRef = useRef();
+  const cancelRef = useRef(null);
 
   return (
     <>
