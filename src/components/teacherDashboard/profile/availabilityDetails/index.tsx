@@ -19,6 +19,7 @@ import { ColorRing } from "react-loader-spinner";
 import AvailabiltyInput from "./inputs";
 import { DeleteIcon } from "@chakra-ui/icons";
 import {useState, useEffect} from "react"
+import { daysOfWeek } from "@/data/weekdays";
 
 interface AvailabilityDetailsInterface {
   loadedAvailabilityData: any
@@ -49,15 +50,6 @@ const AvailabilityDetails = ({
 }
 : AvailabilityDetailsInterface) => {
 
-      const daysOfWeek = [
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-    "Sunday",
-  ];
 
   let [availabilityChanged, setAvailabilityChanged] = useState(false)
   

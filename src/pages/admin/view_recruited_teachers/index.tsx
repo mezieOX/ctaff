@@ -1,25 +1,29 @@
 import {
-  Box,
-  useDisclosure,
+  Image,
   Flex,
-  Text,
+  FormControl,
   SimpleGrid,
+  Stack,
+  FormLabel,
   Input,
-  Image
+  Box,
+  CheckboxGroup,
+  Checkbox,
+  Text,
+  useDisclosure
 } from "@chakra-ui/react";
-// import { FiUser } from "react-icons/fi";
+import { daysOfWeek } from "@/data/weekdays";
 import {formatSubjects} from "@/utils/helpers"
-import { useEffect, useState } from "react";
+import {capitalize} from "@/utils/helpers"
 import BackButton from "@/components/layout/dashboardBackButton";
+import {useState} from "react"
 import {useRouter} from "next/router"
-import TeachFinderNav from "./tf_nav"
+import AdminNav from "@/components/admin/nav";
+import { AvailabilityInfo } from "@/components/teacherDashboard/profile";
+import DialogueModal from "@/components/admin/dialogueModal"
 
-const FindTeacher = () => {
-  const [greeting, setGreeting] = useState("");
-  const { isOpen, onOpen, onClose } = useDisclosure();
+const ViewRecruitedTeachers = () => {
     const router = useRouter()
-
-
 
   let fakeTeacherData = [
     {id: 1, firstname: "Frank", lastname:"lungaga", subjects:["biology", "agric", "grete"], city: "Lagos", state: "Nigeria"},
@@ -29,18 +33,53 @@ const FindTeacher = () => {
   ]
 
   const teacherDetails = (id: any) => {
-    router.push(`/dashboard/teacher_finder/find_teacher/teacher/${id}`)
+    router.push(`/admin/view_recruited_teachers/${id}`)
   }
+
+  const [availabilityInfo, setAvailabilityInfo] =
+    useState<AvailabilityInfo>({
+      levelDetails: {
+        teachingExperience: "Less than 6 months",
+        highestDegree: "bsc",
+        availabilityState: "Abuja",
+        availabilityCity: "Gwagwa",
+      },
+      subjects: ["maths", "physics"],
+      teachableClass: ["tertiary"],
+      availableDays: {
+        // Monday: {
+        //   am: false,
+        //   pm: true,
+        // },
+      },
+    });
+
+  const handleAvailabilityCheck = (day: string, period: "am" | "pm") => {
+    setAvailabilityInfo((prevAvailabilityInfo: any) => {
+      const updatedDays = { ...prevAvailabilityInfo.availableDays };
+
+      if (updatedDays[day]) {
+        updatedDays[day][period] = !updatedDays[day][period];
+      } else {
+        updatedDays[day] = { [period]: true };
+      }
+
+      return {
+        ...prevAvailabilityInfo,
+        availableDays: updatedDays,
+      };
+    });
+  };
 
 
   return (
     <Box minHeight="100vh" position="relative">
       <Box mx="2rem" my="5rem">
         <Box>
-          <TeachFinderNav/>
+          <AdminNav/>
         </Box>
+
         <BackButton/>
-        {/* "https://res.cloudinary.com/bluebberies/image/upload/v1684218709/pg2q4plxrvlnqsqtqhwx.jpg" */}
         <Box mt="3rem">
           <Flex w={{base: "38rem", md:"50%"}} ml={{base:"1px", md:"auto"}}>
             <Text>
@@ -48,6 +87,32 @@ const FindTeacher = () => {
               subject or name{" "}
             </Text>
             <Input placeholder="search for teacher" w="100%"/>
+          </Flex>
+
+          <Flex marginRight="auto">
+            <FormControl>
+              <FormLabel>Filter teachers by availability</FormLabel>
+              <CheckboxGroup colorScheme="purple">
+                <SimpleGrid column={1}>
+                  {daysOfWeek.map((day) => (
+                    <Stack direction="row" spacing={7} key={day}>
+                      <Checkbox
+                        isChecked={availabilityInfo.availableDays[day]?.am}
+                        onChange={() => handleAvailabilityCheck(day, "am")}
+                      >
+                        {day} (AM)
+                      </Checkbox>
+                      <Checkbox
+                        isChecked={availabilityInfo.availableDays[day]?.pm}
+                        onChange={() => handleAvailabilityCheck(day, "pm")}
+                      >
+                        {day} (PM)
+                      </Checkbox>
+                    </Stack>
+                  ))}
+                </SimpleGrid>
+              </CheckboxGroup>
+            </FormControl>
           </Flex>
 
           <SimpleGrid mt="3rem" columns={{md: 1, lg: 2, xl: 3}} spacing="2rem" padding="1rem">
@@ -89,4 +154,4 @@ const FindTeacher = () => {
   );
 };
 
-export default FindTeacher;
+export default ViewRecruitedTeachers

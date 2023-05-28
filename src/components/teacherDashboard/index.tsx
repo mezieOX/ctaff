@@ -20,6 +20,7 @@ import { siteTitle } from "./../../config/siteTitle";
 import SideBar from './../layout/sidebar/index';
 import Notifications from './notifications';
 import DashBoardHome from './dashboardHome';
+import {cutText} from "@/utils/helpers"
 
 const DashBoardLayout = ({children, pageTitle}: {children?: any, pageTitle: string}) => {
   const [sidebar, setSideBar] = useState("large");
@@ -46,15 +47,9 @@ const DashBoardLayout = ({children, pageTitle}: {children?: any, pageTitle: stri
   const [openModal, setOpenModal] = useState(false)
   const [modalMessage, setModalMessage] = useState("")
 
-  const cutText = (text: string) => {
-    return text.slice(0, 50)
-  }
-
   const  handleCloseModal = () => {
     setOpenModal(false)
   }
-
-
 
   const handleNotificationClick = (index: number) => {
     setModalMessage(arr[index].notif)
@@ -149,7 +144,7 @@ const DashBoardLayout = ({children, pageTitle}: {children?: any, pageTitle: stri
           <Box             
             pos="absolute"
             top="30"
-            left="60"
+            left={{ base: "10", md: "60" }}
           >
             <Image
               src="/images/iykelnHub.png"

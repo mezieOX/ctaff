@@ -7,11 +7,11 @@ import {
   Text,
   Tooltip,
 } from "@chakra-ui/react";
-import {useRouter} from "next/router";
+import { useRouter } from "next/router";
 import { useState } from "react";
 import { FaAngleRight } from "react-icons/fa";
 import NavHoverBox from "./navHoverBox";
-import { NavItemPropsTypes } from "../../../interfaces/navItemPropTypes.interface";
+import { NavItemPropsTypes } from "../../../utils/interfaces/navItemPropTypes.interface";
 
 const NavItem = ({
   title,
@@ -48,14 +48,14 @@ const NavItem = ({
     setIsOpenMenu(false);
     setShowSideBar(!showSidebar);
     setShowTooltip(false);
-    console.log(router)
-    let bPath = router.asPath
-    if(route === "/password-reset" && bPath.includes("/password-reset")) {
-      return null
-    }else if(route === "/" && bPath == "/dashboard/teacher"){
-      return null
-    }else {
-      router.push(`/dashboard/teacher${route}`)
+    console.log(router);
+    let bPath = router.asPath;
+    if (route === "/password-reset" && bPath.includes("/password-reset")) {
+      return null;
+    } else if (route === "/" && bPath == "/dashboard/teacher") {
+      return null;
+    } else {
+      router.push(`/dashboard/teacher${route}`);
     }
     // .catch((e) => {
     //   if (!e.cancelled) {

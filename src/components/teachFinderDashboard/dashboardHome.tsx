@@ -20,12 +20,15 @@ import {
 } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 // import { FiUser } from "react-icons/fi";
+import TeachFinderNav from "./tf_nav"
 import { FiLogOut, FiUser } from "react-icons/fi";
 import {FaBell} from 'react-icons/fa'
 import { useEffect, useState } from "react";
 import Link from "next/link"
 import Image from "next/image";
 import Notifications from "@/components/teacherDashboard/notifications"
+import {getDayTime} from "@/utils/helpers"
+import {cutText} from "@/utils/helpers"
 // import Notifivc
 
 const DashBoardHome = () => {
@@ -36,16 +39,7 @@ const DashBoardHome = () => {
 
 
   useEffect(() => {
-    const now = new Date()
-    const currhr = now.getHours()
-
-    if(currhr < 12)
-      setGreeting("Good Morning")
-    else if(currhr < 18)
-      setGreeting("Good Afternoon")
-    else
-      setGreeting("Good Evening")
-
+    getDayTime(setGreeting)
   }, []);
 
   const [arr, setArr] = useState([
@@ -58,15 +52,9 @@ const DashBoardHome = () => {
   const [openModal, setOpenModal] = useState(false)
   const [modalMessage, setModalMessage] = useState("")
 
-  const cutText = (text: string) => {
-    return text.slice(0, 50)
-  }
-
   const  handleCloseModal = () => {
     setOpenModal(false)
   }
-
-
 
   const handleNotificationClick = (index: number) => {
     setModalMessage(arr[index].notif)
@@ -96,16 +84,6 @@ const DashBoardHome = () => {
           cutText={cutText}
         />
         <Box>
-          <Link href="/dashboard/teacher_finder">
-            <Box pos="absolute" top="-12" left={{ base: "10", md: "20" }}>
-              <Image
-                src="/images/iykelnHub.png"
-                width={40}
-                height={45}
-                alt="homeimg"
-              />
-            </Box>
-          </Link>
 
           <IconButton
             size="lg"
@@ -128,34 +106,10 @@ const DashBoardHome = () => {
               </>
             }
           />
-        <Menu>
-          <MenuButton
-            pos="fixed"
-            top="6"
-            right="15"
-            zIndex="50"
-            _hover={{ bg: "none" }}
-            aria-label="open menu"
-            bg="#37254b"
-            rounded="full"
-            borderRadius="50%"
-          >
-          <Avatar name="Tinubu Agbado" size="sm" src="none.jpg" />
-          </MenuButton>
-          <MenuList>
-            <MenuItem icon={<FiUser />}>
-               Profile
-            </MenuItem>
-            <MenuDivider />
-            <MenuItem icon={<FiLogOut />}>
-              Logout
-              </MenuItem>
-          </MenuList>
-        </Menu>
-
+          <TeachFinderNav/>
         </Box>
         <Heading fontSize={{ base: "2rem", md: "3rem" }}>
-          {greeting}, Tinubu!
+          {greeting}, Mr. Tinubu!
         </Heading>
         <Text as="h3" fontWeight={700}>
           How can we help you today?
@@ -182,7 +136,7 @@ const DashBoardHome = () => {
             shadow="1px 3px 16px 4px rgba(1,1,1,0.1);"
           >
 
-              Find a teacher in your areas
+              Find a teacher in your area
           </Box>
       </Box>
       <Box position="absolute" bottom="0" left="0" right="0">

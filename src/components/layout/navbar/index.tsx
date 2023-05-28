@@ -13,7 +13,7 @@ import { CloseIcon, HamburgerIcon } from "@chakra-ui/icons";
 import { keyframes } from "@emotion/react";
 import NavBarLink from "@/components/layout/navbar/navbarlink";
 
-const Navbar = () => {
+const Navbar = ({show}: {show?: string}) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const animateUnderline = keyframes`
@@ -45,27 +45,33 @@ const Navbar = () => {
           ></Image>
         </Link>
 
-        <IconButton
-          aria-label="Toggle navigation"
-          size="lg"
-          color="white"
-          variant="none"
-          icon={<HamburgerIcon />}
-          onClick={isOpen ? onClose : onOpen}
-          display={{ md: "none" }}
-        />
 
-        <Box
-          display={{ base: "none", md: "flex" }}
-          width={{ base: "full", md: "auto" }}
-          alignItems="center"
-        >
-          <NavBarLink to='/' linkName="Home"/>
-          <NavBarLink to='/login' linkName="Log in"/>
-        </Box>
+        {!show && 
+        <>
+          <IconButton
+            aria-label="Toggle navigation"
+            size="lg"
+            color="white"
+            variant="none"
+            icon={<HamburgerIcon />}
+            onClick={isOpen ? onClose : onOpen}
+            display={{ md: "none" }}
+          />
+
+          <Box
+            display={{ base: "none", md: "flex" }}
+            width={{ base: "full", md: "auto" }}
+            alignItems="center"
+          >
+            <NavBarLink to='/' linkName="Home"/>
+            <NavBarLink to='/login' linkName="Log in"/>
+          </Box>
+        </>
+        }
       </Flex>
 
-      <Slide
+        
+      {!show && <Slide
         direction="top"
         in={isOpen}
         style={{ zIndex: 10 }}
@@ -79,29 +85,6 @@ const Navbar = () => {
           alignItems="center"
           justifyContent="start"
         >
-          {/* <Link href="/">
-            <Button
-              as="a"
-              variant="none"
-              color="white"
-              p={{ base: 2, md: 4 }}
-              fontSize={{ base: "sm", md: "md" }}
-            >
-              Home
-            </Button>
-          </Link>
-          <Link href="/">
-            <Button
-              as="a"
-              variant="none"
-              color="white"
-              // aria-label={children}
-              p={{ base: 2, md: 4 }}
-              fontSize={{ base: "sm", md: "md" }}
-            >
-              Signup
-            </Button>
-          </Link> */}
           <NavBarLink to='/' linkName="Home"/>
           <NavBarLink to='/login' linkName="Log in"/>
 
@@ -118,7 +101,7 @@ const Navbar = () => {
             display={{ md: "none" }}
           />
         </Box>
-      </Slide>
+      </Slide>}
     </Box>
   );
 };

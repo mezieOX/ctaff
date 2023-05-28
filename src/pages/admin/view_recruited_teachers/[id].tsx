@@ -18,7 +18,7 @@ import { motion } from "framer-motion";
 import OrderTeachModal from "@/components/teachFinderDashboard/order_teach_modal";
 import BackButton from "@/components/layout/dashboardBackButton";
 
-const GetTeacher = () => {
+const ViewTeacher = () => {
     const { isOpen, onOpen, onClose } = useDisclosure();
     const [teacher, setTeacher] = useState({})
     const [ordering, setOrdering] = useState(false)
@@ -30,9 +30,9 @@ const GetTeacher = () => {
     const handleTeachOrder = () => {
         onOpen()
     }
-
+    
     return (
-    <motion.div
+            <motion.div
       key="teacher"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
@@ -90,6 +90,22 @@ const GetTeacher = () => {
               alignItems="center"
             >
               <Text fontWeight="500">Gender:</Text>Male
+            </Box>
+            <Box
+              display="flex"
+              gap="1rem"
+              fontSize={{md: "17px", xl: "1.5rem"}}
+              alignItems="center"
+            >
+              <Text fontWeight="500">Phone:</Text>07084421499
+            </Box>
+            <Box
+              display="flex"
+              gap="1rem"
+              fontSize={{md: "17px", xl: "1.5rem"}}
+              alignItems="center"
+            >
+              <Text fontWeight="500">Email:</Text>francisalexander000@yahoo.com
             </Box>
             <Box
               display="flex"
@@ -196,7 +212,7 @@ const GetTeacher = () => {
             </UnorderedList>
           </Flex>
 
-          <Flex justifyContent="flex-end" mt="2rem">
+          {/* <Flex justifyContent="flex-end" mt="2rem">
             <Button
               bg="#37254b"
               color="white"
@@ -213,11 +229,11 @@ const GetTeacher = () => {
               )}
               {ordering && <ColorRing width={30} height={30} />}
             </Button>
-          </Flex>
+          </Flex> */}
         </Box>
       </Box>
       </motion.div>
     );
 }
  
-export default GetTeacher
+export default ViewTeacher

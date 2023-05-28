@@ -19,7 +19,7 @@ import UserDetails from "./userDetails"
 import OtherDetails from "./otherDetails"
 import axios from 'axios'
 
-interface AvailabilityInfo {
+export interface AvailabilityInfo {
   levelDetails: {
     teachingExperience: string;
     highestDegree: string;

@@ -1,7 +1,7 @@
 import { NextPage } from "next";
 import DashBoardHome from "../../../components/teachFinderDashboard/dashboardHome";
 
-const TeacherDashboard: NextPage = () => {
+const TeacherFinderDashboard: NextPage = () => {
   return (
     <>
         <DashBoardHome />
@@ -9,4 +9,4 @@ const TeacherDashboard: NextPage = () => {
   );
 };
 
-export default TeacherDashboard;
+export default TeacherFinderDashboard;

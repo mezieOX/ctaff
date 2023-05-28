@@ -70,7 +70,7 @@ const Login = () => {
         seterrmessage(messages[1]);
         setMessageType("error");
         onOpen();
-      } else if (err.response?.status == 401 || err.response?.status == 403) {
+      } else if (err.response?.status == 401) {
         setMessageType("info");
         seterrmessage(messages[0]);
         onOpen();
@@ -88,8 +88,6 @@ const Login = () => {
     }
   };
 
-  // console.log(onOpen)
-
   return (
     <motion.div
       key="login"
@@ -98,7 +96,7 @@ const Login = () => {
       transition={{ duration: 0.5 }}
     >
       <Box bg="#37254b" minH="100vh">
-        <Navbar />
+        <Navbar show="no"/>
         <Flex
           flexDir="column"
           alignItems="center"
@@ -118,7 +116,7 @@ const Login = () => {
             mb={4}
             mr="auto"
           >
-            Sign in to your account
+            Admin Login
           </Heading>
           <Box
             px={6}
@@ -145,11 +143,9 @@ const Login = () => {
                 </Alert>
               )}
               <TextInput
-                label="Email"
-                type="email"
-                name="email"
-                // page="login"
-                // helper="e.g iykelnhub@gmail.com"
+                label="Username"
+                type="text"
+                name="username"
                 setInputState={setLoginInputs}
                 inputsState={loginInputs}
               />
@@ -163,35 +159,6 @@ const Login = () => {
                 inputsState={loginInputs}
               />
 
-              <Link
-                href="/verifyemail/password-reset/teach_finder/inputemail"
-                style={{ marginLeft: "auto" }}
-                shallow
-              >
-                <Text
-                  color="#fff"
-                  marginTop="-2rem"
-                  textDecoration="none"
-                  variant="none"
-                  position="relative"
-                  _hover={{
-                    color: "white",
-                    _before: {
-                      content: "''",
-                      position: "absolute",
-                      bottom: "-5px",
-                      width: "100%",
-                      height: "2px",
-                      backgroundColor: "white",
-                      animation: `${animateUnderline} 0.3s forwards`,
-                      transition:
-                        "opacity 0.3s ease-out, transform 0.3s ease-out, visibility 0s 0.3s",
-                    },
-                  }}
-                >
-                  Forgot Password?
-                </Text>
-              </Link>
               <Button
                 bg="#37254b"
                 type="submit"
@@ -203,32 +170,6 @@ const Login = () => {
                 {!showloadingring && "Log in"}
                 {showloadingring && <ColorRing width={30} height={30} />}
               </Button>
-              <Link href="/who_am_i" shallow>
-                <Text
-                  textDecoration="none"
-                  variant="none"
-                  color="white"
-                  position="relative"
-                  marginTop="-1rem"
-                  maxW={["100%", "40%"]}
-                  _hover={{
-                    color: "white",
-                    _before: {
-                      content: "''",
-                      position: "absolute",
-                      bottom: "-5px",
-                      width: "100%",
-                      height: "2px",
-                      backgroundColor: "white",
-                      animation: `${animateUnderline} 0.3s forwards`,
-                      transition:
-                        "opacity 0.3s ease-out, transform 0.3s ease-out, visibility 0s 0.3s",
-                    },
-                  }}
-                >
-                  No account yet? Sign Up.
-                </Text>
-              </Link>
             </form>
           </Box>
         </Flex>

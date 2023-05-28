@@ -1,6 +1,6 @@
 import NextLink from "next/link";
 import { MenuGroup, MenuItem, MenuList } from "@chakra-ui/react";
-import { NavHoverBoxPropTypes } from "../../../interfaces/navItemPropTypes.interface";
+import { NavHoverBoxPropTypes } from "../../../utils/interfaces/navItemPropTypes.interface";
 
 const NavHoverBox = ({
   mouseEnterEvent,
@@ -22,34 +22,32 @@ const NavHoverBox = ({
           title={title}
           textDecoration={showMenuItem ? "underline" : "none"}
         >
-            {menuItems?.length ? (
-              menuItems.map((item, index) => (
-                <MenuItem
-                  key={index}
-                  bg="gray"
-                  as={NextLink}
-                  href={item.href}
-                  color="#fff"
-                  // w='10px'
-                  closeOnSelect={true}
-                  onClick={mouseLeaveEvent}
-                  _hover={{ bg: "#fff", color: "black" }}
-                >
-                  {item.course}
-                </MenuItem>
-              ))
-            ) 
-            : (
+          {menuItems?.length ? (
+            menuItems.map((item, index) => (
               <MenuItem
-                color="#fff"
+                key={index}
                 bg="gray"
-                _hover={{ bg: "none" }}
-                cursor="not-allowed"
+                as={NextLink}
+                href={item.href}
+                color="#fff"
+                // w='10px'
+                closeOnSelect={true}
+                onClick={mouseLeaveEvent}
+                _hover={{ bg: "#fff", color: "black" }}
               >
-                ...
+                {item.course}
               </MenuItem>
-            )
-            }
+            ))
+          ) : (
+            <MenuItem
+              color="#fff"
+              bg="gray"
+              _hover={{ bg: "none" }}
+              cursor="not-allowed"
+            >
+              ...
+            </MenuItem>
+          )}
         </MenuGroup>
       </MenuList>
     </>

@@ -17,3 +17,20 @@ export function formatSubjects (subjects: string[]){
 export function capitalize(string: string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
+
+export function getDayTime(setGreeting){
+    const now = new Date()
+    const currhr = now.getHours()
+
+    if(currhr < 12)
+      setGreeting("Good Morning")
+    else if(currhr < 18)
+      setGreeting("Good Afternoon")
+    else
+      setGreeting("Good Evening")
+}
+
+export const cutText = (text: string) => {
+    return text.slice(0, 50)
+  }
+

@@ -12,22 +12,14 @@ import {
 import {FaBell} from 'react-icons/fa'
 import { useEffect, useState } from "react";
 import Notifications from "./notifications"
+import {getDayTime} from "@/utils/helpers"
 
 const DashBoardHome = () => {
 
   const [greeting, setGreeting] = useState('');
 
   useEffect(() => {
-    const now = new Date()
-    const currhr = now.getHours()
-
-    if(currhr < 12)
-      setGreeting("Good Morning")
-    else if(currhr < 18)
-      setGreeting("Good Afternoon")
-    else
-      setGreeting("Good Evening")
-
+    getDayTime(setGreeting)
   }, []);
 
   return (
