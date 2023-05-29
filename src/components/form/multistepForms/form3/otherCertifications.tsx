@@ -113,7 +113,7 @@ OtherCertificationsFormProps) => {
             // in={true}
             animateOpacity
             startingHeight={2}
-            overflow="hidden"
+            // overflow="hidden"
           >
             <Flex>
               <FormControl mr="5%">

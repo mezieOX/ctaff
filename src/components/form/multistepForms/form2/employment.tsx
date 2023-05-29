@@ -100,7 +100,7 @@ const Employment = ({
             in={!isEmploymentCollapsed && index === openEmploymentIndex}
             animateOpacity
             startingHeight={2}
-            overflow="hidden"
+            // overflow="hidden"
           >
             <UserDetailsInput
               name="position"

@@ -1,8 +1,8 @@
+import { siteTitle } from "@/config/siteTitle";
 import Head from "next/head";
 import Image from "next/image";
 import Navbar from "@/components/layout/navbar";
 import Offers from "@/components/layout/home/offers";
-import { siteTitle } from "@/config/siteTitle";
 import Typewriter from "typewriter-effect";
 import {
   Box,

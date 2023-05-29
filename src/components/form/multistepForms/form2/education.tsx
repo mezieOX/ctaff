@@ -151,7 +151,7 @@ const Education = ({
             in={!isEduCollapsed && index === openEduIndex}
             animateOpacity
             startingHeight={2}
-            overflow="hidden"
+            // overflow="hidden"
           >
             <UserDetailsInput
               name="edutype"

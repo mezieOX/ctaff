@@ -1,12 +1,17 @@
-import { Flex, Text, Heading } from "@chakra-ui/react";
+import { Flex, Text, Button, Box } from "@chakra-ui/react";
 import Link from "next/link";
 import Image from "next/image";
-import { Button } from "@chakra-ui/react";
-import { Box } from "@chakra-ui/react";
 import { motion } from "framer-motion";
+import Head from "next/head";
 
 const NotFound = () => {
+  const title = "Page Not Found"
+  
   return (
+    <>
+      <Head>
+        <title>{title}</title>
+      </Head>
           <motion.div
         key="404"
         initial={{ opacity: 0 }}
@@ -68,6 +73,7 @@ const NotFound = () => {
       </Flex>
     </Flex>
     </motion.div>
+    </>
   );
 };
 
