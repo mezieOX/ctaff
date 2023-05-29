@@ -5,7 +5,7 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { SiGoogleanalytics } from "react-icons/si";
-import { FaChalkboardTeacher, FaListUI } from "react-icons/fa";
+import { FaChalkboardTeacher } from "react-icons/fa";
 import { BsClipboard } from "react-icons/bs";
 import { HiUsers } from "react-icons/hi";
 import { MdWork } from "react-icons/md";

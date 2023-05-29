@@ -113,7 +113,11 @@ const handleActivate = (index: number) => {
                 onMouseEnter={() => handleActivate(index)}
                 onMouseLeave={handleDeactivate}
               >
-                <Box objectFit="center" w="50%">
+                <Box
+                  //  objectFit="center" 
+                   objectFit="cover" 
+                   w="50%"
+                >
                   <Image
                     width="100%"
                     height="100%"
