@@ -314,7 +314,8 @@ const ProfilePage = () => {
               <Image               
                 rounded="full"
                 alt="profilepic" 
-                objectFit="center"
+                // objectFit="center"
+                objectFit="cover"
                 width="100%"
                 height="100%"
                 transition="transform 0.3s"

@@ -65,7 +65,7 @@ const VerifyEmail = ({ verifType }: { verifType: string}) => {
             }
           } catch (err: any) {
             setloading(false);
-            if (err.response.status == 400) {
+            if (err?.response?.status == 400) {
               toast({
                 title: "Invalid otp",
                 position: "top",
@@ -74,7 +74,7 @@ const VerifyEmail = ({ verifType }: { verifType: string}) => {
                 duration: 10000,
                 isClosable: true,
               });
-            } else if (err.response.status == 401) {
+            } else if (err?.response?.status == 401) {
               router.push("/404");
             } else {
               toast({

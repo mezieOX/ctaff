@@ -34,7 +34,13 @@ const ViewTeacher = () => {
 
   const router = useRouter();
   // const { id } = router.query;
-  const transformedId = +router?.query?.id || 0
+  // let transformedId = +router?.query?.id || 0
+  let transformedId: number;
+
+  if(router?.query?.id && +router?.query?.id)
+    transformedId = +router?.query?.id
+  else 
+    transformedId = 0
   
   const handleDialogueModalMessage = (e: any) => {
     setDialogueModalMessage(e.target.value)
@@ -107,7 +113,8 @@ const ViewTeacher = () => {
           pos="relative"
         >
           <Box
-            objectFit="center"
+            // objectFit="center"
+            objectFit="cover"
             w={{ base: "100%", md: "70%", lg: "60%" }}
             rounded="lg"
             overflow="hidden"

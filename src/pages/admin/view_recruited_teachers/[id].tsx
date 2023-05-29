@@ -50,7 +50,8 @@ const ViewTeacher = () => {
         >
           <OrderTeachModal onClose={onClose} isOpen={isOpen} />
           <Box
-            objectFit="center"
+            // objectFit="center"
+            objectFit="cover"
             w={{ base: "100%", md: "70%", lg: "60%" }}
             rounded="lg"
             overflow="hidden"
