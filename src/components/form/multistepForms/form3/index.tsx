@@ -214,13 +214,13 @@ const Form3 = ({
 
     for (const obj of allData.skills){
       for (const data in obj) {
-        formData.append(data, obj[data] as any);
+        formData.append(data, obj[data as keyof typeof obj] as any);
       }
     }
 
     for (const obj of allData.languages){
       for (const data in obj) {
-        formData.append(data, obj[data] as any);
+        formData.append(data, obj[data as keyof typeof obj] as any);
       }
     }
 
@@ -230,7 +230,7 @@ const Form3 = ({
           formData.append("otherCertifications", obj[data] as any);
           continue;
         }
-        formData.append(data, obj[data] as any);
+        formData.append(data, obj[data as keyof typeof obj] as any);
       }
     }
         onClose();

@@ -141,7 +141,7 @@ const ProfilePage = () => {
   let [loadedBasicData, setLoadedBasicData ] = useState(unmutableBasic) 
 
 
-  let [basicData, setBasicData] = useState<typeof loadedBasicData>({})
+  let [basicData, setBasicData] = useState<Partial<typeof loadedBasicData>>({})
 
   const handleGenderChange = (value: string) => {
     setLoadedBasicData({ ...loadedBasicData, gender: value });
@@ -156,10 +156,10 @@ const ProfilePage = () => {
   const handleInputsChange = (e: any) => {
     const {name, value} = e.target
     setLoadedBasicData({ ...loadedBasicData, [name]: value });
-    if(value === unmutableBasic[name] as any){
-      const { [name as any]: _, ...rest} = basicData
-      setBasicData(rest)
-    }else{
+    if (value === (unmutableBasic[name as keyof typeof unmutableBasic] as any)) {
+      const { [name as keyof typeof basicData]: _, ...rest } = basicData;
+      setBasicData(rest);
+    } else {
       setBasicData({ ...basicData, [name]: value });
     }
   }
@@ -364,7 +364,6 @@ const ProfilePage = () => {
                 setSubjectVal={setSubjectVal}
                 handleAddSubject={handleAddSubject}
                 subjectVal={subjectVal}
-                availabilityChanged={availabilityChanged}
                 availabilityDetailsLoading={availabilityDetailsLoading}
               />
           </form>

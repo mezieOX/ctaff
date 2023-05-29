@@ -263,7 +263,7 @@ const Form2 = ({
           formData.append("educationalCertificates", obj[data] as any);
           continue;
         }
-        formData.append(`edu${data}`, obj[data] as any);
+        formData.append(`edu${data}`, obj[data as keyof typeof obj] as any);
       }
     }
     for (const obj of allData.employmentDetails){
@@ -272,7 +272,7 @@ const Form2 = ({
         //   formData.append("employmentCertificates", obj[data] as any);
         //   continue;
         // }
-        formData.append(`emplmnt${data}`, obj[data] as any);
+        formData.append(`emplmnt${data}`, obj[data as keyof typeof obj] as any);
       }
     }
 

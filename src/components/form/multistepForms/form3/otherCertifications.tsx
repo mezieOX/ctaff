@@ -134,9 +134,7 @@ OtherCertificationsFormProps) => {
 
               <Textarea
                 value={form["description"]}
-                    pattern="^\S(.*\S)?$"
-                    disabled={form["certiFile"] === ""}
-
+                disabled={form["certiFile"] === ""}
                 onChange={(e) =>
                   handleFormChange(
                     "description",

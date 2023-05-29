@@ -57,7 +57,7 @@ export default function Form1({
         formData.append('profilePicture', allData[data] as any)
         continue
       }
-      formData.append(data, allData[data] as any)
+      formData.append(data, allData[data as keyof typeof allData] as any)
     }
     // teacherData = {...data, picture}
     // console.log(formData.get('picture'))

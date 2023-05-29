@@ -10,21 +10,18 @@ import {
 import { useState } from "react";
 import Education from "./education";
 import Employment from "./employment";
-import { motion } from "framer-motion";
-import ConfimationDialogue from "../../multistepForms/form1/confirmationDialog";
 
-// interface EmploymentState {
-//   certificate: string;
-//   city: string;
-//   employers: string;
-//   position: string;
-//   startdate: string;
-//   enddate: string;
-// }
-
+interface EmploymentState {
+  certificate: string;
+  city: string;
+  employers: string;
+  position: string;
+  startdate: string;
+  enddate: string;
+}
 
 const UserDetails = () => {
-      const toast = useToast();
+  const toast = useToast();
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const [openEduIndex, setOpenEduIndex] = useState(0);

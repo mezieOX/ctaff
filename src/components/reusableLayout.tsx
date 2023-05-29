@@ -1,4 +1,5 @@
 import Head from "next/head";
+import { siteTitle } from "@/config/siteTitle";
 
 export default function ReusabaleLayout({ children }: {children: any}) {
   return (
@@ -25,6 +26,7 @@ export default function ReusabaleLayout({ children }: {children: any}) {
         <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
         <meta name="msapplication-TileColor" content="#da532c" />
         <meta name="theme-color" content="#ffffff" />
+        <title>{siteTitle}</title>
       </Head>
       {/* <main> */}
       {children}

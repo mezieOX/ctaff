@@ -34,7 +34,7 @@ const ViewTeacher = () => {
 
   const router = useRouter();
   // const { id } = router.query;
-  const transformedId = +router.query.id || 0
+  const transformedId = +router?.query?.id || 0
   
   const handleDialogueModalMessage = (e: any) => {
     setDialogueModalMessage(e.target.value)

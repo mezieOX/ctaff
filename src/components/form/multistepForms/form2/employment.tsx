@@ -142,7 +142,6 @@ const Employment = ({
               <FormLabel fontWeight={"normal"}>Description:</FormLabel>
               <Textarea
                 value={form["description"]}
-                pattern="^\S(.*\S)?$"
                 onChange={(e) =>
                   handleFormChange(
                     "description",

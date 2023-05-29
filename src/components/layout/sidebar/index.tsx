@@ -15,7 +15,6 @@ import { BsCardList, BsKeyFill } from "react-icons/bs";
 import { useState } from "react";
 import NavItem from "./navItem";
 // import courses
-import { courses } from "./../../../data/courses";
 
 interface SideBarProps {
   showSidebar: boolean;

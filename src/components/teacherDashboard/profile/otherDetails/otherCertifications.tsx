@@ -20,7 +20,6 @@ Textarea,
 import { FaPlus } from "react-icons/fa";
 import { DeleteIcon } from "@chakra-ui/icons";
 import { SkillsFormProps } from "./skills";
-import UserDetailsInput from "../../multistepForms/form2/inputs"
 
 interface OtherCertificationsFormProps extends Partial<SkillsFormProps> {
     openOtherCertificationsIndex: number;
@@ -134,8 +133,6 @@ OtherCertificationsFormProps) => {
 
               <Textarea
                 value={form["description"]}
-                    pattern="^\S(.*\S)?$"
-
                 onChange={(e) =>
                   handleFormChange(
                     "description",
