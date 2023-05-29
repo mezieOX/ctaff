@@ -14,11 +14,14 @@ export function formatSubjects (subjects: string[]){
     return formattedString
   }
 
-export function capitalize(string: string) {
-    return string.charAt(0).toUpperCase() + string.slice(1);
+// export function capitalize(string: string) {
+//     return string.charAt(0).toUpperCase() + string.slice(1);
+// }
+export function capitalize(string: string | undefined) {
+  return (string ?? '').charAt(0).toUpperCase() + string?.slice(1);
 }
 
-export function getDayTime(setGreeting){
+export function getDayTime(setGreeting: any){
     const now = new Date()
     const currhr = now.getHours()
 
