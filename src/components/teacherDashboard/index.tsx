@@ -28,7 +28,7 @@ const DashBoardLayout = ({children, pageTitle}: {children?: any, pageTitle: stri
   const [mobileSideBarActive, setMobileSideBarActive] = useState(false);
   const [path, setPath] = useState("");
   const [loading, setLoading] = useState(false);
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  const { isOpen, onOpen, onClose } = useDisclosure();d
 
   const title = `${siteTitle} - ${pageTitle}`;
 

@@ -57,7 +57,7 @@ const Login = () => {
     onClose();
     // console.log(loginInputs);
     try {
-      let { data } = await axios.post(`${url}/users/login`, { ...loginInputs });
+      let { data } = await axios.post('/api/login', { ...loginInputs });
       setshowloadingring(false);
       onClose();
       if (data.role == "teacher") {

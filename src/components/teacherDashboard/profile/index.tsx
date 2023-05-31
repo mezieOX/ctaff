@@ -191,7 +191,8 @@ const ProfilePage = () => {
       let pic = new FormData()
       pic.append('profilePicture', selectedFile)
       try {
-        const {basicData} = await axios.post(`${url}/users/changeProfilePic`, pic) as any
+        // const {basicData} = await axios.post(`${url}/users/changeProfilePic`, pic) as any
+        const { basicData } = (await axios.post("/api/changeProfilePic", pic)) as any;
         setIsFetching(false)
 
         console.log(basicData)

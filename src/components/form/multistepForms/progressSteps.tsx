@@ -26,8 +26,14 @@ export default function ProgressSteps({step}: {step: any}) {
   })
 
   return (
-    <Stepper size="lg" colorScheme="gray" index={activeStep} color="white" mb="2rem">
-      {steps.map((step, index) => 
+    <Stepper
+      size="lg"
+      colorScheme="gray"
+      index={activeStep}
+      color="white"
+      mb="2rem"
+    >
+      {steps.map((step, index) => (
         // <Step key={index} spacing="1px">
         <Step key={index}>
           <StepIndicator>
@@ -42,12 +48,14 @@ export default function ProgressSteps({step}: {step: any}) {
             {/* <StepTitle fontSize={["14px"]}>{step.title}</StepTitle>
             <StepDescription fontSize={["11px", "12px"]} color="white">{step.description}</StepDescription> */}
             <StepTitle>{step.title}</StepTitle>
-            <StepDescription>{step.description}</StepDescription>
+            <StepDescription style={{ color: "white" }}>
+              {step.description}
+            </StepDescription>
           </Box>
 
           <StepSeparator />
         </Step>
-      )}
+      ))}
     </Stepper>
   );
 }

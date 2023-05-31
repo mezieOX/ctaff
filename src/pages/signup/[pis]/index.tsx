@@ -50,7 +50,7 @@ const SignUpPis = ({pis}: {pis: string}) => {
     // alert(JSON.stringify(signupInputs, null, 2))
     let userData = signupInputs
     try{
-      let data = await axios.post(`${url}/users/signup`, {
+      let data = await axios.post("/api/signup", {
         ...userData,
         role: pis
       })

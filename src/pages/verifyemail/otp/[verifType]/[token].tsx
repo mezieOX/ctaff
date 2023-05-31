@@ -45,7 +45,7 @@ const VerifyEmail = ({ verifType }: { verifType: string}) => {
         (async function () {
           try {
             if (verifType == "register"){
-              const res: any = await axios.post(`${url}/users/verifyOtp`, {
+              const res: any = await axios.post('/api/verifyOtp', {
                 token: tok,
                 otp: +pin,
               });
@@ -54,7 +54,7 @@ const VerifyEmail = ({ verifType }: { verifType: string}) => {
               setloading(false);
               router.push(`/register/${registrationStep}/${token}`);
             }else if(verifType == "password-reset"){
-              const res: any = await axios.post(`${url}/users/verifyPasswordResetOtp`, {
+              const res: any = await axios.post('/api/verifyPassworResetOtp', {
               token: tok,
               otp: +pin,
             });

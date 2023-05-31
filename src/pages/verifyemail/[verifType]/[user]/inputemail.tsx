@@ -10,6 +10,7 @@ import {
   useToast,
   Text,
 } from "@chakra-ui/react";
+import { ArrowRightIcon } from '@chakra-ui/icons';
 import { useState } from "react";
 import { motion } from "framer-motion";
 import axios from "axios";
@@ -36,7 +37,7 @@ const InputYourEmail = ({
       //   email: value.trim(),
       //   role: user,
       // });
-      const res = await axios.post('/api/hello', {
+      const res = await axios.post("/api/sendVerificationSignupOtp", {
         email: value.trim(),
         role: user,
       });
@@ -66,7 +67,7 @@ const InputYourEmail = ({
   const forgotPassword = async () => {
     try {
       const res = await axios.post(
-        `${url}/users/sendVerificationForgotPasswordOtp`,
+        "/api/sendVerificationForgotPasswordOtp",
         {
           email: value.trim(),
         }
@@ -166,7 +167,7 @@ const InputYourEmail = ({
                 />
                 <InputRightElement
                   bg="#000"
-                  width="30%"
+                  // width="20%"
                   color="#fff"
                   rounded="inherit"
                 >
@@ -181,8 +182,9 @@ const InputYourEmail = ({
                     transition=".3s"
                     _hover={{ fontSize: { base: "1rem", md: "1.5rem" } }}
                   >
-                    {!showloadingring && "Submit"}
+                    {!showloadingring && <ArrowRightIcon />}
                     {showloadingring && <ColorRing width={30} height={30} />}
+                    
                   </Button>
                 </InputRightElement>
               </InputGroup>

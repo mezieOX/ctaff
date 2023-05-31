@@ -37,11 +37,16 @@ const ForgotPassword = () => {
     const {password, confirmPwd} = data
     console.log(password)
     try{
-      let res = await axios.post(`${url}/users/reset-password`, {
+      // let res = await axios.post(`${url}/users/reset-password`, {
+      //   password,
+      //   confirmPassword: confirmPwd,
+      //   token
+      // })
+      let res = await axios.post("/api/reset-password", {
         password,
         confirmPassword: confirmPwd,
-        token
-      })
+        token,
+      });
 
       router.push('/login')
     }catch(err: any){
