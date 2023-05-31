@@ -21,8 +21,8 @@ export default function Home() {
   useEffect(() => {
     console.log("process.env.NEXT_PUBLIC_API_URL", process.env.NEXT_PUBLIC_API_URL)
     console.log("TYPE process.env.NEXT_PUBLIC_API_URL", typeof process.env.NEXT_PUBLIC_API_URL)
-    console.log("process.env.API_URLL", process.env.API_URLL)
-    console.log("TYPE process.env.API_URLL", typeof process.env.API_URLL)
+    console.log("process.env.API_URLL", process.env.API_URL)
+    console.log("TYPE process.env.API_URL", typeof process.env.API_URL)
     console.log("hello world")
   }, [])
   return (
