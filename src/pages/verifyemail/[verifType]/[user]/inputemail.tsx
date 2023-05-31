@@ -32,7 +32,11 @@ const InputYourEmail = ({
 
   const registerUser = async () => {
     try {
-      const res = await axios.post(`${url}/users/sendVerificationSignupOtp`, {
+      // const res = await axios.post(`${url}/users/sendVerificationSignupOtp`, {
+      //   email: value.trim(),
+      //   role: user,
+      // });
+      const res = await axios.post('/api/hello', {
         email: value.trim(),
         role: user,
       });
