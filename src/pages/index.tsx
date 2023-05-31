@@ -23,7 +23,7 @@ export default function Home() {
     console.log("TYPE process.env.NEXT_PUBLIC_API_URL", typeof process.env.NEXT_PUBLIC_API_URL)
     console.log("process.env.API_URLL", process.env.API_URL)
     console.log("TYPE process.env.API_URL", typeof process.env.API_URL)
-    console.log("hello world")
+    console.log("hello")
   }, [])
   return (
     <>
