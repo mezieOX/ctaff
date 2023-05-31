@@ -44,15 +44,15 @@ export default function Multistep({ step, progressLevel, runConfetti, data }: Mu
     
     try{
       if(step == 4){
-        // const sendForm = await axios.post(`${url}/users/addTeacherDetails`, 
-        const sendForm = await axios.post('/api/addTeacherDetails', 
+        const sendForm = await axios.post(`${url}/users/addTeacherDetails`, 
+        // const sendForm = await axios.post('/api/addTeacherDetails', 
         {...data, step, token}
         )
       }else{
         data.append("step", step)
         data.append("token", token)
-        // const sendForm = await axios.post(`${url}/users/addTeacherDetails`, 
-          const sendForm = await axios.post('/api/addTeacherDetails', 
+        const sendForm = await axios.post(`${url}/users/addTeacherDetails`, 
+          // const sendForm = await axios.post('/api/addTeacherDetails', 
           data
           )
       }
