@@ -45,7 +45,7 @@ export default function Multistep({ step, progressLevel, runConfetti, data }: Mu
     try{
       if(step == 4){
         // const sendForm = await axios.post(`${url}/users/addTeacherDetails`, 
-        const sendForm = await axios.post('/api/addTeacherDetails', 
+        const sendForm = await axios.post('/api/users/addTeacherDetails', 
         {...data, step, token}
         )
       }else{
@@ -61,6 +61,7 @@ export default function Multistep({ step, progressLevel, runConfetti, data }: Mu
       router.push(`/register/${nextStep}/${token}`)
         
     }catch(err: any){
+      console.log("rrrrrrr", err)
       if (err.response?.status == 400) {
         setShowloadingring(false);
         toast({
@@ -96,9 +97,13 @@ export default function Multistep({ step, progressLevel, runConfetti, data }: Mu
     if(step == 5){
       (async() => {
         // const data = await axios.post(`${url}/users/disableConfetti`, {
-        const data = await axios.post('/api/disableConfetti', {
-          token,
-        });
+        try{
+          const data = await axios.post('/api/users/disableConfetti', {
+            token,
+          });
+        }catch(err){
+          router.push('/404')
+        }
       })()
     }
   }, [step, url, token])

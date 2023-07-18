@@ -1,6 +1,6 @@
 import { NextPage } from "next";
 import Head from "next/head";
-import Router from "next/router";
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import {
   Box,
@@ -11,23 +11,32 @@ import {
   Avatar,
   AvatarBadge,
 } from "@chakra-ui/react";
-import Link from 'next/link'
-import Image from 'next/image'
+import Link from "next/link";
+import Image from "next/image";
 import { FaBell } from "react-icons/fa";
 import { FiMenu } from "react-icons/fi";
 import { css } from "@emotion/react";
 import { siteTitle } from "./../../config/siteTitle";
-import SideBar from './../layout/sidebar/index';
-import Notifications from './notifications';
-import DashBoardHome from './dashboardHome';
-import {cutText} from "@/utils/helpers"
+import SideBar from "./../layout/sidebar/index";
+import Notifications from "./notifications";
+import { cutText } from "@/utils/helpers";
+import { goToDashBoardHome } from "@/utils/helpers";
 
-const DashBoardLayout = ({children, pageTitle}: {children?: any, pageTitle: string}) => {
+const DashBoardLayout = ({
+  children,
+  pageTitle,
+  teacherData,
+}: {
+  children?: any;
+  pageTitle: string;
+  teacherData: any;
+}) => {
   const [sidebar, setSideBar] = useState("large");
   const [showSidebar, setShowSideBar] = useState(false);
   const [mobileSideBarActive, setMobileSideBarActive] = useState(false);
   const [path, setPath] = useState("");
   const [loading, setLoading] = useState(false);
+  const router = useRouter();
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const title = `${siteTitle} - ${pageTitle}`;
@@ -37,40 +46,37 @@ const DashBoardLayout = ({children, pageTitle}: {children?: any, pageTitle: stri
     setMobileSideBarActive(true);
   };
 
-    const [arr, setArr] = useState([
-    {notif: 'You have been Invited You have been Invitedv vYou have been invited', viewed: false},
-    {notif: 'You have been Invited You have been Invitedv vYou have been invited', viewed: false},
-    {notif: 'You have been Invited You have been Invitedv vYou have been invited', viewed: false},
-    {notif: 'You have been Invited You have been Invitedv vYou have been invited', viewed: false},
-  ])
+  const [notifications, setNotifications] = useState(teacherData.notifications);
+  //   {
+  //   message:
+  //     "You have been Invited You have been Invitedv vYou have been invited",
+  //   viewed: false,
+  // },
 
-  const [openModal, setOpenModal] = useState(false)
-  const [modalMessage, setModalMessage] = useState("")
+  const [openModal, setOpenModal] = useState(false);
+  const [modalMessage, setModalMessage] = useState("");
 
-  const  handleCloseModal = () => {
-    setOpenModal(false)
-  }
+  const handleCloseModal = () => {
+    setOpenModal(false);
+  };
 
   const handleNotificationClick = (index: number) => {
-    setModalMessage(arr[index].notif)
-    setOpenModal(true)
-    let newArr = arr.filter((item, i) => i === index? item.viewed = true: item)
-
-    setArr(newArr)
-    // console.log(newArr)
-  }
-
-
+    setModalMessage(notifications[index].message);
+    setOpenModal(true);
+    let newNotif = notifications.filter((item: any, i: number) =>
+      i === index ? (item.isViewed = true) : item
+    );
+  };
 
   return (
     <>
       <Head>
         <title>{title}</title>
       </Head>
-      <Notifications 
-        isOpen={isOpen} 
-        onClose={onClose} 
-        arr={arr}   
+      <Notifications
+        isOpen={isOpen}
+        onClose={onClose}
+        notifications={notifications}
         modalMessage={modalMessage}
         openModal={openModal}
         handleCloseModal={handleCloseModal}
@@ -107,6 +113,7 @@ const DashBoardLayout = ({children, pageTitle}: {children?: any, pageTitle: stri
           setSideBar={setSideBar}
           setShowSideBar={setShowSideBar}
           mobileSideBarActive={mobileSideBarActive}
+          teacherData={teacherData}
         />
 
         <Flex
@@ -129,22 +136,37 @@ const DashBoardLayout = ({children, pageTitle}: {children?: any, pageTitle: stri
             aria-label="open menu"
             bg="#37254b"
             // rounded="5xl"
-             borderRadius="50%"
+            borderRadius="50%"
             icon={
               <>
                 <Avatar bg="#37254b" onClick={onOpen} icon={<FaBell />}>
-                  <AvatarBadge boxSize="1.25em" bg="red.500">
-                    <Text fontSize="12px">9+</Text>
-                  </AvatarBadge>
+                  {teacherData?.notifications?.filter(
+                    (item: any) => !item.isViewed
+                  )?.length > 0 && (
+                    <AvatarBadge boxSize="1.25em" bg="red.500">
+                      <Text fontSize="12px">
+                        {teacherData?.notifications?.filter(
+                          (item: any) => !item.isViewed
+                        ).length > 9
+                          ? "9j+"
+                          : teacherData?.notifications?.filter(
+                              (item: any) => !item.isViewed
+                            ).length}{" "}
+                      </Text>
+                    </AvatarBadge>
+                  )}
                 </Avatar>
               </>
             }
           />
-        <Link href="/dashboard/teacher">
-          <Box             
+          <Box
             pos="absolute"
             top="30"
-            left={{ base: "10", md: "60" }}
+            left={{ base: "10", sm: sidebar === "large" ? "60" : "40" }}
+            transition={"left .6s ease"}
+            onClick={() => goToDashBoardHome(router, "teacher")}
+            cursor="pointer"
+            // left={{ base: "10", md: "60" }}
           >
             <Image
               src="/images/iykelnHub.png"
@@ -153,7 +175,6 @@ const DashBoardLayout = ({children, pageTitle}: {children?: any, pageTitle: stri
               alt="homeimg"
             />
           </Box>
-        </Link>
 
           {children}
         </Flex>

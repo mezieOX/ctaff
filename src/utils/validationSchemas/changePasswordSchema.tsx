@@ -2,8 +2,8 @@ import * as Yup from 'yup'
 
 export const changePasswordSchema = Yup.object().shape({
 oldPassword: Yup.string().trim()
-    .required('Old Password is mandatory'),
-    // .min(8, 'Password must be at least 8 characters long'),
+    .required('Old Password is mandatory')
+    .min(8, 'Invalid old password'),
 newPassword: Yup.string().trim()
     .required('New Password is mandatory')
     .min(8, 'Password must be at least 8 characters long'),

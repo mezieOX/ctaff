@@ -12,6 +12,7 @@ import {
   useDisclosure,
   useToast,
 } from "@chakra-ui/react";
+import jwt_decode from "jwt-decode";
 import { useRouter } from "next/router";
 import TextInput from "../../../src/components/form/textField";
 import Link from "next/link";
@@ -20,10 +21,11 @@ import { useState, useEffect } from "react";
 import { ColorRing } from "react-loader-spinner";
 import { motion } from "framer-motion";
 import axios from "axios";
+import { getTokenCookie, setTokenCookie } from "@/utils/cookieHandler/token-cookie-handler";
 
-const Login = () => {
+const AdminLogin = () => {
   const [loginInputs, setLoginInputs] = useState({
-    email: "",
+    username: "",
     password: "",
   });
 
@@ -34,8 +36,7 @@ const Login = () => {
   const [errmessage, seterrmessage] = useState("");
   const [messageType, setMessageType] = useState("");
   const messages = [
-    "A mail has been sent to you. Follow the link to continue to login",
-    "Invalid Email or password",
+    "Invalid Username or password",
   ];
 
   let url = process.env.NEXT_PUBLIC_API_URL;
@@ -57,24 +58,28 @@ const Login = () => {
     onClose();
     // console.log(loginInputs);
     try {
-      let { data } = await axios.post(`${url}/users/login`, { ...loginInputs });
+      let { data } = await axios.post("/api/auth/signInAdmin", { ...loginInputs });
+      console.log("dattt", data)
+      const { accessToken, refreshToken, role } = data;
+      await setTokenCookie(accessToken, refreshToken, role);
+      const tokens = await getTokenCookie();
       setshowloadingring(false);
       onClose();
-      if (data.role == "teacher") {
-        router.push("/dashboard/teacher");
-      }
-      console.log(data);
-    } catch (err: any) {
-      setshowloadingring(false);
-      if (err.response?.status == 400) {
-        seterrmessage(messages[1]);
+      if (role == "admin") {
+        router.push("/admin");
+        window.history.replaceState(null, "", "/admin");
+      } else{
+        seterrmessage(messages[0]);
         setMessageType("error");
         onOpen();
-      } else if (err.response?.status == 401) {
-        setMessageType("info");
+      }
+    } catch (err: any) {
+      setshowloadingring(false);
+      if (err.response?.status == 400 || err.response?.status == 401 || err.response?.status == 403) {
         seterrmessage(messages[0]);
+        setMessageType("error");
         onOpen();
-      } else {
+      }else {
         onClose();
         toast({
           title: "An error ocurred. Please check your internet connection",
@@ -88,6 +93,8 @@ const Login = () => {
     }
   };
 
+  // console.log(onOpen)
+
   return (
     <motion.div
       key="login"
@@ -96,7 +103,7 @@ const Login = () => {
       transition={{ duration: 0.5 }}
     >
       <Box bg="#37254b" minH="100vh">
-        <Navbar show="no"/>
+        <Navbar />
         <Flex
           flexDir="column"
           alignItems="center"
@@ -153,12 +160,39 @@ const Login = () => {
                 label="Password"
                 type="password"
                 name="password"
-                // page="login"
-                // helper="should be at least 8 characters"
                 setInputState={setLoginInputs}
                 inputsState={loginInputs}
               />
 
+              <Link
+                href="/verifyemail/password-reset/teach_finder/inputemail"
+                style={{ marginLeft: "auto" }}
+                shallow
+              >
+                <Text
+                  color="#fff"
+                  marginTop="-2rem"
+                  textDecoration="none"
+                  variant="none"
+                  position="relative"
+                  _hover={{
+                    color: "white",
+                    _before: {
+                      content: "''",
+                      position: "absolute",
+                      bottom: "-5px",
+                      width: "100%",
+                      height: "2px",
+                      backgroundColor: "white",
+                      animation: `${animateUnderline} 0.3s forwards`,
+                      transition:
+                        "opacity 0.3s ease-out, transform 0.3s ease-out, visibility 0s 0.3s",
+                    },
+                  }}
+                >
+                  Forgot Password?
+                </Text>
+              </Link>
               <Button
                 bg="#37254b"
                 type="submit"
@@ -170,6 +204,7 @@ const Login = () => {
                 {!showloadingring && "Log in"}
                 {showloadingring && <ColorRing width={30} height={30} />}
               </Button>
+            
             </form>
           </Box>
         </Flex>
@@ -178,4 +213,58 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default AdminLogin;
+
+export async function getServerSideProps(context: any) {
+const { req, res } = context;
+  // import jwt-=
+  const { cookies } = req;
+  const { refreshToken, accessToken } = cookies;
+
+  const url = process.env.API_URL;
+
+  if (refreshToken && accessToken) {
+    let rtPload: any = jwt_decode(refreshToken);
+    let atPload: any = jwt_decode(accessToken);
+
+    const cTime = Math.floor(Date.now() / 1000);
+    if (atPload.exp > cTime) {
+      return {
+        redirect: {
+          destination: '/admin',
+          permanent: false,
+        },
+      };
+    } else if (rtPload.exp > cTime) {
+      return {
+        redirect: {
+          destination: '/admin',
+          permanent: false,
+        },
+      };
+    }
+    // console.log("rtp", rtPload);
+    // console.log("rtp", atPload)
+    // try{
+    //   const {data} = await axios.post(`${url}/auth/isValidTokens`, {
+    //     rt: refreshToken,
+    //     at: accessToken
+    //   });
+    //   console.log(data)
+    //   return {
+    //     redirect: {
+    //       destination: `/dashboard/${data.role}`,
+    //       permanent: false,
+    //     },
+    //   };
+    // }catch(err){
+    //   return {
+    //     props: {},
+    //   };
+    // }
+  }
+
+  return {
+    props: {},
+  };
+}

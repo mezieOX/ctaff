@@ -37,7 +37,7 @@ const InputYourEmail = ({
       //   email: value.trim(),
       //   role: user,
       // });
-      const res = await axios.post("/api/sendVerificationSignupOtp", {
+      const res = await axios.post("/api/users/sendVerificationSignupOtp", {
         email: value.trim(),
         role: user,
       });
@@ -67,7 +67,7 @@ const InputYourEmail = ({
   const forgotPassword = async () => {
     try {
       const res = await axios.post(
-        "/api/sendVerificationForgotPasswordOtp",
+        "/api/users/sendVerificationForgotPasswordOtp",
         {
           email: value.trim(),
         }

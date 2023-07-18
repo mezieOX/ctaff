@@ -1,4 +1,4 @@
-import {
+ import {
   Button,
   Heading,
   Flex,
@@ -14,6 +14,8 @@ import {
   Checkbox,
   Select,
   Text,
+  Radio,
+  RadioGroup,
 } from "@chakra-ui/react";
 import { ColorRing } from "react-loader-spinner";
 import AvailabiltyInput from "./inputs";
@@ -33,6 +35,8 @@ interface AvailabilityDetailsInterface {
   handleAddSubject: any;
   subjectVal: string;
   availabilityDetailsLoading: boolean;
+  availabilityChanged: boolean;
+  handleCurrentlyAvailableChange: any
 }
 
 const AvailabilityDetails = ({
@@ -46,20 +50,11 @@ const AvailabilityDetails = ({
   setSubjectVal,
   handleAddSubject,
   subjectVal,
-  availabilityDetailsLoading
+  availabilityDetailsLoading,
+  availabilityChanged,
+  handleCurrentlyAvailableChange
 }
 : AvailabilityDetailsInterface) => {
-
-
-  let [availabilityChanged, setAvailabilityChanged] = useState(false)
-  
-  useEffect(() => {
-    if(JSON.stringify(loadedAvailabilityData) !== JSON.stringify(availabilityInfo)){
-      setAvailabilityChanged(false)
-    }else{
-      setAvailabilityChanged(true)
-    }
-  }, [availabilityInfo, loadedAvailabilityData])
 
   return (
     <Box
@@ -106,7 +101,7 @@ const AvailabilityDetails = ({
         <SimpleGrid>
           <FormControl size="md">
             <Select
-              name="teachingExperience"
+              name="yearsOfExperience"
               placeholder="-- Years of teaching experience --"
               focusBorderColor="brand.400"
               shadow="sm"
@@ -114,7 +109,7 @@ const AvailabilityDetails = ({
               size="sm"
               w="full"
               rounded="md"
-              value={availabilityInfo.levelDetails.teachingExperience}
+              value={availabilityInfo.levelDetails.yearsOfExperience}
               onChange={handleOptionChange}
             >
               <option value="none">None</option>
@@ -126,7 +121,7 @@ const AvailabilityDetails = ({
           </FormControl>
           <FormControl size="md">
             <Select
-              name="highestDegree"
+              name="highestDegreeObtained"
               placeholder="-- Highest degree obtained --"
               focusBorderColor="brand.400"
               shadow="sm"
@@ -134,7 +129,7 @@ const AvailabilityDetails = ({
               size="sm"
               w="full"
               rounded="md"
-              value={availabilityInfo.levelDetails.highestDegree}
+              value={availabilityInfo.levelDetails.highestDegreeObtained}
               onChange={handleOptionChange}
             >
               <option value="olevel">O level</option>
@@ -147,7 +142,7 @@ const AvailabilityDetails = ({
             <FormLabel>What level can you teach:</FormLabel>
             <CheckboxGroup
               colorScheme="green"
-              value={availabilityInfo.teachableClass}
+              value={availabilityInfo.teachableLevels}
               onChange={handleCheckboxes}
             >
               <Stack direction="row" spacing={3}>
@@ -197,16 +192,18 @@ const AvailabilityDetails = ({
             </InputGroup>
           </FormControl>
           <SimpleGrid column={1} spacing="1px">
-            {availabilityInfo.subjects.map((subject: string, i: number) => (
-              <Flex key={i} alignItems="center" flexDir="row" gap="2px">
-                <Text>{subject}</Text>
-                <DeleteIcon
-                  cursor="pointer"
-                  _hover={{ color: "red" }}
-                  onClick={() => handleSubjDelete(i)}
-                />
-              </Flex>
-            ))}
+            {availabilityInfo.teachableSubjects.sort().map(
+              (subject: string, i: number) => (
+                <Flex key={i} alignItems="center" flexDir="row" gap="2px">
+                  <Text>{subject}</Text>
+                  <DeleteIcon
+                    cursor="pointer"
+                    _hover={{ color: "red" }}
+                    onClick={() => handleSubjDelete(i)}
+                  />
+                </Flex>
+              )
+            )}
           </SimpleGrid>
         </SimpleGrid>
         <AvailabiltyInput
@@ -221,6 +218,19 @@ const AvailabilityDetails = ({
           handleChange={handleOptionChange}
           details={availabilityInfo.levelDetails}
         />
+        <FormControl mr="5%">
+          <FormLabel fontWeight={"normal"}>Are you currently available</FormLabel>
+          <RadioGroup
+            onChange={handleCurrentlyAvailableChange}
+            value={availabilityInfo.availabilityStatus}
+          >
+            <Stack direction={["column", "column", "column", "row"]}>
+              <Radio value="available">Yes</Radio>
+              <Radio value="unavailable">No</Radio>
+              <Radio value="pendiing">Maybe</Radio>
+            </Stack>
+          </RadioGroup>
+        </FormControl>
       </SimpleGrid>
       <Flex justifyContent="flex-end">
         <Button
@@ -230,9 +240,9 @@ const AvailabilityDetails = ({
           colorScheme="purple"
           isDisabled={availabilityDetailsLoading || availabilityChanged}
         >
-        {!availabilityDetailsLoading && "Update"}
-        {availabilityDetailsLoading && <ColorRing width={30} height={30} />}
-      </Button>
+          {!availabilityDetailsLoading && "Update"}
+          {availabilityDetailsLoading && <ColorRing width={30} height={30} />}
+        </Button>
       </Flex>
     </Box>
   );

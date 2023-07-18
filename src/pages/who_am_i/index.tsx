@@ -10,7 +10,6 @@ const WhoAmI = () => {
 
   const [isLessThan1042] = useMediaQuery("(max-width: 1042px)");
   const [isLessThan700] = useMediaQuery("(max-width: 700px)");
-  
 
   let width = isLessThan1042 ? "90%" : "40%";
   // if(isLessThan1042)
@@ -37,16 +36,12 @@ const WhoAmI = () => {
                         transform: translateY(-500px);
                     }`;
 
-
-
   const handleOptionChange = (e: any) => {
-    let val = e.target.value
-    if(val === "applicant")
-      router.push('/verifyemail/register/teacher/inputemail')
-    else if(val === "individual")
-      router.push('/signup/teacher_finder')
-    else
-      router.push('/signup/school')
+    let val = e.target.value;
+    if (val === "applicant")
+      router.push("/verifyemail/register/teacher/inputemail");
+    else if (val === "individual") router.push("/signup/teacher_finder");
+    else router.push("/signup/school");
     // console.log(e.target.value);
     // setSelectedOption(e.target.value);
   };
@@ -59,7 +54,7 @@ const WhoAmI = () => {
       transition={{ duration: 1 }}
     >
       <Box position="relative" bg="black" height="100vh" width="100%">
-        <Box
+        {/* <Box
           display={{ base: "none", md: "inline" }}
           position="absolute"
           width="30%"
@@ -76,7 +71,7 @@ const WhoAmI = () => {
           }}
           animation={`${animateFloat1} 5s infinite ease-in-out`}
           // zIndex={5}
-        />
+        /> */}
         <Box paddingTop="10rem" zIndex={10}>
           <select
             style={{
@@ -99,7 +94,7 @@ const WhoAmI = () => {
           >
             <option
               disabled
-              selected
+              defaultValue="I am"
               value=""
               style={{ color: "#fff", backgroundColor: "black" }}
             >
@@ -126,7 +121,7 @@ const WhoAmI = () => {
             </option>
           </select>
         </Box>
-        <Box
+        {/* <Box
           position="absolute"
           display={{ base: "none", md: "inline" }}
           width="30%"
@@ -143,12 +138,10 @@ const WhoAmI = () => {
           }}
           animation={`${animateFloat2} 9s infinite ease-in-out`}
           zIndex={0}
-        />
+        /> */}
       </Box>
     </motion.div>
   );
 };
 
 export default WhoAmI;
-
-

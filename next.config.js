@@ -1,11 +1,18 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  // serverRuntimeConfig: {
-  //   bodyParser: {
-  //     sizeLimit: '5mb',
-  //   },
-  // },
+  images: {
+    domains: ['res.cloudinary.com'],
+    // unoptimized: true
+    // remotePatterns: [
+    //   {
+    //     protocol: 'https',
+    //     hostname: 'res.cloudinary.com',
+    //     port: '',
+    //     pathname: '*'
+    //   }
+    // ]
+  }
 }
 
 module.exports = nextConfig

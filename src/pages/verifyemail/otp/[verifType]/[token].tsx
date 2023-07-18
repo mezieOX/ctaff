@@ -11,6 +11,7 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import axios from "axios";
 import Loader from "@/components/layout/loader";
+import { NextRequest, NextResponse } from "next/server";
 
 const VerifyEmail = ({ verifType }: { verifType: string}) => {
   const router = useRouter();
@@ -45,20 +46,20 @@ const VerifyEmail = ({ verifType }: { verifType: string}) => {
         (async function () {
           try {
             if (verifType == "register"){
-              const res: any = await axios.post('/api/verifyOtp', {
+              const res: any = await axios.post("/api/users/verifyOtp", {
                 token: tok,
                 otp: +pin,
+                otpType: 'signup',
               });
-            // console.log(res)
               const { token, registrationStep } = res.data;
               setloading(false);
               router.push(`/register/${registrationStep}/${token}`);
             }else if(verifType == "password-reset"){
-              const res: any = await axios.post('/api/verifyPassworResetOtp', {
-              token: tok,
-              otp: +pin,
-            });
-            // console.log(res)
+              const res: any = await axios.post("/api/users/verifyOtp", {
+                token: tok,
+                otp: +pin,
+                otpType: "resetPassword",
+              });
             const { token } = res.data;
             setloading(false);
             router.push(`/password/reset/${token}`);
@@ -147,6 +148,8 @@ export default VerifyEmail;
 export async function getServerSideProps(context: any) {
   const {
     params: { verifType, token },
+    req,
+    resolvedUrl,
   } = context;
 
   const url = process.env.API_URL;
@@ -160,15 +163,23 @@ export async function getServerSideProps(context: any) {
     };
   }
 
+  console.log("req.url,", req.headers.referer);
   try {
-    const res = await axios.post(`${url}/users/isValidToken`, {
+    const resp = await axios.post(`${url}/users/isValidToken`, {
       token
-    })
+    })      
+    return {
+      redirect: {
+        destination: resolvedUrl,
+        permanent: false,
+      },
+    };
+
   } catch (err: any) {
     if(err.response.status == 401){
       return {
         redirect: {
-          destination: "/404",
+          destination: "/verifyemail/password-reset/teach_finder/inputemail",
           permanent: false,
         },
       };

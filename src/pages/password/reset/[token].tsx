@@ -37,12 +37,7 @@ const ForgotPassword = () => {
     const {password, confirmPwd} = data
     console.log(password)
     try{
-      // let res = await axios.post(`${url}/users/reset-password`, {
-      //   password,
-      //   confirmPassword: confirmPwd,
-      //   token
-      // })
-      let res = await axios.post("/api/reset-password", {
+      let res = await axios.post("/api/users/reset-password", {
         password,
         confirmPassword: confirmPwd,
         token,
@@ -60,7 +55,7 @@ const ForgotPassword = () => {
           duration: 10000,
           isClosable: true,
         });
-      }else if(err.response?.status == 401){
+      }else if(err.response?.status == 404){
         setShowloadingring(false);
         router.push('/404')
       }else {

@@ -3,10 +3,16 @@ import axios from 'axios';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     const url = process.env.API_URL;
+    const { cookies } = req
+    const { refreshToken, accessToken } = cookies
 
-    console.log('req.body', req.body)
     try {
-        const response = await axios.post(`${url}/users/addTeacherDetails`, req.body);
+        const response = await axios.post(`${url}/users/sendAuthResetPwdOtp.ts`, { ...req.body }, {
+            headers: {
+                authorization: `Bearer ${accessToken}` as string,
+                refresh_token: refreshToken as string,
+            }
+        });
 
         res.status(response.status).json(response.data);
     } catch (error: any) {

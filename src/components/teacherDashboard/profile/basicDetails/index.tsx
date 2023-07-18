@@ -3,13 +3,13 @@ import {
   Heading,
   Text,
   Radio,
-  Stack,
   RadioGroup,
+  Stack,
   FormControl,
-    FormLabel,
-    SimpleGrid,
-    Flex,
-    Button,
+  FormLabel,
+  SimpleGrid,
+  Flex,
+  Button,
 } from "@chakra-ui/react";
 import { ColorRing } from "react-loader-spinner";
 import {useEffect, useState} from 'react'
@@ -25,14 +25,12 @@ interface BasicDetailsInterface {
 
 const BasicDetails = ({data, handleInputsChange, handleGenderChange, loadedData, showloadingring}: BasicDetailsInterface) => {
 
-  useEffect(() => {
-    // window.location.reload()
-  }, [])
+  // useEffect(() => {
+  //   // window.location.reload()
+  // }, [])
 
   let [openSubmit, setOpenSubmit] = useState(false)
   useEffect(() => {
-    console.log(data)
-    console.log(Object.keys(data))
     if(!Object.keys(data).length){
       setOpenSubmit(true)
     }else{
@@ -116,9 +114,9 @@ const BasicDetails = ({data, handleInputsChange, handleGenderChange, loadedData,
             data={data}
           />
           <UpdateBasicDetails
-            name="state"
+            name="stateOfOrigin"
             handleInputsChange={handleInputsChange}
-            label="State of Origin"
+            label="State of Origin (include your current state)"
             type="text"
             loadedData={loadedData}
             data={data}
@@ -132,7 +130,7 @@ const BasicDetails = ({data, handleInputsChange, handleGenderChange, loadedData,
             data={data}
           />
           <UpdateBasicDetails
-            name="occupation"
+            name="currentOccupation"
             handleInputsChange={handleInputsChange}
             label="Current Occupation"
             type="text"

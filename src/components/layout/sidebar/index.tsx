@@ -9,22 +9,22 @@ import {
 } from "@chakra-ui/react";
 import {useRouter} from "next/router";
 import { FiHome, FiLogOut } from "react-icons/fi";
-import { MdQuiz } from "react-icons/md";
 import { FaAngleRight, FaAngleLeft } from "react-icons/fa";
 import { BsCardList, BsKeyFill } from "react-icons/bs";
 import { useState } from "react";
 import NavItem from "./navItem";
-// import courses
+import { logout } from "@/utils/logout";
 
 interface SideBarProps {
   showSidebar: boolean;
   sidebar: string;
   setSideBar: Function;
   setShowSideBar: Function,
-  mobileSideBarActive: Boolean
+  mobileSideBarActive: Boolean,
+  teacherData: any
 }
 
-const SideBar = ({ showSidebar, sidebar, setSideBar, setShowSideBar, mobileSideBarActive }: SideBarProps) => {
+const SideBar = ({ showSidebar, sidebar, setSideBar, setShowSideBar, mobileSideBarActive, teacherData }: SideBarProps) => {
   const [showTooltip, setShowTooltip] = useState(false);
 
   const router = useRouter();
@@ -48,16 +48,13 @@ const SideBar = ({ showSidebar, sidebar, setSideBar, setShowSideBar, mobileSideB
   const userInfoAlign = sidebar === "small" ? "center" : "flex-start";
 
   const handleLogout = () => {
-    console.log("Logout");
+    logout(router, "/login")
   };
-
-console.log(router)
 
   function goToProfile() {
     if(!router.pathname.includes("/profile")) {
       router.push("/dashboard/teacher/profile");
     }
-
   }
 
   return (
@@ -125,7 +122,7 @@ console.log(router)
             mt="8"
             iconColor="#fff"
             title="Password"
-            route='/password-reset'
+            route="/password-reset"
             active={router.pathname.includes("password")}
             setShowSideBar={setShowSideBar}
             showSidebar={showSidebar}
@@ -175,7 +172,15 @@ console.log(router)
             onMouseEnter={mouseEnterEvent}
             onMouseLeave={mouseLeaveEvent}
           >
-            <Avatar name="Tinubu Agbado" size="sm" src="none.jpg" />
+            <Avatar
+              name={
+                teacherData
+                  ? `${teacherData.firstname} ${teacherData.lastname}`
+                  : ""
+              }
+              size="sm"
+              src={teacherData?.teacher?.picture || ""}
+            />
             <Flex
               flexDir="column"
               // display={sideBarDisplay}
@@ -185,7 +190,7 @@ console.log(router)
               transition={"opacity .4s ease"}
             >
               <Heading as="h3" size="sm" color="#fff">
-                Tinubu Agbado
+                {teacherData ? `${teacherData.firstname} ${teacherData.lastname}`: ""}
               </Heading>
               <Text color="white">Teacher</Text>
             </Flex>

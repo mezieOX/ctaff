@@ -8,18 +8,18 @@ import {
   ModalCloseButton,
   Button,
   useDisclosure,
-  Textarea
-} from '@chakra-ui/react'
-import {useRef} from "react"
+  Textarea,
+} from "@chakra-ui/react";
+import { useRef } from "react";
 import { ColorRing } from "react-loader-spinner";
 
 interface DialogueModalInterface {
-    isOpen: boolean;
-    onClose: any;
-    dialogueModalMessage: string;
-    handleDialogueModalMessage: any;
-    handleDialogueMessageSend: any;
-    isSending: boolean
+  isOpen: boolean;
+  onClose: any;
+  dialogueModalMessage: string;
+  handleDialogueModalMessage: any;
+  handleDialogueMessageSend: any;
+  isSending: boolean;
 }
 
 function DialogueModal({
@@ -40,7 +40,7 @@ function DialogueModal({
         isOpen={isOpen}
         onClose={onClose}
         motionPreset="slideInBottom"
-        closeOnOverlayClick={false} 
+        closeOnOverlayClick={false}
       >
         {/* <ModalOverlay /> */}
         <ModalOverlay
@@ -49,7 +49,7 @@ function DialogueModal({
         />
         <ModalContent>
           <ModalHeader>Feedback message (optional)</ModalHeader>
-          <ModalCloseButton isDisabled={isSending}/>
+          <ModalCloseButton isDisabled={isSending} />
           <ModalBody pb={6}>
             <Textarea
               value={dialogueModalMessage}
@@ -67,10 +67,12 @@ function DialogueModal({
               onClick={handleDialogueMessageSend}
               isDisabled={isSending}
             >
-                {!isSending && "Send"}
-                {isSending && <ColorRing width={30} height={30} />}
+              {!isSending && "Send"}
+              {isSending && <ColorRing width={30} height={30} />}
             </Button>
-            <Button onClick={onClose} isDisabled={isSending}>Cancel</Button>
+            <Button onClick={onClose} isDisabled={isSending}>
+              Cancel
+            </Button>
           </ModalFooter>
         </ModalContent>
       </Modal>
@@ -78,4 +80,4 @@ function DialogueModal({
   );
 }
 
-export default DialogueModal
+export default DialogueModal;

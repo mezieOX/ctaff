@@ -12,6 +12,7 @@ import {
   useDisclosure,
   useToast,
 } from "@chakra-ui/react";
+import jwt_decode from "jwt-decode";
 import { useRouter } from "next/router";
 import TextInput from "../../../src/components/form/textField";
 import Link from "next/link";
@@ -20,6 +21,7 @@ import { useState, useEffect } from "react";
 import { ColorRing } from "react-loader-spinner";
 import { motion } from "framer-motion";
 import axios from "axios";
+import { getTokenCookie, setTokenCookie } from "@/utils/cookieHandler/token-cookie-handler";
 
 const Login = () => {
   const [loginInputs, setLoginInputs] = useState({
@@ -35,7 +37,6 @@ const Login = () => {
   const [messageType, setMessageType] = useState("");
   const messages = [
     "A mail has been sent to you. Follow the link to continue to login",
-    "Invalid Email or password",
   ];
 
   let url = process.env.NEXT_PUBLIC_API_URL;
@@ -57,22 +58,33 @@ const Login = () => {
     onClose();
     // console.log(loginInputs);
     try {
-      let { data } = await axios.post('/api/login', { ...loginInputs });
+      let { data } = await axios.post("/api/auth/login", { ...loginInputs });
+      const { accessToken, refreshToken, role } = data;
+      await setTokenCookie(accessToken, refreshToken, role);
+      const tokens = await getTokenCookie();
       setshowloadingring(false);
       onClose();
-      if (data.role == "teacher") {
+      if (role == "teacher") {
         router.push("/dashboard/teacher");
+        window.history.replaceState(null, "", "/dashboard/teacher");
+      } else if (role == "teacher_finder") {
+        router.push("/dashboard/teacher_finder");
+        window.history.replaceState(null, "", "/dashboard/teacher_finder");
       }
-      console.log(data);
     } catch (err: any) {
+      console.log(err.response.data.message)
       setshowloadingring(false);
       if (err.response?.status == 400) {
-        seterrmessage(messages[1]);
+        seterrmessage(err.response.data.message);
         setMessageType("error");
         onOpen();
-      } else if (err.response?.status == 401 || err.response?.status == 403) {
+      } else if (err.response?.status == 401) {
         setMessageType("info");
         seterrmessage(messages[0]);
+        onOpen();
+      } else if (err.response?.status == 403) {
+        setMessageType("error");
+        seterrmessage('user not accepted');
         onOpen();
       } else {
         onClose();
@@ -156,7 +168,7 @@ const Login = () => {
               <TextInput
                 label="Password"
                 type="password"
-                name="password"
+                name="password" 
                 // page="login"
                 // helper="should be at least 8 characters"
                 setInputState={setLoginInputs}
@@ -238,3 +250,57 @@ const Login = () => {
 };
 
 export default Login;
+
+// export async function getServerSideProps(context: any) {
+  // const { req, res } = context;
+//   // import jwt-=
+//   const { cookies } = req;
+//   const { refreshToken, accessToken } = cookies;
+
+  // const url = process.env.API_URL;
+
+//   if (refreshToken && accessToken) {
+//     let rtPload: any = jwt_decode(refreshToken);
+//     let atPload: any = jwt_decode(accessToken);
+    
+//     const cTime = Math.floor(Date.now() / 1000);
+//     if (atPload.exp > cTime) {
+//       return {
+//         redirect: {
+//           destination: `/dashboard/${atPload.role}`,
+//           permanent: false,
+//         },
+//       };
+//     } else if (rtPload.exp > cTime) {
+//       return {
+//         redirect: {
+//           destination: `/dashboard/${atPload.role}`,
+//           permanent: false,
+//         },
+//       };
+//     }
+//     // console.log("rtp", rtPload);
+//     // console.log("rtp", atPload)
+//     // try{
+//     //   const {data} = await axios.post(`${url}/auth/isValidTokens`, {
+//     //     rt: refreshToken,
+//     //     at: accessToken
+//     //   });
+//     //   console.log(data)
+//     //   return {
+//     //     redirect: {
+//     //       destination: `/dashboard/${data.role}`,
+//     //       permanent: false,
+//     //     },
+//     //   };
+//     // }catch(err){
+//     //   return {
+//     //     props: {},
+//     //   };
+//     // }
+//   }
+
+//   return {
+//     props: {},
+//   };
+// }

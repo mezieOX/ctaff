@@ -18,7 +18,7 @@ import NotificationModal from './notificationModal'
 interface NotificationsInterface {
   isOpen: boolean;
   onClose: any;
-  arr: any[];
+  notifications: any[];
   modalMessage: string;
   openModal: boolean;
   handleCloseModal: any;
@@ -29,7 +29,7 @@ interface NotificationsInterface {
 const Notifications = ({
   isOpen,
   onClose,
-  arr,
+  notifications,
   modalMessage,
   openModal,
   handleCloseModal,
@@ -51,31 +51,15 @@ const Notifications = ({
 
           <DrawerBody>
             <SimpleGrid spacing="10px">
-              {/* <Link href="/">
-                <Box
-                  bg="gray.400"
-                  _hover={{ bg: "gray.500" }}
-                  color="white"
-                  width="100%"
-                  py="1rem"
-                  px="1rem"
-                  rounded="md"
-                >
-                  <Text>
-                    {cutText('You have been Invited You have been Invitedv vYou have been invited')}...
-                  </Text>
-                </Box>
-              </Link>
-              <Divider mt="0" borderWidth="1px" borderColor="gray"/> */}
-              {arr.map((item, i) => (
+              {notifications?.map((item, i) => (
                 <Box key={i}>
                   {/* <Link href="/"> */}
                   <Box
                     as="div"
                     onClick={() => handleNotificationClick(i)}
-                    bg={item.viewed ? "gray.100" : "gray.400"}
-                    _hover={{ bg: item.viewed ? "gray.100" : "gray.500" }}
-                    color={item.viewed ? "black" : "white"}
+                    bg={item.isViewed ? "gray.100" : "gray.400"}
+                    _hover={{ bg: item.isViewed ? "gray.100" : "gray.500" }}
+                    color={item.isViewed ? "black" : "white"}
                     width="100%"
                     py="1rem"
                     px="1rem"
@@ -85,7 +69,7 @@ const Notifications = ({
                   >
                     <Text>
                       {cutText(
-                        "You have been Invited You have been Invitedv vYou have been invited"
+                        item?.message
                       )}
                       ...
                     </Text>

@@ -12,7 +12,7 @@ const NotFound = () => {
       <Head>
         <title>{title}</title>
       </Head>
-          <motion.div
+      <motion.div
         key="404"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}

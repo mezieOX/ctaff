@@ -147,6 +147,9 @@ function Form1({ handleTeacherFormSubmit, showloadingring }: { handleTeacherForm
   const handleNextPage = () => {
     let availableDays: any = {}
 
+
+    
+
     for (const day in availability) {
       if (availability[day].am || availability[day].pm) {
         availableDays[day] = availability[day]
@@ -206,7 +209,7 @@ function Form1({ handleTeacherFormSubmit, showloadingring }: { handleTeacherForm
               <CheckboxGroup colorScheme="purple">
                 <SimpleGrid column={1}>
                   {daysOfWeek.map((day) => (
-                    <Stack direction="row" spacing={7} key={day}>
+                    <Flex direction="row" justifyContent="space-between" key={day}>
                       <Checkbox
                         onChange={() => handleAvailabilityCheck(day, "am")}
                       >
@@ -217,7 +220,7 @@ function Form1({ handleTeacherFormSubmit, showloadingring }: { handleTeacherForm
                       >
                         {day} (PM)
                       </Checkbox>
-                    </Stack>
+                    </Flex>
                   ))}
                 </SimpleGrid>
               </CheckboxGroup>

@@ -11,6 +11,9 @@ import { HiUsers } from "react-icons/hi";
 import { MdWork } from "react-icons/md";
 import AdminNav from "@/components/admin/nav";
 import { useRouter } from "next/router";
+import jwt_decode from "jwt-decode";
+import axios from 'axios'
+import {setCookieToResponseHeader} from "@/utils/cookieHandler/setCookie";
 
 const dData = [
   {
@@ -20,7 +23,7 @@ const dData = [
     iconColor: "purple",
   },
   {
-    title: "View all teacher applicants",
+    title: "View pending teacher applicants",
     href: "/admin/view_teacher_applicants",
     icon: MdWork,
     iconColor: "black",
@@ -107,3 +110,69 @@ const AdminDashboard = () => {
 }
  
 export default AdminDashboard;
+
+// export async function getServerSideProps(context: any) {
+//   const { req, res } = context;
+//   const { cookies } = req;
+//   const { refreshToken, accessToken } = cookies;
+
+//   const url = process.env.API_URL;
+
+//   if (refreshToken && accessToken) {
+//     let rtPload: any = jwt_decode(refreshToken);
+//     let atPload: any = jwt_decode(accessToken);
+
+//     if (rtPload && atPload) {
+//       const expirationDate = new Date(rtPload.exp * 1000);
+
+//       const currentDate = new Date();
+
+//       const twoDaysRemaining = new Date(expirationDate);
+//       twoDaysRemaining.setDate(expirationDate.getDate() - 2);
+
+//       if (currentDate >= twoDaysRemaining && currentDate <= expirationDate) {
+//         const resp = await axios.get(`${url}/auth/isValidCookieTokens`, {
+//           headers: {
+//             Authorization: `Bearer ${accessToken}`,
+//             refresh_token: refreshToken,
+//           },
+//         });
+
+//         if(resp.data.role !== "admin"){
+//           return {
+//             redirect: {
+//               destination: "/admin/login",
+//               permanent: false,
+//             },
+//           };  
+//         }
+
+//         const { authorization, refresh_token } = resp.headers;
+//         const aT = authorization.replace("Bearer", "").trim();
+
+//         await setCookieToResponseHeader(res, refresh_token, aT)
+
+//         return {
+//           props: {},
+//         };
+//       } else if(currentDate <= expirationDate){
+//         return {
+//           props: {},
+//         };
+//       }
+//     } else {
+//       return {
+//         redirect: {
+//           destination: "/admin/login",
+//           permanent: false,
+//         },
+//       };
+//     }
+//   }
+//   return {
+//     redirect: {
+//       destination: "/admin/login",
+//       permanent: false,
+//     },
+//   };
+// }

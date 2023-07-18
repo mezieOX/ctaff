@@ -203,7 +203,7 @@ export default function Form1({
             />
             <RegisterFormInputs
               name="state"
-              label="State of Origin"
+              label="State of Origin (include your current state)"
               type="text"
               register={register}
               error={errors?.state?.message}
