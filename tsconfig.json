@@ -31,7 +31,7 @@
     "**/*.tsx",
     "src/middleware.js",
     "src/components/teacherDashboard/profile/otherDetails"
-  ],
+, "src/components/layout/Home/Categories"  ],
   "exclude": [
     "node_modules"
   ]

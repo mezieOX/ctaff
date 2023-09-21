@@ -1,21 +1,16 @@
 import { siteTitle } from "@/config/siteTitle";
 import Head from "next/head";
-import Image from "next/image";
 import Navbar from "@/components/layout/navbar";
-import Offers from "@/components/layout/home/offers";
-import Typewriter from "typewriter-effect";
-import {
-  Box,
-  Flex,
-  Button,
-  Text,
-} from "@chakra-ui/react";
-import Link from "next/link";
-import { keyframes } from "@emotion/react";
-import { EmailIcon } from "@chakra-ui/icons";
+import { Box } from "@chakra-ui/react";
 import { motion } from "framer-motion";
-import Footer from "@/components/layout/footer";
-import { useEffect } from "react";
+import {
+  AccordionSection,
+  Categories,
+  GetStartedSection,
+  Goals,
+  Testimonial,
+} from "@/components/layout/Home";
+import { Footer } from "@/components/layout/Footer";
 
 export default function Home() {
   // useEffect(() => {
@@ -25,6 +20,7 @@ export default function Home() {
   //   console.log("TYPE process.env.API_URL", typeof process.env.API_URL)
   //   console.log("hello")
   // }, [])
+  // #37254b
   return (
     <>
       <Head>
@@ -40,109 +36,15 @@ export default function Home() {
           animate={{ opacity: 1 }}
           transition={{ duration: 1 }}
         >
-          <Box backgroundColor="#37254b" minH="100vh">
+          <Box backgroundColor="#1b1222" minH="100vh">
             <Navbar />
-            <Flex
-              flexDirection={["column", "column", "column", "row"]}
-              justifyContent={["center", "space-between"]}
-              alignItems={["center", "center"]}
-              marginTop={["1rem", "2rem", "3rem"]}
-              marginLeft={["0", "2rem"]}
-              padding={["0rem", "1rem"]}
-              gap="3rem"
-            >
-              <Flex
-                flexDirection="column"
-                alignItems={["center", "flex-start"]}
-                textAlign={["center", "left"]}
-                marginTop={["2rem", "5rem"]}
-                marginBottom={["2rem", "0"]}
-                gap={["1rem", "3rem"]}
-                width={["100%", "80%", "70%"]}
-                maxWidth={["100%", "800px"]}
-              >
-                <Text
-                  as="div"
-                  color="white"
-                  fontSize={["2rem", "3rem", "4rem"]}
-                  opacity="0.5"
-                  lineHeight={["2.5rem", "70px"]}
-                  textShadow="-4px -10px black"
-                  height={["300px", "270px", "250px"]}
-                >
-                  <Typewriter
-                    options={{
-                      strings: [
-                        "Hi there!,<br> What subject do you teach passionately?<br>",
-                        "Are you looking<br> for a cover teacher?",
-                        "<Click the button below 👇 to get started!",
-                      ],
-                      cursor: "",
-                      autoStart: true,
-                      loop: true,
-                      skipAddStyles: true,
-                      // pauseFor: 2000,
-                    }}
-                  />
-                </Text>
-                <Link href="/who_am_i">
-                  <Button
-                    bg="black"
-                    color="#fff"
-                    fontWeight="bold"
-                    transition="0.3s"
-                    _hover={{
-                      bg: "rgba(0, 0, 0, .6)",
-                      border: "2px solid #fff",
-                      boxShadow: "7px 8px 9px black",
-                    }}
-                    w={{ base: "100%", md: "auto" }}
-                  >
-                    Let&apos;s get started
-                  </Button>
-                </Link>
-              </Flex>
-              <Box
-                width={["100%", "100%"]}
-                maxWidth={["100%", "90%"]}
-                display="flex"
-                marginLeft="auto"
-              >
-                <Image
-                  src="/images/homeimg.png"
-                  alt="homeimg"
-                  width="1000"
-                  height="1000"
-                />
-              </Box>
-            </Flex>
+            <GetStartedSection />
+            <Categories />
+            <Goals />
+            <AccordionSection />
+            <Testimonial />
+            <Footer />
           </Box>
-          <Box
-            height={["auto", "auto", "100vh"]}
-            paddingTop="4rem"
-            position="relative"
-            bg="white"
-            py={{ base: "3rem" }}
-          >
-            <Box
-              position="absolute"
-              top={[-2, -5, -10]}
-              left={-10}
-              width={["100%", "100%"]}
-              maxWidth={["70%", "80%", "90%"]}
-              display="flex"
-              // marginLeft="auto"
-            >
-              <Image
-                src="/images/topcorner3.svg"
-                alt="homeimg"
-                width="500"
-                height="500"
-              />
-            </Box>
-            <Offers />
-          </Box>
-          <Footer/>
         </motion.div>
       </>
     </>
