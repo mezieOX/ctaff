@@ -160,7 +160,7 @@ const InputYourEmail = ({
                   focusBorderColor="#37254b"
                   pr="4.5rem"
                   type="email"
-                  placeholder="e.g iykelnhub@gmail.com"
+                  placeholder="e.g applead@gmail.com"
                   bg="#fff"
                   value={value}
                   onChange={(e) => setValue(e.target.value)}

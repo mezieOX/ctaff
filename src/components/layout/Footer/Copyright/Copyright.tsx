@@ -11,7 +11,7 @@ const Copyright = () => {
 
   return (
     <Flex w="full" justify="center" padding={5} h={40} alignItems="end">
-      <Text color="white">Copyright &copy; IYKELNHUB {date} </Text>
+      <Text color="white">Copyright &copy; Tutor Twist | Powered by Applead {date} </Text>
     </Flex>
   );
 };
