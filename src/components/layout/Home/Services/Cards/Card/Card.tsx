@@ -1,6 +1,7 @@
 import servicesCards from "@/data/servicesCards";
 import { Box, Flex, Text, Button, Stack, Grid } from "@chakra-ui/react";
 import Image from "next/image";
+import Link from "next/link";
 
 interface CardsProps {
   id: number;
@@ -34,7 +35,7 @@ const Card = () => {
           >
             <Box
               position="relative"
-              height={{ base: "30rem", md: "220" }}
+              height={{ base: "14rem", md: "220" }}
               cursor="pointer"
             >
               <Image
@@ -62,9 +63,9 @@ const Card = () => {
               <Text
                 as="div"
                 color="white"
-                fontSize={{ base: "1.5rem", md: "1.2rem" }}
+                fontSize={{ base: "1.2rem", md: "1.2rem" }}
                 fontWeight={900}
-                marginTop={4}
+                marginTop={3}
                 textAlign="center"
                 padding={6}
               >
@@ -72,10 +73,10 @@ const Card = () => {
               </Text>
               <Text
                 as="div"
-                marginTop={{ base: -6, md: -8 }}
+                marginTop={{ base: -7, md: -8 }}
                 marginBottom=".4rem"
                 color="white"
-                fontSize={{ base: "1.2rem", md: ".9rem" }}
+                fontSize={{ base: "1rem", md: ".9rem" }}
                 textAlign="center"
                 paddingY={6}
                 maxWidth={{ base: "80%", md: "88%" }}
@@ -90,20 +91,22 @@ const Card = () => {
                 justifyItems="end"
                 marginBottom={10}
               >
-                <Button
-                  colorScheme="teal"
-                  variant="outline"
-                  _hover={{ bg: "red.600" }}
-                  px={9}
-                  py={7}
-                  color="white"
-                  bg="red.500"
-                  border="none"
-                  borderRadius={0}
-                  marginTop={{ base: 3, md: -3 }}
-                >
-                  Learn More
-                </Button>
+                <Link href="/about-page">
+                  <Button
+                    colorScheme="teal"
+                    variant="outline"
+                    _hover={{ bg: "red.600" }}
+                    px={9}
+                    py={7}
+                    color="white"
+                    bg="red.500"
+                    border="none"
+                    borderRadius={12}
+                    marginTop={{ base: 1, md: -3 }}
+                  >
+                    Learn More
+                  </Button>
+                </Link>
               </Stack>
             </Flex>
           </Flex>

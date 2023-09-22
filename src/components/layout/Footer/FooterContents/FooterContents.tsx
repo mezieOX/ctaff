@@ -6,14 +6,14 @@ const FooterContents = () => {
   return (
     <Grid
       templateColumns={{
-        base: "repeat(1, 1fr)",
-        md: "repeat(2, 1fr)",
+        base: "repeat(2, 1fr)",
+        md: "repeat(3, 1fr)",
         xl: "repeat(4, 1fr)",
       }}
-      gap={{ base: "5rem", xl: 20 }}
+      gap={{ base: "2rem", xl: 20 }}
       justifyItems="space-between"
-      alignItems={["center", "start"]}
-      textAlign={{ base: "center", md: "left" }}
+      alignItems={["start", "start"]}
+      textAlign={{ base: "left", md: "left" }}
       marginBottom={["2rem", "0"]}
       color="white"
       w="full"
@@ -47,7 +47,7 @@ const FooterContents = () => {
             <Link href="/">About</Link>
           </ListItem>
           <ListItem>
-            <Link href="/">Goal</Link>
+            <Link href="/services">Services</Link>
           </ListItem>
           <ListItem>
             <Link href="/">Contact</Link>
@@ -87,17 +87,20 @@ const FooterContents = () => {
           display="flex"
           flexDirection="column"
           justifyItems="center"
-          alignItems={{base: "center", md: "start"}}
+          alignItems={{ base: "center", md: "start" }}
           gap={2}
         >
-          <ListItem>+234 703 0822 450</ListItem>
+          <ListItem marginLeft={{ base: -6, sm: 0 }}>
+            +234 703 0822 450
+          </ListItem>
           <ListItem>
             <Link href="/">someone@gmail.com</Link>
           </ListItem>
           <ListItem
-            marginTop={{ base: 8, md: 6 }}
+            marginTop={{ base: 6, md: 6 }}
             display="flex"
-            gap={{ base: 8, md: 6 }}
+            gap={{ base: 5, md: 6 }}
+            marginLeft={{ base: -6, sm: 0 }}
           >
             <Link href="/">
               <BsFacebook />
@@ -113,7 +116,6 @@ const FooterContents = () => {
             </Link>
           </ListItem>
         </UnorderedList>
-
       </Box>
     </Grid>
   );

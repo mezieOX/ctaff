@@ -63,9 +63,7 @@ const Navbar = ({ show }: { show?: string }) => {
           justify="space-between"
           wrap="wrap"
         >
-          <Box
-            visibility={isOpen ? "hidden" : "visible"}
-          >
+          <Box visibility={isOpen ? "hidden" : "visible"}>
             <Link href="/">
               <Image
                 src="/images/iykelnHub.png"
@@ -132,7 +130,6 @@ const Navbar = ({ show }: { show?: string }) => {
                 bg="#584FF2"
                 width="100%"
                 height="50vh"
-                zIndex={-1}
               >
                 <NavBarLink to="/" linkName="Home" />
                 <NavBarLink to="/about" linkName="About" />
