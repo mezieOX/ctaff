@@ -91,7 +91,7 @@ const Navbar = ({ show }: { show?: string }) => {
               >
                 <NavBarLink to="/" linkName="Home" />
                 <NavBarLink to="/about" linkName="About" />
-                <NavBarLink to="/outGoals" linkName="Our Goals" />
+                <NavBarLink to="/our-goals" linkName="Our Goals" />
                 <NavBarLink to="/contact" linkName="Contact" />
                 <NavBarLink to="/login" linkName="Login" />
               </Box>
@@ -128,7 +128,7 @@ const Navbar = ({ show }: { show?: string }) => {
               >
                 <NavBarLink to="/" linkName="Home" />
                 <NavBarLink to="/about" linkName="About" />
-                <NavBarLink to="/outGoals" linkName="Our Goals" />
+                <NavBarLink to="/our-goals" linkName="Our Goals" />
                 <NavBarLink to="/contact" linkName="Contact" />
                 <NavBarLink to="/login" linkName="Login" />
               </Flex>

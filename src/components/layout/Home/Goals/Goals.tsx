@@ -1,7 +1,8 @@
 import { Box, Flex, Text } from "@chakra-ui/react";
+import { CSSProperties } from "react";
 import { Cards } from "./Cards";
 
-const Goals = () => {
+const Goals = ({ goals = "Our Goals" }: { goals?: string }) => {
   return (
     <Box
       height={["auto", "auto", "auto"]}
@@ -26,7 +27,7 @@ const Goals = () => {
               marginTop={{ base: "4rem", md: ".5rem", lg: "20rem" }}
               textAlign="center"
             >
-              Our Goals
+              {goals}
             </Text>
             <Flex
               width={["100%", "100%"]}

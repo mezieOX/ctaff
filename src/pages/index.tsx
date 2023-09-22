@@ -1,6 +1,6 @@
 import { siteTitle } from "@/config/siteTitle";
 import Head from "next/head";
-import Navbar from "@/components/layout/navbar";
+import Navbar from "@/components/layout/navbar/Navbar";
 import { Box } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import {
@@ -36,7 +36,7 @@ export default function Home() {
           animate={{ opacity: 1 }}
           transition={{ duration: 1 }}
         >
-          <Box backgroundColor="#1b1222" minH="100vh">
+          <Box bg="#1b1222" minH="100vh">
             <Navbar />
             <GetStartedSection />
             <Categories />

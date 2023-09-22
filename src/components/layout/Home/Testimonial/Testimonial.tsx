@@ -1,7 +1,6 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { Box, Flex, Text } from "@chakra-ui/react";
-import Image from "next/image";
 import TestimonialImage from "./TestimonialImage/TestimonialImage";
 import TextContent from "./TextContent/TextContent";
 import testimonials from "@/data/Testimonials";
@@ -34,7 +33,7 @@ const Testimonial = () => {
               width={["100%", "100%"]}
               justifyItems="space-between"
               marginTop={{base: "-10.5rem", sm:"-8.5rem"}}
-              zIndex={0}
+              zIndex={-1}
             >
               <Swiper>
                 {testimonials.map(({ id, image, title, name, description }) => (

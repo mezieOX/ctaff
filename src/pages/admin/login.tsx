@@ -1,4 +1,4 @@
-import Navbar from "@/components/layout/navbar";
+import Navbar from "@/components/layout/navbar/Navbar";
 import {
   Box,
   Flex,
@@ -21,7 +21,10 @@ import { useState, useEffect } from "react";
 import { ColorRing } from "react-loader-spinner";
 import { motion } from "framer-motion";
 import axios from "axios";
-import { getTokenCookie, setTokenCookie } from "@/utils/cookieHandler/token-cookie-handler";
+import {
+  getTokenCookie,
+  setTokenCookie,
+} from "@/utils/cookieHandler/token-cookie-handler";
 
 const AdminLogin = () => {
   const [loginInputs, setLoginInputs] = useState({
@@ -35,9 +38,7 @@ const AdminLogin = () => {
   const [showloadingring, setshowloadingring] = useState(false);
   const [errmessage, seterrmessage] = useState("");
   const [messageType, setMessageType] = useState("");
-  const messages = [
-    "Invalid Username or password",
-  ];
+  const messages = ["Invalid Username or password"];
 
   let url = process.env.NEXT_PUBLIC_API_URL;
 
@@ -58,8 +59,10 @@ const AdminLogin = () => {
     onClose();
     // console.log(loginInputs);
     try {
-      let { data } = await axios.post("/api/auth/signInAdmin", { ...loginInputs });
-      console.log("dattt", data)
+      let { data } = await axios.post("/api/auth/signInAdmin", {
+        ...loginInputs,
+      });
+      console.log("dattt", data);
       const { accessToken, refreshToken, role } = data;
       await setTokenCookie(accessToken, refreshToken, role);
       const tokens = await getTokenCookie();
@@ -68,18 +71,22 @@ const AdminLogin = () => {
       if (role == "admin") {
         router.push("/admin");
         window.history.replaceState(null, "", "/admin");
-      } else{
+      } else {
         seterrmessage(messages[0]);
         setMessageType("error");
         onOpen();
       }
     } catch (err: any) {
       setshowloadingring(false);
-      if (err.response?.status == 400 || err.response?.status == 401 || err.response?.status == 403) {
+      if (
+        err.response?.status == 400 ||
+        err.response?.status == 401 ||
+        err.response?.status == 403
+      ) {
         seterrmessage(messages[0]);
         setMessageType("error");
         onOpen();
-      }else {
+      } else {
         onClose();
         toast({
           title: "An error ocurred. Please check your internet connection",
@@ -204,7 +211,6 @@ const AdminLogin = () => {
                 {!showloadingring && "Log in"}
                 {showloadingring && <ColorRing width={30} height={30} />}
               </Button>
-            
             </form>
           </Box>
         </Flex>
@@ -216,7 +222,7 @@ const AdminLogin = () => {
 export default AdminLogin;
 
 export async function getServerSideProps(context: any) {
-const { req, res } = context;
+  const { req, res } = context;
   // import jwt-=
   const { cookies } = req;
   const { refreshToken, accessToken } = cookies;
@@ -231,14 +237,14 @@ const { req, res } = context;
     if (atPload.exp > cTime) {
       return {
         redirect: {
-          destination: '/admin',
+          destination: "/admin",
           permanent: false,
         },
       };
     } else if (rtPload.exp > cTime) {
       return {
         redirect: {
-          destination: '/admin',
+          destination: "/admin",
           permanent: false,
         },
       };

@@ -1,4 +1,4 @@
-import Navbar from "@/components/layout/navbar";
+import Navbar from "@/components/layout/navbar/Navbar";
 import {
   Box,
   Flex,
@@ -21,7 +21,10 @@ import { useState, useEffect } from "react";
 import { ColorRing } from "react-loader-spinner";
 import { motion } from "framer-motion";
 import axios from "axios";
-import { getTokenCookie, setTokenCookie } from "@/utils/cookieHandler/token-cookie-handler";
+import {
+  getTokenCookie,
+  setTokenCookie,
+} from "@/utils/cookieHandler/token-cookie-handler";
 
 const Login = () => {
   const [loginInputs, setLoginInputs] = useState({
@@ -72,7 +75,7 @@ const Login = () => {
         window.history.replaceState(null, "", "/dashboard/teacher_finder");
       }
     } catch (err: any) {
-      console.log(err.response.data.message)
+      console.log(err.response.data.message);
       setshowloadingring(false);
       if (err.response?.status == 400) {
         seterrmessage(err.response.data.message);
@@ -84,7 +87,7 @@ const Login = () => {
         onOpen();
       } else if (err.response?.status == 403) {
         setMessageType("error");
-        seterrmessage('user not accepted');
+        seterrmessage("user not accepted");
         onOpen();
       } else {
         onClose();
@@ -168,7 +171,7 @@ const Login = () => {
               <TextInput
                 label="Password"
                 type="password"
-                name="password" 
+                name="password"
                 // page="login"
                 // helper="should be at least 8 characters"
                 setInputState={setLoginInputs}
@@ -252,17 +255,17 @@ const Login = () => {
 export default Login;
 
 // export async function getServerSideProps(context: any) {
-  // const { req, res } = context;
+// const { req, res } = context;
 //   // import jwt-=
 //   const { cookies } = req;
 //   const { refreshToken, accessToken } = cookies;
 
-  // const url = process.env.API_URL;
+// const url = process.env.API_URL;
 
 //   if (refreshToken && accessToken) {
 //     let rtPload: any = jwt_decode(refreshToken);
 //     let atPload: any = jwt_decode(accessToken);
-    
+
 //     const cTime = Math.floor(Date.now() / 1000);
 //     if (atPload.exp > cTime) {
 //       return {

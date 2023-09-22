@@ -33,7 +33,7 @@ const Card = () => {
               bg="#5A449F"
               borderRadius={15}
               padding={6}
-              minHeight={{base: "19rem", sm: "20rem", md: 230 }}
+              minHeight={{base: "19rem", sm: "22rem", md: 230 }}
               key={id}
               _hover={{
                 boxShadow:
