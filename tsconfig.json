@@ -19,6 +19,7 @@
     // "jsx": "preserve",
     "jsx": "preserve",
     "incremental": true,
+    "noImplicitAny": false,
     "paths": {
       "@/*": [
         "./src/*"
