@@ -33,6 +33,7 @@
     "react-icons": "^4.8.0",
     "react-loader-spinner": "^5.3.4",
     "socket.io-client": "^4.7.1",
+    "swiper": "^10.2.0",
     "typescript": "5.0.4",
     "typewriter-effect": "^2.19.0",
     "yup": "^1.1.1"

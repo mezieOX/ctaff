@@ -68,7 +68,7 @@ const PasswordReset = () => {
         router.push("/dashboard/teacher");
       }, 2000);
     } catch (err: any) {
-      handleError(err)
+      handleError(err);
     }
   }
 
@@ -76,12 +76,11 @@ const PasswordReset = () => {
     setshowloadingring(true);
     console.log("data", data);
     try {
-      const res = await axios.post(
-        "/api/users/resetAuthUserspassword",
-        { ...data }
-      );
+      const res = await axios.post("/api/users/resetAuthUserspassword", {
+        ...data,
+      });
       setshowloadingring(false);
-      toggleMainCorousel()
+      toggleMainCorousel();
       toast({
         title: "Password change successful!",
         status: "success",
@@ -89,9 +88,9 @@ const PasswordReset = () => {
         duration: 10000,
       });
       // setTimeout(() => router.push('/dashboard/teacher/password-reset'), 2000)
-      setTimeout(() => router.reload(), 2000)
+      setTimeout(() => router.reload(), 2000);
     } catch (err: any) {
-      handleError(err)
+      handleError(err);
     }
   }
 
@@ -110,11 +109,11 @@ const PasswordReset = () => {
       setshowloadingring(false);
       setDisablePinInput(false);
     } catch (err: any) {
-      handleError(err)
+      handleError(err);
     }
   }
 
-  function handleError (err: any){
+  function handleError(err: any) {
     setshowloadingring(false);
     if (err.response?.status == 401 || err.response?.status == 403) {
       return logout(router, "/login");
@@ -343,15 +342,15 @@ const PasswordReset = () => {
                 color="#fff"
                 fontWeight="bold"
                 transition="0.3s"
-                _hover={
-                  showloadingring || !disablePinInput
-                    ? ""
-                    : {
-                        bg: "rgba(0, 0, 0, .6)",
-                        border: "2px solid #fff",
-                        boxShadow: "7px 8px 9px black",
-                      }
-                }
+                // _hover={
+                //   showloadingring || !disablePinInput
+                //     ? ""
+                //     : {
+                //         bg: "rgba(0, 0, 0, .6)",
+                //         border: "2px solid #fff",
+                //         boxShadow: "7px 8px 9px black",
+                //       }
+                // }
                 isDisabled={showloadingring || !disablePinInput}
                 onClick={handleSendResetCode}
               >
@@ -427,7 +426,9 @@ const PasswordReset = () => {
               isDisabled={showloadingring}
             >
               {!showloadingring && "Reset password"}
-              {showloadingring && <CircularProgress size="30px" isIndeterminate pr={2} />}
+              {showloadingring && (
+                <CircularProgress size="30px" isIndeterminate pr={2} />
+              )}
             </Button>
           </form>
         </Box>

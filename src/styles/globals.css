@@ -1,8 +1,12 @@
-*{
+* {
   /* outline: 2px solid red; */
 }
 body {
   box-sizing: border-box;
   margin: 0;
   background-color: #37254b;
+}
+
+.parent:nth-child(n + 4):nth-child(-n + 10) {
+  display: none !important;
 }

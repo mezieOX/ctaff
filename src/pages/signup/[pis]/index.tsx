@@ -1,4 +1,4 @@
-import Navbar from "@/components/layout/navbar";
+import Navbar from "@/components/layout/navbar/Navbar";
 import {
   Box,
   Flex,
@@ -12,7 +12,7 @@ import {
   Select,
   FormControl,
   GridItem,
-  useToast
+  useToast,
 } from "@chakra-ui/react";
 import Link from "next/link";
 import { useState, useEffect } from "react";
@@ -22,10 +22,10 @@ import axios from "axios";
 import { animateUnderline } from "@/components/layout/navbar/navbarlink";
 import TextInput from "../../../components/form/textField";
 
-const SignUpPis = ({pis}: {pis: string}) => {
+const SignUpPis = ({ pis }: { pis: string }) => {
   const { isOpen: showLoginErr, onClose, onOpen } = useDisclosure();
-  const [showloadingring, setshowloadingring] = useState(false)
-  const toast = useToast()
+  const [showloadingring, setshowloadingring] = useState(false);
+  const toast = useToast();
   let url = process.env.NEXT_PUBLIC_API_URL;
 
   const [signupInputs, setSignupInputs] = useState({
@@ -35,42 +35,42 @@ const SignUpPis = ({pis}: {pis: string}) => {
     password: "",
     usertitle: "",
     schoolname: "",
-    phonenumber: ""
+    phonenumber: "",
   });
 
-    const handleOptionChange = (e: any) => {
+  const handleOptionChange = (e: any) => {
     console.log(e.target.value);
     setSignupInputs({ ...signupInputs, usertitle: e.target.value });
   };
 
   const handleSignupFormSubmit = async (e: any) => {
     e.preventDefault();
-    setshowloadingring(true)
-    
+    setshowloadingring(true);
+
     // alert(JSON.stringify(signupInputs, null, 2))
-    let userData = signupInputs
-    try{
+    let userData = signupInputs;
+    try {
       let data = await axios.post("/api/users/signup", {
         ...userData,
-        role: pis
-      })
-      
-      onClose()
+        role: pis,
+      });
+
+      onClose();
       toast({
-          title:
-            "A verification link has been sent to your provided email. Please follow the link to verify account",
-          position: "top",
-          variant: "left-accent",
-          isClosable: true,
-          duration: 10000,
-        });
-      setshowloadingring(false)
-      console.log(data)
-    }catch(err: any){
-      setshowloadingring(false)
-      if(err.response?.status == 400){
+        title:
+          "A verification link has been sent to your provided email. Please follow the link to verify account",
+        position: "top",
+        variant: "left-accent",
+        isClosable: true,
+        duration: 10000,
+      });
+      setshowloadingring(false);
+      console.log(data);
+    } catch (err: any) {
+      setshowloadingring(false);
+      if (err.response?.status == 400) {
         onOpen();
-      }else{
+      } else {
         onClose();
         toast({
           title: "An error ocurred. Please check your internet connection",
@@ -81,16 +81,15 @@ const SignUpPis = ({pis}: {pis: string}) => {
           isClosable: true,
         });
       }
-      console.log(err)
+      console.log(err);
     }
   };
 
-
   // useEffect(() => {
-    // onOpen();
-    // const showErrTimer = setTimeout(() => {
-    //   onClose();
-    // }, 6000);
+  // onOpen();
+  // const showErrTimer = setTimeout(() => {
+  //   onClose();
+  // }, 6000);
 
   //   return () => {
   //     clearTimeout(showErrTimer);
@@ -126,7 +125,10 @@ const SignUpPis = ({pis}: {pis: string}) => {
               mb={4}
               mr="auto"
             >
-              Create an account<Text fontWeight="300" fontSize="15px">(Inputs should not start or end with spaces)</Text>
+              Create an account
+              <Text fontWeight="300" fontSize="15px">
+                (Inputs should not start or end with spaces)
+              </Text>
             </Heading>
             <Box
               px={6}
@@ -167,13 +169,15 @@ const SignUpPis = ({pis}: {pis: string}) => {
                   setInputState={setSignupInputs}
                   inputsState={signupInputs}
                 />
-                {pis === "school" && (<TextInput
-                  label="SchoolName"
-                  type="text"
-                  name="schoolname"
-                  setInputState={setSignupInputs}
-                  inputsState={signupInputs}
-                />)}
+                {pis === "school" && (
+                  <TextInput
+                    label="SchoolName"
+                    type="text"
+                    name="schoolname"
+                    setInputState={setSignupInputs}
+                    inputsState={signupInputs}
+                  />
+                )}
                 <TextInput
                   label="Phone Number"
                   type="tel"
@@ -198,15 +202,9 @@ const SignUpPis = ({pis}: {pis: string}) => {
                     rounded="md"
                     onChange={handleOptionChange}
                   >
-                    <option value="mr">
-                      Mr.
-                    </option>
-                    <option value="mrs">
-                     Mrs.
-                    </option>
-                    <option value="miss">
-                     Miss.
-                    </option>
+                    <option value="mr">Mr.</option>
+                    <option value="mrs">Mrs.</option>
+                    <option value="miss">Miss.</option>
                   </Select>
                 </FormControl>
 
@@ -241,7 +239,8 @@ const SignUpPis = ({pis}: {pis: string}) => {
                   _hover={{ opacity: ".7" }}
                   isDisabled={showloadingring}
                 >
-                {!showloadingring && 'Sign Up'}{showloadingring && <ColorRing width={30} height={30}/>}
+                  {!showloadingring && "Sign Up"}
+                  {showloadingring && <ColorRing width={30} height={30} />}
                 </Button>
                 <Link href="/login" shallow>
                   <Text
@@ -281,7 +280,9 @@ const SignUpPis = ({pis}: {pis: string}) => {
 export default SignUpPis;
 
 export async function getServerSideProps(context: any) {
-  const { params: {pis} } = context;
+  const {
+    params: { pis },
+  } = context;
 
   // const { pis } = params;
 
@@ -295,8 +296,8 @@ export async function getServerSideProps(context: any) {
   }
 
   return {
-    props: { 
-      pis
+    props: {
+      pis,
     },
   };
 }

@@ -37,7 +37,7 @@ const ViewRecruitedTeachers = () => {
   }
 
   const [availabilityInfo, setAvailabilityInfo] =
-    useState<AvailabilityInfo>({
+    useState({
       levelDetails: {
         teachingExperience: "Less than 6 months",
         highestDegree: "bsc",
