@@ -1,10 +1,10 @@
 import { Footer } from "@/components/layout/Footer";
-import { Goals } from "@/components/layout/Home";
+import { Services } from "@/components/layout/Home";
 import Navbar from "@/components/layout/navbar/Navbar";
 import { Box } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 
-const GoalsPage = () => {
+const ServicesPage = () => {
   return (
     <motion.div
       key="login"
@@ -14,8 +14,8 @@ const GoalsPage = () => {
     >
       <Box bg="#1b1222" minH="100vh">
         <Navbar />
-        <Box marginTop={{ base: -60, md: -40, lg: "-28rem" }}>
-          <Goals goals="" />
+        <Box marginTop={{ base: -60, md: -40, lg: "-37rem", xl: "-28rem" }}>
+          <Services servicesProp="" />
         </Box>
         <Footer />
       </Box>
@@ -23,4 +23,4 @@ const GoalsPage = () => {
   );
 };
 
-export default GoalsPage;
+export default ServicesPage;

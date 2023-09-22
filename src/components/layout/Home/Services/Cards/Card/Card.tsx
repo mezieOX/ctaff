@@ -1,4 +1,4 @@
-import goalCards from "@/data/CoursesCards";
+import servicesCards from "@/data/servicesCards";
 import { Box, Flex, Text, Button, Stack, Grid } from "@chakra-ui/react";
 import Image from "next/image";
 
@@ -13,13 +13,17 @@ const Card = () => {
   return (
     <Box>
       <Grid
-        gap={{base: 14, md:6}}
+        gap={{ base: 14, md: 6 }}
         justifyItems="space-between"
         alignItems="space-between"
         textAlign={["center"]}
-        templateColumns={{base:  "repeat(1, 1fr)", md: "repeat(2, 1fr)", lg:  "repeat(3, 1fr)"}}
+        templateColumns={{
+          base: "repeat(1, 1fr)",
+          md: "repeat(2, 1fr)",
+          lg: "repeat(3, 1fr)",
+        }}
       >
-        {goalCards.map(({ id, title, description, image }: CardsProps) => (
+        {servicesCards.map(({ id, title, description, image }: CardsProps) => (
           <Flex
             flexDirection="column"
             alignItems="space-between"
@@ -28,7 +32,11 @@ const Card = () => {
             key={id}
             display={{ md: "grid" }}
           >
-            <Box position="relative" height={{base: "30rem", md:"220"}} cursor="pointer">
+            <Box
+              position="relative"
+              height={{ base: "30rem", md: "220" }}
+              cursor="pointer"
+            >
               <Image
                 src={image}
                 alt={title + " Image"}
@@ -54,7 +62,7 @@ const Card = () => {
               <Text
                 as="div"
                 color="white"
-                fontSize={{base: "1.5rem", md: "1.2rem"}}
+                fontSize={{ base: "1.5rem", md: "1.2rem" }}
                 fontWeight={900}
                 marginTop={4}
                 textAlign="center"
@@ -64,13 +72,13 @@ const Card = () => {
               </Text>
               <Text
                 as="div"
-                marginTop={{base: -6, md:-8}}
+                marginTop={{ base: -6, md: -8 }}
                 marginBottom=".4rem"
                 color="white"
-                fontSize={{base: "1.2rem", md:".9rem"}}
+                fontSize={{ base: "1.2rem", md: ".9rem" }}
                 textAlign="center"
                 paddingY={6}
-                maxWidth={{base: "80%", md:"88%"}}
+                maxWidth={{ base: "80%", md: "88%" }}
                 mx="auto"
                 flex={1}
               >
@@ -92,7 +100,7 @@ const Card = () => {
                   bg="red.500"
                   border="none"
                   borderRadius={0}
-                  marginTop={{base: 3, md:-3}}
+                  marginTop={{ base: 3, md: -3 }}
                 >
                   Learn More
                 </Button>

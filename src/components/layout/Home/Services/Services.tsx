@@ -1,8 +1,9 @@
 import { Box, Flex, Text } from "@chakra-ui/react";
-import { CSSProperties } from "react";
+import { useState } from "react";
 import { Cards } from "./Cards";
 
-const Goals = ({ goals = "Our Goals" }: { goals?: string }) => {
+const Services = ({ servicesProp = "Our Services" }: { servicesProp?: string }) => {
+  const [numericIndex, setNumericIndex] = useState(true);
   return (
     <Box
       height={["auto", "auto", "auto"]}
@@ -27,7 +28,7 @@ const Goals = ({ goals = "Our Goals" }: { goals?: string }) => {
               marginTop={{ base: "4rem", md: ".5rem", lg: "20rem" }}
               textAlign="center"
             >
-              {goals}
+              {servicesProp}
             </Text>
             <Flex
               width={["100%", "100%"]}
@@ -43,4 +44,4 @@ const Goals = ({ goals = "Our Goals" }: { goals?: string }) => {
   );
 };
 
-export default Goals;
+export default Services;

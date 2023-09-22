@@ -22,7 +22,7 @@ const Navbar = ({ show }: { show?: string }) => {
     backgroundColor: "#584FF2",
     position: "sticky",
     top: 0,
-    zIndex: 1,
+    zIndex: 100,
     transition: "all linear .1s",
     boxShadow: "2px 2px 10px #000",
   };
@@ -63,14 +63,18 @@ const Navbar = ({ show }: { show?: string }) => {
           justify="space-between"
           wrap="wrap"
         >
-          <Link href="/">
-            <Image
-              src="/images/iykelnHub.png"
-              width={60}
-              height={60}
-              alt="logo"
-            ></Image>
-          </Link>
+          <Box
+            visibility={isOpen ? "hidden" : "visible"}
+          >
+            <Link href="/">
+              <Image
+                src="/images/iykelnHub.png"
+                width={60}
+                height={60}
+                alt="logo"
+              />
+            </Link>
+          </Box>
 
           {!show && (
             <>
@@ -91,7 +95,7 @@ const Navbar = ({ show }: { show?: string }) => {
               >
                 <NavBarLink to="/" linkName="Home" />
                 <NavBarLink to="/about" linkName="About" />
-                <NavBarLink to="/our-goals" linkName="Our Goals" />
+                <NavBarLink to="/services" linkName="Services" />
                 <NavBarLink to="/contact" linkName="Contact" />
                 <NavBarLink to="/login" linkName="Login" />
               </Box>
@@ -116,22 +120,37 @@ const Navbar = ({ show }: { show?: string }) => {
             >
               <Flex
                 flexDir="column"
-                gap={{ base: 16, md: 20 }}
+                alignItems="space-between"
+                justify="space-between"
+                paddingBottom={10}
+                paddingRight={{ base: "8.5%", sm: "5%" }}
                 position="absolute"
-                right={10}
+                right={0}
+                left={0}
                 textAlign="center"
                 top={20}
-                padding={{ base: "12", sm: "16" }}
-                paddingRight={{ base: "6rem", sm: "6.5rem", md: 24 }}
                 bg="#584FF2"
-                width={{ base: "70%", sm: "60%", md: "50%" }}
+                width="100%"
+                height="50vh"
+                zIndex={-1}
               >
                 <NavBarLink to="/" linkName="Home" />
                 <NavBarLink to="/about" linkName="About" />
-                <NavBarLink to="/our-goals" linkName="Our Goals" />
+                <NavBarLink to="/services" linkName="Services" />
                 <NavBarLink to="/contact" linkName="Contact" />
                 <NavBarLink to="/login" linkName="Login" />
               </Flex>
+
+              <Box position="absolute" top="6" left="6">
+                <Link href="/">
+                  <Image
+                    src="/images/iykelnHub.png"
+                    width={60}
+                    height={60}
+                    alt="logo"
+                  />
+                </Link>
+              </Box>
 
               <IconButton
                 marginLeft="auto"

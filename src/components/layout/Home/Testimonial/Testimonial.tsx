@@ -11,9 +11,9 @@ const Testimonial = () => {
       height={["auto", "auto", "auto"]}
       maxWidth="1200px"
       mx="auto"
-      marginTop={{base: "6rem", sm: "8rem", md: "-2.3rem", lg: 0}}
+      marginTop={{ base: "6rem", sm: "8rem", md: "-2.3rem", lg: 0 }}
       flexDirection="column"
-      marginBottom={{base: 32, sm:40}}
+      marginBottom={{ base: 32, sm: 40 }}
     >
       <Box height={["auto", "auto", "auto"]}>
         <Box>
@@ -32,13 +32,19 @@ const Testimonial = () => {
             <Flex
               width={["100%", "100%"]}
               justifyItems="space-between"
-              marginTop={{base: "-10.5rem", sm:"-8.5rem"}}
-              zIndex={-1}
+              marginTop={{ base: "-10.5rem", sm: "-8.5rem" }}
+              zIndex="0 !important"
             >
               <Swiper>
                 {testimonials.map(({ id, image, title, name, description }) => (
                   <SwiperSlide key={id}>
-                    <Flex marginTop={{base: "4rem", md: "0"}} flexDirection="column" alignItems="center" justifyContent="space-between">
+                    <Flex
+                      marginTop={{ base: "4rem", md: "0" }}
+                      flexDirection="column"
+                      alignItems="center"
+                      justifyContent="space-between"
+                      zIndex="0 !important"
+                    >
                       <TestimonialImage image={image} />
                       <TextContent
                         title={title}
