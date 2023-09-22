@@ -1,4 +1,5 @@
 import { Button, Flex, Stack, Text } from "@chakra-ui/react";
+import Link from "next/link";
 import React from "react";
 
 const Aside = () => {
@@ -30,25 +31,27 @@ const Aside = () => {
         educational journey starts now.
       </Text>
       <Stack direction="row" spacing={4} align="center">
-        <Button
-          colorScheme="teal"
-          variant="outline"
-          _hover={{
-            border: "1px solid white",
-            bg: "transparent",
-            color: "white",
-            transition: "all .2s ease-in",
-          }}
-          px={9}
-          py={7}
-          color="#37254b"
-          bg="white"
-          border="none"
-          borderRadius={0}
-          marginTop={-3}
-        >
-          Learn More
-        </Button>
+        <Link href="/about-page">
+          <Button
+            colorScheme="teal"
+            variant="outline"
+            _hover={{
+              border: "1px solid white",
+              bg: "transparent",
+              color: "white",
+              transition: "all .2s ease-in",
+            }}
+            px={9}
+            py={7}
+            color="#37254b"
+            bg="white"
+            border="none"
+            borderRadius={0}
+            marginTop={-3}
+          >
+            Learn More
+          </Button>
+        </Link>
       </Stack>
     </Flex>
   );
