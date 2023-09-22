@@ -11,6 +11,7 @@ import {
   Testimonial,
 } from "@/components/layout/Home";
 import { Footer } from "@/components/layout/Footer";
+import BackButton from "@/components/Global/BackButton/BackButton";
 
 export default function Home() {
   // useEffect(() => {
@@ -38,7 +39,7 @@ export default function Home() {
         >
           <Box bg="#1b1222" minH="100vh">
             {/* <Box zIndex="10 !important"> */}
-              <Navbar />
+            <Navbar />
             {/* </Box> */}
             <GetStartedSection />
             <Categories />
@@ -46,6 +47,7 @@ export default function Home() {
             <AccordionSection />
             <Testimonial />
             <Footer />
+            <BackButton bottom={12} right={12} />
           </Box>
         </motion.div>
       </>

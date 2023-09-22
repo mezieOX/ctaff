@@ -13,6 +13,7 @@ import { CloseIcon, HamburgerIcon } from "@chakra-ui/icons";
 import { keyframes } from "@emotion/react";
 import NavBarLink from "@/components/layout/navbar/navbarlink";
 import { CSSProperties, useEffect, useState } from "react";
+import { Logo } from "@/components/Global";
 
 const Navbar = ({ show }: { show?: string }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -65,12 +66,7 @@ const Navbar = ({ show }: { show?: string }) => {
         >
           <Box visibility={isOpen ? "hidden" : "visible"}>
             <Link href="/">
-              <Image
-                src="/images/iykelnHub.png"
-                width={60}
-                height={60}
-                alt="logo"
-              />
+              <Logo />
             </Link>
           </Box>
 
@@ -92,7 +88,7 @@ const Navbar = ({ show }: { show?: string }) => {
                 alignItems="center"
               >
                 <NavBarLink to="/" linkName="Home" />
-                <NavBarLink to="/about" linkName="About" />
+                <NavBarLink to="/about-page" linkName="About" />
                 <NavBarLink to="/services" linkName="Services" />
                 <NavBarLink to="/contact" linkName="Contact" />
                 <NavBarLink to="/login" linkName="Login" />
@@ -132,7 +128,7 @@ const Navbar = ({ show }: { show?: string }) => {
                 height="50vh"
               >
                 <NavBarLink to="/" linkName="Home" />
-                <NavBarLink to="/about" linkName="About" />
+                <NavBarLink to="/about-page" linkName="About" />
                 <NavBarLink to="/services" linkName="Services" />
                 <NavBarLink to="/contact" linkName="Contact" />
                 <NavBarLink to="/login" linkName="Login" />
@@ -140,12 +136,7 @@ const Navbar = ({ show }: { show?: string }) => {
 
               <Box position="absolute" top="6" left="6">
                 <Link href="/">
-                  <Image
-                    src="/images/iykelnHub.png"
-                    width={60}
-                    height={60}
-                    alt="logo"
-                  />
+                  <Logo />
                 </Link>
               </Box>
 
