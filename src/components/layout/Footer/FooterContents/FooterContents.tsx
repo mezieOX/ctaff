@@ -21,11 +21,11 @@ const FooterContents = () => {
     >
       <Box>
         <Text fontWeight={600} fontSize={18}>
-          IYKELNHUB
+          Tutor Twist
         </Text>
         <Text marginTop={4}>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita
-          fugit nobis{" "}
+          Opportunities for jobs and teachers in the arts, encompassing music, visual arts, performing arts, and creative writing
+            and all others is our vision. We believe in empowering people and the nation at large
         </Text>
       </Box>
       <Box>
@@ -56,7 +56,7 @@ const FooterContents = () => {
       </Box>
       <Box>
         <Text fontWeight={600} fontSize={18} mx={4}>
-          Primacy
+          Privacy
         </Text>
 
         <UnorderedList
@@ -91,10 +91,10 @@ const FooterContents = () => {
           gap={2}
         >
           <ListItem marginLeft={{ base: -6, sm: 0 }}>
-            +234 703 0822 450
+            +234 707 838 372 
           </ListItem>
           <ListItem>
-            <Link href="/">someone@gmail.com</Link>
+            <Link href="/">info@gmail.com</Link>
           </ListItem>
           <ListItem
             marginTop={{ base: 6, md: 6 }}
@@ -102,16 +102,16 @@ const FooterContents = () => {
             gap={{ base: 5, md: 6 }}
             marginLeft={{ base: -6, sm: 0 }}
           >
-            <Link href="/">
+            <Link href="#">
               <BsFacebook />
             </Link>
-            <Link href="/">
+            <Link href="#">
               <BsInstagram />
             </Link>
-            <Link href="/">
+            <Link href="#">
               <BsTwitter />
             </Link>
-            <Link href="/">
+            <Link href="#">
               <BsLinkedin />
             </Link>
           </ListItem>
