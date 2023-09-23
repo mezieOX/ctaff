@@ -168,10 +168,16 @@ export async function getServerSideProps(context: any) {
     const resp = await axios.post(`${url}/users/isValidToken`, {
       token
     })      
+    // return {
+    //   redirect: {
+    //     destination: resolvedUrl,
+    //     permanent: false,
+    //   },
+    // };
     return {
-      redirect: {
-        destination: resolvedUrl,
-        permanent: false,
+      props: {
+        verifType,
+        token,
       },
     };
 
@@ -186,10 +192,4 @@ export async function getServerSideProps(context: any) {
     }
   }
 
-  return {
-    props: {
-      verifType,
-      token,
-    },
-  };
 }
