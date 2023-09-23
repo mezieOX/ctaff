@@ -3,6 +3,7 @@ import { Box, Select, Menu, MenuItem, useMediaQuery } from "@chakra-ui/react";
 import { keyframes } from "@emotion/react";
 import { useState } from "react";
 import { motion } from "framer-motion";
+import Navbar from "@/components/layout/navbar/Navbar";
 
 const WhoAmI = () => {
   const [selectedOption, setSelectedOption] = useState("");
@@ -72,7 +73,9 @@ const WhoAmI = () => {
           animation={`${animateFloat1} 5s infinite ease-in-out`}
           // zIndex={5}
         /> */}
+        <Navbar/>
         <Box paddingTop="10rem" zIndex={10}>
+
           <select
             style={{
               backgroundColor: "#37254b",
