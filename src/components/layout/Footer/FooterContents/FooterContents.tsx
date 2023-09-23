@@ -21,12 +21,12 @@ const FooterContents = () => {
       marginY={8}
     >
       <Box>
-        <Text fontWeight={600} fontSize={{ base: 16, sm: 18 }}>
-          IYKELNHUB
+        <Text fontWeight={600} fontSize={18}>
+          Tutor Twist
         </Text>
         <Text marginTop={4}>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita
-          fugit nobis{" "}
+          Opportunities of jobs for teachers in the arts,music, visual arts, performing arts, and creative writing
+            and all others is our vision. We believe in empowering people and the nation at large
         </Text>
       </Box>
       <Box>
@@ -56,9 +56,9 @@ const FooterContents = () => {
           </ListItem>
         </UnorderedList>
       </Box>
-      <Box justifyItems="start">
-        <Text fontWeight={600} fontSize={{ base: 16, sm: 18 }}>
-          Primacy
+      <Box>
+        <Text fontWeight={600} fontSize={18} mx={4}>
+          Privacy
         </Text>
 
         <UnorderedList
@@ -93,11 +93,11 @@ const FooterContents = () => {
           alignItems={{ base: "center", sm: "start", md: "start" }}
           gap={2}
         >
-          <ListItem marginLeft={{ base: -6, sm: -1 }}>
-            +234 703 0822 450
+          <ListItem marginLeft={{ base: -6, sm: 0 }}>
+            +234 707 838 372 
           </ListItem>
-          <ListItem marginLeft={{ base: -1, sm: 0 }}>
-            <Link href="/">someone@gmail.com</Link>
+          <ListItem>
+            <Link href="/">info@gmail.com</Link>
           </ListItem>
           <ListItem
             marginTop={{ base: 6, md: 6 }}
@@ -105,16 +105,16 @@ const FooterContents = () => {
             gap={{ base: 5, md: 6 }}
             marginLeft={{ base: -6, sm: 0 }}
           >
-            <Link href="/">
+            <Link href="#">
               <BsFacebook />
             </Link>
-            <Link href="/">
+            <Link href="#">
               <BsInstagram />
             </Link>
-            <Link href="/">
+            <Link href="#">
               <BsTwitter />
             </Link>
-            <Link href="/">
+            <Link href="#">
               <BsLinkedin />
             </Link>
           </ListItem>

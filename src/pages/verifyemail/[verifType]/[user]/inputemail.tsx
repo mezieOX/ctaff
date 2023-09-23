@@ -16,6 +16,7 @@ import { motion } from "framer-motion";
 import axios from "axios";
 import { ColorRing } from "react-loader-spinner";
 import { useRouter } from "next/router";
+import Navbar from "@/components/layout/navbar/Navbar";
 
 const InputYourEmail = ({
   verifType,
@@ -41,7 +42,7 @@ const InputYourEmail = ({
         email: value.trim(),
         role: user,
       });
-      // console.log(res)
+      console.log("theres", res)
       const { token, registrationStep } = res.data;
       setShowloadingring(false);
       if (registrationStep) {
@@ -119,17 +120,24 @@ const InputYourEmail = ({
       initial={{ scale: 0 }}
       animate={{ scale: 1 }}
       transition={{ duration: 1 }}
-    >
+      >
       <Flex
         bg="#37254b"
         height="100vh"
         width="100%"
         flexDir="column"
-        alignItems="center"
-        justifyContent="center"
-        m="auto"
+        // alignItems="center"
+        // justifyContent="center"
+        // m="auto"
         gap="2rem"
-      >
+        >
+        <Navbar/>
+        <Flex
+          placeItems="center"
+          flexDir="column"
+          height="100%"
+          justifyContent= "center"
+        >
         <Heading
           as="h1"
           fontSize="xl"
@@ -160,7 +168,7 @@ const InputYourEmail = ({
                   focusBorderColor="#37254b"
                   pr="4.5rem"
                   type="email"
-                  placeholder="e.g iykelnhub@gmail.com"
+                  placeholder="e.g applead@gmail.com"
                   bg="#fff"
                   value={value}
                   onChange={(e) => setValue(e.target.value)}
@@ -192,6 +200,7 @@ const InputYourEmail = ({
               <FormLabel color="#fff">Email</FormLabel>
             </FormControl>
           </form>
+        </Flex>
         </Flex>
       </Flex>
     </motion.div>

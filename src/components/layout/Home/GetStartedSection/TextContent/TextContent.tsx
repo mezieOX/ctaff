@@ -22,11 +22,27 @@ const TextContent = () => {
         fontWeight={900}
         lineHeight="1.3"
       >
-        <Typewriter
+        {/* <Typewriter
           options={{
             strings: ["Hi there!, What subject do you teach passionate?"],
             autoStart: true,
             loop: true,
+          }}
+        /> */}
+        <Typewriter
+          options={{
+            strings: [
+              "Hi there!,<br> What subject do you teach passionately?",
+              "Are you looking<br> for a cover teacher?",
+              "<Click the button below 👇 to get started!",
+            ],
+            cursor: "",
+            autoStart: true,
+            loop: true,
+            skipAddStyles: true,
+            deleteSpeed: 50,
+            delay: 50
+            // pauseFor: 2000,
           }}
         />
       </Text>
@@ -40,7 +56,7 @@ const TextContent = () => {
         Discover Educators. Connect and Embark on Your Educational Journey.
       </Text>
       <Stack direction="row" spacing={4} align="center">
-        <Link href="/login">
+        <Link href="/who_am_i">
           {" "}
           <Button
             colorScheme="teal"

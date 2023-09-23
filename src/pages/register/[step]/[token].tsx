@@ -1,11 +1,11 @@
 import { useRouter } from "next/router";
 import React, { useState, useEffect, useLayoutEffect } from "react";
 import Loader from "@/components/layout/loader";
-
 import {
   Progress,
   Box,
   useToast,
+  Flex,
   useMediaQuery
 } from "@chakra-ui/react";
 import Form1 from "@/components/form/multistepForms/form1";
@@ -15,6 +15,7 @@ import Form4 from "@/components/form/multistepForms/form4";
 import ProgressSteps from "@/components/form/multistepForms/progressSteps";
 import FormCompleted from "@/components/form/multistepForms/formCompleted";
 import axios from "axios";
+import Navbar from "@/components/layout/navbar/Navbar";
 
 interface MultiStepInterface {
   step: any ;
@@ -113,7 +114,16 @@ export default function Multistep({ step, progressLevel, runConfetti, data }: Mu
   }
 
   return (
-    <Box minH="100vh" py="5rem" bg="#37254b">
+    <Box minH="100vh"  bg="#37254b">
+      <Navbar />
+      <Flex
+        placeItems="center"
+        flexDir="column"
+        height="100%"
+        justifyContent= "center"
+        py="5rem"
+      >
+
       <Box
         borderWidth="1px"
         rounded="lg"
@@ -124,28 +134,45 @@ export default function Multistep({ step, progressLevel, runConfetti, data }: Mu
         mx={["auto"]}
         // as="form"
       >
-        {step != 5 && <Progress
-          // hasStripe
-          colorScheme="purple"
-          rounded="lg"
-          transition=".7s"
-          value={progressLevel}
-          mb="5%"
-          mx="5%"
-          isAnimated
-        ></Progress>}
-        {isLessthan500 && <ProgressSteps step={step}/>}
+        {step != 5 && (
+          <Progress
+            // hasStripe
+            colorScheme="purple"
+            rounded="lg"
+            transition=".7s"
+            value={progressLevel}
+            mb="5%"
+            mx="5%"
+            isAnimated
+          ></Progress>
+        )}
+        {isLessthan500 && <ProgressSteps step={step} />}
         {step == 1 ? (
-          <Form1 handleTeacherFormSubmit={handleTeacherFormSubmit} email={data.email} showloadingring={showloadingring}/>
+          <Form1
+            handleTeacherFormSubmit={handleTeacherFormSubmit}
+            email={data.email}
+            showloadingring={showloadingring}
+          />
         ) : step == 2 ? (
-          <Form2 handleTeacherFormSubmit={handleTeacherFormSubmit}  showloadingring={showloadingring}/>
+          <Form2
+            handleTeacherFormSubmit={handleTeacherFormSubmit}
+            showloadingring={showloadingring}
+          />
         ) : step == 3 ? (
-          <Form3 handleTeacherFormSubmit={handleTeacherFormSubmit}  showloadingring={showloadingring}/>
-        ):  step == 4 ?  (
-          <Form4 handleTeacherFormSubmit={handleTeacherFormSubmit} showloadingring={showloadingring}/>
-        ): (<FormCompleted runConfetti={runConfetti}/> )
-        }
+          <Form3
+            handleTeacherFormSubmit={handleTeacherFormSubmit}
+            showloadingring={showloadingring}
+          />
+        ) : step == 4 ? (
+          <Form4
+            handleTeacherFormSubmit={handleTeacherFormSubmit}
+            showloadingring={showloadingring}
+          />
+        ) : (
+          <FormCompleted runConfetti={runConfetti} />
+        )}
       </Box>
+      </Flex>
     </Box>
   );
 }

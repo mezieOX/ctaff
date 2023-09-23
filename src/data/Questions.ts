@@ -24,13 +24,13 @@ const questions = [
     answer:
       "Our instructors cover a wide range of subjects and topics, from STEM subjects to the arts, humanities, and beyond. You'll find experts in various fields to help with your learning needs",
   },
-  {
-    id: 5,
-    question:
-      "How can I find job opportunities as an instructor or teacher through your website?",
-    answer:
-      "Visit our 'Job Opportunities' section to explore current openings for instructors and teachers. We provide a platform for both job seekers and educational institutions to connect",
-  },
+  // {
+  //   id: 5,
+  //   question:
+  //     "How can I find job opportunities as an instructor or teacher through your website?",
+  //   answer:
+  //     "Visit our 'Job Opportunities' section to explore current openings for instructors and teachers. We provide a platform for both job seekers and educational institutions to connect",
+  // },
   {
     id: 6,
     question: "Is there a cost associated with using this platform?",
