@@ -24,7 +24,7 @@ const FooterContents = () => {
           Tutor Twist
         </Text>
         <Text marginTop={4}>
-          Opportunities for jobs and teachers in the arts, encompassing music, visual arts, performing arts, and creative writing
+          Opportunities of jobs for teachers in the arts,music, visual arts, performing arts, and creative writing
             and all others is our vision. We believe in empowering people and the nation at large
         </Text>
       </Box>
