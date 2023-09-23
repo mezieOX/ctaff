@@ -15,9 +15,7 @@ const AboutPage = () => {
     >
       <Box bg="#1b1222" minH="100vh">
         <Navbar />
-        <Box marginTop={{ base: -60, md: -40, lg: "-37rem", xl: "-28rem" }}>
-          <About />
-        </Box>
+        <About />
         <Footer />
         <BackButton bottom={12} right={{ base: 9, sm: 6 }} />
       </Box>

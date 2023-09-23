@@ -21,7 +21,6 @@ export default function Home() {
   //   console.log("TYPE process.env.API_URL", typeof process.env.API_URL)
   //   console.log("hello")
   // }, [])
-  // #37254b
   return (
     <>
       <Head>

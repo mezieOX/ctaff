@@ -1,1 +1,1 @@
-export { default as GetStartedSection } from "./ContactPage";
+export { default as Contact } from "./ContactPage";

@@ -57,12 +57,13 @@ const Card = () => {
               justifyItems="space-between"
               px={8}
               borderRadius={20}
-              border="1px solid #584FF2"
+              boxShadow={
+                "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)"
+              }
               _hover={{
-                bg: "transparent",
-                transition: "background .5s",
-                borderX: "1px solid #37254b",
-                border: "1px solid #37254b",
+                transition: "transform .5s",
+                border: "1px solid #584FF2",
+                transform: "scale(105%)",
                 boxShadow:
                   "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
               }}

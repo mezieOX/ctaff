@@ -1,5 +1,4 @@
 import { Text } from "@chakra-ui/react";
-import React from "react";
 
 const TextContent = ({ name, title }: { name: string; title: string }) => {
   return (
