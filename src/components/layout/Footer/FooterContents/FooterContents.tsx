@@ -52,7 +52,7 @@ const FooterContents = () => {
             <Link href="/services">Services</Link>
           </ListItem>
           <ListItem>
-            <Link href="/">Contact</Link>
+            <Link href="/contact">Contact</Link>
           </ListItem>
         </UnorderedList>
       </Box>
