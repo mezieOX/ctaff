@@ -8,7 +8,7 @@ const GetStartedImage = () => {
       maxWidth={{ base: "100%", md: "50%" }}
       display="flex"
       marginLeft={{ base: "auto" }}
-      marginTop={{ base: "5rem", sm: "14rem", md: "0" }}
+      marginTop={{ base: "5rem", sm: "10rem", md: "0" }}
     >
       <Image
         src="/images/header.svg"

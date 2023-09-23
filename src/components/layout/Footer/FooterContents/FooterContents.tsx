@@ -6,14 +6,15 @@ const FooterContents = () => {
   return (
     <Grid
       templateColumns={{
-        base: "repeat(2, 1fr)",
+        base: "repeat(1, 1fr)",
+        sm: "repeat(2, 1fr)",
         md: "repeat(3, 1fr)",
         xl: "repeat(4, 1fr)",
       }}
       gap={{ base: "2rem", xl: 20 }}
-      justifyItems="space-between"
+      justifyItems={{ base: "center", sm: "space-between" }}
       alignItems={["start", "start"]}
-      textAlign={{ base: "left", md: "left" }}
+      textAlign={{ base: "center", sm: "left" }}
       marginBottom={["2rem", "0"]}
       color="white"
       w="full"
@@ -29,7 +30,7 @@ const FooterContents = () => {
         </Text>
       </Box>
       <Box>
-        <Text fontWeight={600} fontSize={18} mx={4}>
+        <Text fontWeight={600} fontSize={{ base: 16, sm: 18 }}>
           Permalinks
         </Text>
 
@@ -39,6 +40,7 @@ const FooterContents = () => {
           display="flex"
           flexDirection="column"
           gap={2}
+          marginLeft={{ base: -0.5, sm: 0 }}
         >
           <ListItem>
             <Link href="/">Home</Link>
@@ -50,7 +52,7 @@ const FooterContents = () => {
             <Link href="/services">Services</Link>
           </ListItem>
           <ListItem>
-            <Link href="/">Contact</Link>
+            <Link href="/contact">Contact</Link>
           </ListItem>
         </UnorderedList>
       </Box>
@@ -65,6 +67,7 @@ const FooterContents = () => {
           display="flex"
           flexDirection="column"
           gap={2}
+          marginLeft={{ base: -0.5, sm: 0 }}
         >
           <ListItem>
             <Link href="/">Privacy Policy</Link>
@@ -78,7 +81,7 @@ const FooterContents = () => {
         </UnorderedList>
       </Box>
       <Box>
-        <Text fontWeight={600} fontSize={18} mx={4}>
+        <Text fontWeight={600} fontSize={{ base: 16, sm: 18 }} mx={4}>
           Contact Us
         </Text>
         <UnorderedList
@@ -87,7 +90,7 @@ const FooterContents = () => {
           display="flex"
           flexDirection="column"
           justifyItems="center"
-          alignItems={{ base: "center", md: "start" }}
+          alignItems={{ base: "center", sm: "start", md: "start" }}
           gap={2}
         >
           <ListItem marginLeft={{ base: -6, sm: 0 }}>
