@@ -56,7 +56,7 @@ const TextContent = () => {
         Discover Educators. Connect and Embark on Your Educational Journey.
       </Text>
       <Stack direction="row" spacing={4} align="center">
-        <Link href="//who_am_i">
+        <Link href="/who_am_i">
           {" "}
           <Button
             colorScheme="teal"
