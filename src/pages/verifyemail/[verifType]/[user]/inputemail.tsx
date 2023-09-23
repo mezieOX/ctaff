@@ -42,7 +42,7 @@ const InputYourEmail = ({
         email: value.trim(),
         role: user,
       });
-      // console.log(res)
+      console.log("theres", res)
       const { token, registrationStep } = res.data;
       setShowloadingring(false);
       if (registrationStep) {
