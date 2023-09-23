@@ -6,9 +6,8 @@ const GetStartedImage = () => {
     <Box
       width={["100%", "100%"]}
       maxWidth={{ base: "100%", md: "50%" }}
-      display="flex"
       marginLeft={{ base: "auto" }}
-      marginTop={{ base: "5rem", sm: "10rem", md: "0" }}
+      marginTop={{ base: "2rem", sm: "1rem", md: "0" }}
     >
       <Image
         src="/images/header.svg"

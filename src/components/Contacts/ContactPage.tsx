@@ -9,7 +9,7 @@ const ContactPage = () => {
       flexDirection={{ base: "column", md: "row" }}
       marginTop={{ base: "2rem", xl: "8rem" }}
       gap={{ base: "1rem", xl: "3rem" }}
-      padding={6}
+      padding={{ base: 2, sm: 6 }}
       marginBottom={{ base: "12rem", xl: "15rem" }}
       maxWidth="1140px"
       mx={{ base: "2rem", xl: "auto" }}

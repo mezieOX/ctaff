@@ -1,7 +1,10 @@
 import { FormInput, TextArea } from "@/components/Global";
-import {  Button, Flex,  } from "@chakra-ui/react";
+import { Button, Flex } from "@chakra-ui/react";
+import { useState } from "react";
 
 const Form = () => {
+  const [message, setMessage] = useState("Send Message");
+
   return (
     <Flex
       flexDir="column"
@@ -11,8 +14,9 @@ const Form = () => {
       gap={6}
       width={{ base: "100%", xl: "50%" }}
       marginTop={{ base: "2rem", md: 0 }}
+      marginBottom={{ base: "1rem", sm: 0 }}
     >
-      <Flex gap={6}>
+      <Flex gap={{ base: 2, sm: 6 }}>
         <FormInput placeholder="Email" />
         <FormInput placeholder="Achiever" />
       </Flex>
@@ -29,15 +33,16 @@ const Form = () => {
           color: "white",
           transition: "all .2s ease-in",
         }}
-        px={9}
-        py={7}
+        px={{ base: 3, sm: 9 }}
+        py={{ base: 2, sm: 7 }}
         color="white"
+        fontSize={{ base: ".8", sm: "1rem" }}
         bg="red.500"
         border="none"
         borderRadius={0}
-        marginTop={{ base: "1.5rem", sm: 0 }}
+        onClick={() => setMessage("Loading...")}
       >
-        Send Message
+        {message}
       </Button>
     </Flex>
   );

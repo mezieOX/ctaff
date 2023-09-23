@@ -1,4 +1,4 @@
-import { Box, Grid, ListItem, Text, UnorderedList } from "@chakra-ui/react";
+import { Box, Flex, Grid, Text } from "@chakra-ui/react";
 import Link from "next/link";
 import { BsFacebook, BsInstagram, BsLinkedin, BsTwitter } from "react-icons/bs";
 
@@ -11,13 +11,13 @@ const FooterContents = () => {
         md: "repeat(3, 1fr)",
         xl: "repeat(4, 1fr)",
       }}
-      gap={{ base: "2rem", xl: 20 }}
-      justifyItems={{ base: "center", sm: "space-between" }}
+      justifyItems={{ base: "center", sm: "start" }}
       alignItems={["start", "start"]}
       textAlign={{ base: "center", sm: "left" }}
       marginBottom={["2rem", "0"]}
       color="white"
       w="full"
+      gap={20}
       marginY={8}
     >
       <Box>
@@ -25,8 +25,9 @@ const FooterContents = () => {
           Tutor Twist
         </Text>
         <Text marginTop={4}>
-          Opportunities of jobs for teachers in the arts,music, visual arts, performing arts, and creative writing
-            and all others is our vision. We believe in empowering people and the nation at large
+          Opportunities of jobs for teachers in the arts,music, visual arts,
+          performing arts, and creative writing and all others is our vision. We
+          believe in empowering people and the nation at large
         </Text>
       </Box>
       <Box>
@@ -34,91 +35,48 @@ const FooterContents = () => {
           Permalinks
         </Text>
 
-        <UnorderedList
-          listStyleType="none"
-          marginTop={4}
-          display="flex"
-          flexDirection="column"
-          gap={2}
-          marginLeft={{ base: -0.5, sm: 0 }}
-        >
-          <ListItem>
-            <Link href="/">Home</Link>
-          </ListItem>
-          <ListItem>
-            <Link href="/">About</Link>
-          </ListItem>
-          <ListItem>
-            <Link href="/services">Services</Link>
-          </ListItem>
-          <ListItem>
-            <Link href="/contact">Contact</Link>
-          </ListItem>
-        </UnorderedList>
+        <Box marginTop={4} display="flex" flexDirection="column" gap={3}>
+          <Link href="/">Home</Link>
+          <Link href="/about">About</Link>
+          <Link href="/services">Services</Link>
+          <Link href="/contact">Contact</Link>
+        </Box>
       </Box>
       <Box>
-        <Text fontWeight={600} fontSize={18} mx={4}>
+        <Text fontWeight={600} fontSize={18}>
           Privacy
         </Text>
 
-        <UnorderedList
-          listStyleType="none"
-          marginTop={4}
-          display="flex"
-          flexDirection="column"
-          gap={2}
-          marginLeft={{ base: -0.5, sm: 0 }}
-        >
-          <ListItem>
-            <Link href="/">Privacy Policy</Link>
-          </ListItem>
-          <ListItem>
-            <Link href="/">Terms and Conditions</Link>
-          </ListItem>
-          <ListItem>
-            <Link href="/">Refund Policy</Link>
-          </ListItem>
-        </UnorderedList>
+        <Box marginTop={4} display="flex" flexDirection="column" gap={3}>
+          <Link href="/privacy">Privacy Policy</Link>
+          <Link href="/term-condition">Terms and Conditions</Link>
+          <Link href="/refund">Refund Policy</Link>
+        </Box>
       </Box>
       <Box>
-        <Text fontWeight={600} fontSize={{ base: 16, sm: 18 }} mx={4}>
+        <Text fontWeight={600} fontSize={{ base: 16, sm: 18 }}>
           Contact Us
         </Text>
-        <UnorderedList
-          listStyleType="none"
+        <Box
           marginTop={4}
           display="flex"
           flexDirection="column"
           justifyItems="center"
-          alignItems={{ base: "center", sm: "start", md: "start" }}
-          gap={2}
+          gap={3}
         >
-          <ListItem marginLeft={{ base: -6, sm: 0 }}>
-            +234 707 838 372 
-          </ListItem>
-          <ListItem>
-            <Link href="/">info@gmail.com</Link>
-          </ListItem>
-          <ListItem
-            marginTop={{ base: 6, md: 6 }}
-            display="flex"
-            gap={{ base: 5, md: 6 }}
-            marginLeft={{ base: -6, sm: 0 }}
+          <Box>+234 707 838 372</Box>
+          <Box>info@gmail.com</Box>
+          <Flex
+            gap={{ base: 6, md: 4 }}
+            mt={4}
+            marginLeft={{ base: ".3rem", sm: 0 }}
           >
-            <Link href="#">
-              <BsFacebook />
-            </Link>
-            <Link href="#">
-              <BsInstagram />
-            </Link>
-            <Link href="#">
-              <BsTwitter />
-            </Link>
-            <Link href="#">
-              <BsLinkedin />
-            </Link>
-          </ListItem>
-        </UnorderedList>
+            <BsFacebook cursor="pointer" />
+            <BsInstagram cursor="pointer" />
+            <BsTwitter cursor="pointer" />
+            <BsLinkedin cursor="pointer" />
+          </Flex>
+        </Box>
       </Box>
     </Grid>
   );

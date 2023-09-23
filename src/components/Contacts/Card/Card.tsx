@@ -13,7 +13,7 @@ const Card = () => {
       position={{ base: "relative", xl: "absolute" }}
       overflow="hidden"
       borderRadius={15}
-      padding={6}
+      padding={{ base: 0, sm: 6 }}
       maxHeight={{ base: "full", xl: "40rem" }}
       minHeight={{ base: "full", xl: "40rem" }}
       maxWidth={{ base: "100%", xl: "35%" }}
