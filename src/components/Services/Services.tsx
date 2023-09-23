@@ -1,9 +1,11 @@
 import { Box, Flex, Text } from "@chakra-ui/react";
-import { useState } from "react";
 import { Cards } from "./Cards";
 
-const Services = ({ servicesProp = "Our Services" }: { servicesProp?: string }) => {
-  const [numericIndex, setNumericIndex] = useState(true);
+const Services = ({
+  servicesProp = "Our Services",
+}: {
+  servicesProp?: string;
+}) => {
   return (
     <Box
       height={["auto", "auto", "auto"]}

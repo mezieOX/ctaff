@@ -8,7 +8,7 @@ const BackButton = ({
   left,
 }: {
   top?: number;
-  right?: number;
+  right?: object | number;
   bottom?: number;
   left?: number;
 }) => {
@@ -49,6 +49,7 @@ const BackButton = ({
       zIndex={10}
       color="white"
       background="red.500"
+      _hover={{ bg: "red.600", transition: "all .2s ease-in" }}
     >
       Top
     </Button>

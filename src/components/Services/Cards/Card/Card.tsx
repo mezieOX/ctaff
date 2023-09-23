@@ -1,4 +1,4 @@
-import servicesCards from "@/data/servicesCards";
+import servicesCards from "@/data/ServicesCards";
 import { Box, Flex, Text, Button, Stack, Grid } from "@chakra-ui/react";
 import Image from "next/image";
 import Link from "next/link";
@@ -95,7 +95,7 @@ const Card = () => {
                   <Button
                     colorScheme="teal"
                     variant="outline"
-                    _hover={{ bg: "red.600" }}
+                    _hover={{ bg: "red.600", transition: "all .2s ease-in" }}
                     px={9}
                     py={7}
                     color="white"

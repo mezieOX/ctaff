@@ -88,7 +88,7 @@ const Navbar = ({ show }: { show?: string }) => {
                 alignItems="center"
               >
                 <NavBarLink to="/" linkName="Home" />
-                <NavBarLink to="/about-page" linkName="About" />
+                <NavBarLink to="/about" linkName="About" />
                 <NavBarLink to="/services" linkName="Services" />
                 <NavBarLink to="/contact" linkName="Contact" />
                 <NavBarLink to="/login" linkName="Login" />
@@ -125,10 +125,10 @@ const Navbar = ({ show }: { show?: string }) => {
                 top={20}
                 bg="#584FF2"
                 width="100%"
-                height="50vh"
+                height={{ base: "60vh", md: "70vh" }}
               >
                 <NavBarLink to="/" linkName="Home" />
-                <NavBarLink to="/about-page" linkName="About" />
+                <NavBarLink to="/about" linkName="About" />
                 <NavBarLink to="/services" linkName="Services" />
                 <NavBarLink to="/contact" linkName="Contact" />
                 <NavBarLink to="/login" linkName="Login" />

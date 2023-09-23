@@ -47,7 +47,7 @@ export default function Home() {
             <AccordionSection />
             <Testimonial />
             <Footer />
-            <BackButton bottom={12} right={12} />
+            <BackButton bottom={12} right={{ base: 9, sm: 6 }} />
           </Box>
         </motion.div>
       </>

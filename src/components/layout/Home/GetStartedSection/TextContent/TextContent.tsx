@@ -45,7 +45,7 @@ const TextContent = () => {
           <Button
             colorScheme="teal"
             variant="outline"
-            _hover={{ bg: "red.600" }}
+            _hover={{ bg: "red.600", transition: "all .2s ease-in" }}
             px={9}
             py={7}
             color="white"
