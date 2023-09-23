@@ -11,7 +11,7 @@ const Testimonial = () => {
       height={["auto", "auto", "auto"]}
       maxWidth="1200px"
       mx="auto"
-      marginTop={{ base: "6rem", sm: "8rem", md: "-2.3rem", lg: 0 }}
+      marginTop={{ base: "6rem", sm: "8rem", md: "-2.3rem", lg: 24 }}
       flexDirection="column"
       marginBottom={{ base: 32, sm: 40 }}
     >

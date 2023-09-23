@@ -7,7 +7,7 @@ import {
   AccordionSection,
   Categories,
   GetStartedSection,
-  Services,
+  ServicesSection,
   Testimonial,
 } from "@/components/layout/Home";
 import { Footer } from "@/components/layout/Footer";
@@ -38,12 +38,10 @@ export default function Home() {
           transition={{ duration: 1 }}
         >
           <Box bg="#1b1222" minH="100vh">
-            {/* <Box zIndex="10 !important"> */}
             <Navbar />
-            {/* </Box> */}
             <GetStartedSection />
             <Categories />
-            <Services />
+            <ServicesSection />
             <AccordionSection />
             <Testimonial />
             <Footer />

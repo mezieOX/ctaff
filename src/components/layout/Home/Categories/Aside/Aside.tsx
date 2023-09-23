@@ -31,7 +31,7 @@ const Aside = () => {
         educational journey starts now.
       </Text>
       <Stack direction="row" spacing={4} align="center">
-        <Link href="/about-page">
+        <Link href="/about">
           <Button
             colorScheme="teal"
             variant="outline"

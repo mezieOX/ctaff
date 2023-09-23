@@ -16,6 +16,7 @@ const MediaIcons = () => {
         backgroundColor="#37254b"
         justify="center"
         borderRadius={50}
+        cursor="pointer"
         h="2rem"
         w="2rem"
       >
@@ -29,6 +30,7 @@ const MediaIcons = () => {
         borderRadius={50}
         h="2rem"
         w="2rem"
+        cursor="pointer"
       >
         <EmailIcon />
       </Flex>
@@ -39,6 +41,7 @@ const MediaIcons = () => {
         justify="center"
         borderRadius={50}
         h="2rem"
+        cursor="pointer"
         w="2rem"
       >
         <BsTwitter />
@@ -50,6 +53,7 @@ const MediaIcons = () => {
         justify="center"
         borderRadius={50}
         h="2rem"
+        cursor="pointer"
         w="2rem"
       >
         <BsLinkedin />

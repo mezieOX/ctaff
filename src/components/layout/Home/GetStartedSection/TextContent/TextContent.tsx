@@ -1,6 +1,7 @@
 import { Button, Flex, Stack, Text } from "@chakra-ui/react";
 import Typewriter from "typewriter-effect";
 import Link from "next/link";
+import ReactWOW from "react-wow";
 
 const TextContent = () => {
   return (
@@ -41,7 +42,7 @@ const TextContent = () => {
             loop: true,
             skipAddStyles: true,
             deleteSpeed: 50,
-            delay: 50
+            delay: 50,
             // pauseFor: 2000,
           }}
         />
