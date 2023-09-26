@@ -1,10 +1,11 @@
+import { theme } from "@/utils/chakratheme";
 import { Box, Flex, Text } from "@chakra-ui/react";
 import { Accordions } from "./Accordions";
 
 const AccordionSection = () => {
   return (
     <Box
-      bg={{ base: "#37254b", md: "transparent" }}
+      bg={{ base: "gray.lighter", md: "transparent" }}
       marginTop={{ base: "18rem", md: 0 }}
     >
       <Box height={["auto", "auto", "auto"]} maxWidth="1200px" mx="auto">
@@ -12,8 +13,7 @@ const AccordionSection = () => {
           <Box>
             <Box padding={6} marginTop={-56} mx="auto">
               <Text
-                as="div"
-                color="white"
+                color={theme.colors.primary.default}
                 fontSize={{ base: "2rem", sm: "3rem", md: "2.1rem" }}
                 height={["300px", "270px", "250px"]}
                 fontWeight={900}
@@ -26,7 +26,7 @@ const AccordionSection = () => {
               <Flex
                 width={["100%", "100%"]}
                 justifyItems="space-between"
-                marginTop={{base: "-12rem", sm:"-8.5rem"}}
+                marginTop={{ base: "-12rem", sm: "-8.5rem" }}
               >
                 <Accordions />
               </Flex>

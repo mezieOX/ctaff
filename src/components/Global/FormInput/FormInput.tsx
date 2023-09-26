@@ -1,3 +1,4 @@
+import { theme } from "@/utils/chakratheme";
 import { Input } from "@chakra-ui/react";
 
 const FormInput = ({
@@ -11,9 +12,15 @@ const FormInput = ({
     <Input
       placeholder={placeholder}
       type={type}
-      color="white"
-      _placeholder={{ color: "white" }}
-      bg="#1b1222"
+      border="2px solid"
+      borderColor={theme.colors.gray.default}
+      _focus={{
+        border: "1px solid",
+        borderColor: theme.colors.primary.default,
+      }}
+      color="black"
+      _placeholder={{ color: theme.colors.black }}
+      bg="white"
     />
   );
 };

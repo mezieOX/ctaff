@@ -1,5 +1,4 @@
-import React from 'react';
-import { ListItem, Box, Text } from '@chakra-ui/react';
+import { ListItem, Box, Text } from "@chakra-ui/react";
 
 interface EmploymentItemPropsInterface {
   jobTitle: string;
@@ -9,7 +8,13 @@ interface EmploymentItemPropsInterface {
   period: string;
 }
 
-const EmploymentItem = ({ jobTitle, employers, city, description, period }: EmploymentItemPropsInterface) => {
+const EmploymentItem = ({
+  jobTitle,
+  employers,
+  city,
+  description,
+  period,
+}: EmploymentItemPropsInterface) => {
   return (
     <ListItem>
       <Box display="flex" gap=".5rem" alignItems="center">

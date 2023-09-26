@@ -1,10 +1,7 @@
-import { FormInput, TextArea } from "@/components/Global";
-import { Button, Flex } from "@chakra-ui/react";
-import { useState } from "react";
+import { FormInput, TextArea, UIButton } from "@/components/Global";
+import { Flex } from "@chakra-ui/react";
 
 const Form = () => {
-  const [message, setMessage] = useState("Send Message");
-
   return (
     <Flex
       flexDir="column"
@@ -23,27 +20,9 @@ const Form = () => {
       <FormInput placeholder="someone@gmail.com" />
       <TextArea placeholder="Write something here..." />
 
-      <Button
-        colorScheme="teal"
-        width="max"
-        variant="outline"
-        _hover={{
-          border: "1px solid white",
-          bg: "transparent",
-          color: "white",
-          transition: "all .2s ease-in",
-        }}
-        px={{ base: 3, sm: 9 }}
-        py={{ base: 2, sm: 7 }}
-        color="white"
-        fontSize={{ base: ".8", sm: "1rem" }}
-        bg="red.500"
-        border="none"
-        borderRadius={0}
-        onClick={() => setMessage("Loading...")}
-      >
-        {message}
-      </Button>
+      <UIButton link="" borderColor="transparent" bg="primary.default">
+        Proceed
+      </UIButton>
     </Flex>
   );
 };

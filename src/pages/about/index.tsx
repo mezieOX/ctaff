@@ -13,7 +13,7 @@ const AboutPage = () => {
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
     >
-      <Box bg="#1b1222" minH="100vh">
+      <Box minH="100vh">
         <Navbar />
         <About />
         <Footer />

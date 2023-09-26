@@ -4,7 +4,7 @@ import FooterContents from "./FooterContents/FooterContents";
 
 const Footer = () => {
   return (
-    <Box height={["auto", "auto", "auto"]} backgroundColor="#37254b">
+    <Box height={["auto", "auto", "auto"]} bg="#303338">
       <Box height={["auto", "auto", "auto"]} maxWidth="1200px" mx="auto">
         <Box>
           <Box padding={6} mx="auto">

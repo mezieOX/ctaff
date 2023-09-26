@@ -1,4 +1,5 @@
 import aboutCards from "@/data/AboutCard";
+import { theme } from "@/utils/chakratheme";
 import { Box, Flex, Grid } from "@chakra-ui/react";
 import Image from "next/image";
 import { useState } from "react";
@@ -52,7 +53,7 @@ const Card = () => {
           >
             <Flex
               flexDirection="column"
-              backgroundColor="#37254b"
+              bg="primary.default"
               alignItems="space-between"
               justifyItems="space-between"
               px={8}
@@ -62,7 +63,8 @@ const Card = () => {
               }
               _hover={{
                 transition: "transform .5s",
-                border: "1px solid #584FF2",
+                border: "1px solid",
+                borderColor: "warning.default",
                 transform: "scale(105%)",
                 boxShadow:
                   "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",

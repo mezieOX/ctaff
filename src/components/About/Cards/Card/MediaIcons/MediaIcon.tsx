@@ -1,8 +1,8 @@
 import { Box, Flex } from "@chakra-ui/react";
 import { BsFacebook, BsTwitter } from "react-icons/bs";
 
-import React from "react";
 import { EmailIcon } from "@chakra-ui/icons";
+import { theme } from "@/utils/chakratheme";
 const MediaIcon = () => {
   return (
     <Box>
@@ -12,7 +12,7 @@ const MediaIcon = () => {
         flexDir="column"
         top="20"
         right="0"
-        bg="#584FF2"
+        bg="warning.default"
         width="4rem"
         borderLeftRadius={20}
         p="5"
@@ -27,7 +27,7 @@ const MediaIcon = () => {
           borderRadius={50}
           h="2rem"
           w="2rem"
-          _hover={{ color: "#37254b" }}
+          _hover={{ color: theme.colors.primary.default }}
         >
           <BsFacebook />
         </Flex>
@@ -37,7 +37,7 @@ const MediaIcon = () => {
           borderRadius={50}
           h="2rem"
           w="2rem"
-          _hover={{ color: "#37254b" }}
+          _hover={{ color: theme.colors.primary.default }}
         >
           <EmailIcon />
         </Flex>
@@ -47,7 +47,7 @@ const MediaIcon = () => {
           borderRadius={50}
           h="2rem"
           w="2rem"
-          _hover={{ color: "#37254b" }}
+          _hover={{ color: theme.colors.primary.default }}
         >
           <BsTwitter />
         </Flex>

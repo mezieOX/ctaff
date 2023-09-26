@@ -1,7 +1,7 @@
-import { Button, Flex, Stack, Text } from "@chakra-ui/react";
+import { Flex, Stack, Text } from "@chakra-ui/react";
 import Typewriter from "typewriter-effect";
-import Link from "next/link";
-import ReactWOW from "react-wow";
+import UIButton from "@/components/Global/Button/Button";
+import { theme } from "@/utils/chakratheme";
 
 const TextContent = () => {
   return (
@@ -17,7 +17,7 @@ const TextContent = () => {
       <Text
         as="div"
         flex={1}
-        color="white"
+        color={theme.colors.primary.default}
         fontSize={{ base: "2rem", sm: "3rem", md: "2.1rem", xl: "2.1rem" }}
         height={["300px", "270px", "250px"]}
         fontWeight={900}
@@ -43,7 +43,6 @@ const TextContent = () => {
             skipAddStyles: true,
             deleteSpeed: 50,
             delay: 50,
-            // pauseFor: 2000,
           }}
         />
       </Text>
@@ -51,29 +50,15 @@ const TextContent = () => {
         as="div"
         flex={1}
         marginTop={{ base: ".2rem", sm: -8 }}
-        color="white"
+        color={theme.colors.black}
       >
         Explore Educational Opportunities - Teachers, Find Jobs; Learners,
         Discover Educators. Connect and Embark on Your Educational Journey.
       </Text>
       <Stack direction="row" spacing={4} align="center">
-        <Link href="/who_am_i">
-          {" "}
-          <Button
-            colorScheme="teal"
-            variant="outline"
-            _hover={{ bg: "red.600", transition: "all .2s ease-in" }}
-            px={9}
-            py={7}
-            color="white"
-            bg="red.500"
-            border="none"
-            borderRadius={0}
-            marginTop={{ base: "1.5rem", sm: -3 }}
-          >
-            Get Started
-          </Button>
-        </Link>
+        <UIButton link="/who_am_i" bg="primary.default">
+          Get Started
+        </UIButton>
       </Stack>
     </Flex>
   );

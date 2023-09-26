@@ -35,31 +35,6 @@ const aboutCards = [
     name: "Baby",
     image: "/images/tm6.jpg",
   },
-  {
-    id: 7,
-    title: "Expert Tutor",
-    name: "Falz",
-    image: "/images/tm7.jpg",
-  },
-  {
-    id: 8,
-    title: "Expert Tutor",
-    name: "Kodark",
-    image: "/images/tm8.jpg",
-  },
-  {
-    id: 9,
-    title: "Expert Tutor",
-    name: "Black",
-    image: "/images/tm9.jpg",
-  },
-  {
-    id: 10,
-    title: "Expert Tutor",
-
-    name: "Shege",
-    image: "/images/tm10.jpg",
-  },
 ];
 
 export default aboutCards;

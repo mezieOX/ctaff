@@ -48,8 +48,8 @@ const BackButton = ({
       bottom={bottom}
       zIndex={10}
       color="white"
-      background="red.500"
-      _hover={{ bg: "red.600", transition: "all .2s ease-in" }}
+      bg="primary.default"
+      _hover={{ transform: "scale(105%)", transition: "all .2s ease-in" }}
     >
       Top
     </Button>

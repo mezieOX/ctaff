@@ -1,3 +1,4 @@
+import { theme } from "@/utils/chakratheme";
 import { Box, Flex, Grid, Text } from "@chakra-ui/react";
 import Link from "next/link";
 import { BsFacebook, BsInstagram, BsLinkedin, BsTwitter } from "react-icons/bs";
@@ -71,10 +72,30 @@ const FooterContents = () => {
             mt={4}
             marginLeft={{ base: ".3rem", sm: 0 }}
           >
-            <BsFacebook cursor="pointer" />
-            <BsInstagram cursor="pointer" />
-            <BsTwitter cursor="pointer" />
-            <BsLinkedin cursor="pointer" />
+            <Box
+              cursor="pointer"
+              _hover={{ color: theme.colors.primary.default }}
+            >
+              <BsFacebook />
+            </Box>
+            <Box
+              cursor="pointer"
+              _hover={{ color: theme.colors.primary.default }}
+            >
+              <BsInstagram />
+            </Box>
+            <Box
+              cursor="pointer"
+              _hover={{ color: theme.colors.primary.default }}
+            >
+              <BsTwitter />
+            </Box>
+            <Box
+              cursor="pointer"
+              _hover={{ color: theme.colors.primary.default }}
+            >
+              <BsLinkedin />
+            </Box>
           </Flex>
         </Box>
       </Box>

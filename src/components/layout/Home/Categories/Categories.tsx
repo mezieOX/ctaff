@@ -9,7 +9,7 @@ export default function Categories() {
       paddingTop="4rem"
       position="relative"
       py={{ base: "3rem" }}
-      backgroundColor="#37254b"
+      bg="gray.lighter"
     >
       <Box>
         <Flex

@@ -5,7 +5,9 @@ import Form from "./Form/Form";
 const ContactPage = () => {
   return (
     <Box
-      backgroundColor="#37254b"
+      boxShadow={
+        "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)"
+      }
       flexDirection={{ base: "column", md: "row" }}
       marginTop={{ base: "2rem", xl: "8rem" }}
       gap={{ base: "1rem", xl: "3rem" }}

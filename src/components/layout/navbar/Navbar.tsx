@@ -14,13 +14,15 @@ import { keyframes } from "@emotion/react";
 import NavBarLink from "@/components/layout/navbar/navbarlink";
 import { CSSProperties, useEffect, useState } from "react";
 import { Logo } from "@/components/Global";
+import { theme } from "@/utils/chakratheme";
 
 const Navbar = ({ show }: { show?: string }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [scroll, setScroll] = useState(false);
+  const [baseScroll, setBaseScroll] = useState(true);
 
   const container: CSSProperties = {
-    backgroundColor: "#584FF2",
+    backgroundColor: "#0866FF",
     position: "sticky",
     top: 0,
     zIndex: 100,
@@ -32,8 +34,10 @@ const Navbar = ({ show }: { show?: string }) => {
     const handleScroll = () => {
       if (window.scrollY >= 1) {
         setScroll(true);
+        setBaseScroll(true);
       } else {
         setScroll(false);
+        setBaseScroll(true);
       }
     };
 
@@ -75,9 +79,11 @@ const Navbar = ({ show }: { show?: string }) => {
               <IconButton
                 aria-label="Toggle navigation"
                 size="lg"
-                color="white"
                 variant="none"
                 icon={<HamburgerIcon />}
+                color={
+                  scroll ? theme.colors.white : theme.colors.primary.default
+                }
                 onClick={isOpen ? onClose : onOpen}
                 display={isOpen ? "none" : { base: "flex", lg: "none" }}
               />
@@ -86,12 +92,17 @@ const Navbar = ({ show }: { show?: string }) => {
                 display={{ base: "none", md: "none", lg: "flex" }}
                 width={{ base: "full", md: "auto" }}
                 alignItems="center"
+                color="#000"
               >
-                <NavBarLink to="/" linkName="Home" />
-                <NavBarLink to="/about" linkName="About" />
-                <NavBarLink to="/services" linkName="Services" />
-                <NavBarLink to="/contact" linkName="Contact" />
-                <NavBarLink to="/login" linkName="Login" />
+                <NavBarLink to="/" linkName="Home" scroll={scroll} />
+                <NavBarLink to="/about" linkName="About" scroll={scroll} />
+                <NavBarLink
+                  to="/services"
+                  linkName="Services"
+                  scroll={scroll}
+                />
+                <NavBarLink to="/contact" linkName="Contact" scroll={scroll} />
+                <NavBarLink to="/login" linkName="Login" scroll={scroll} />
               </Box>
             </>
           )}
@@ -123,15 +134,31 @@ const Navbar = ({ show }: { show?: string }) => {
                 left={0}
                 textAlign="center"
                 top={20}
-                bg="#584FF2"
+                bg="primary.default"
                 width="100%"
                 height={{ base: "60vh", md: "70vh" }}
               >
-                <NavBarLink to="/" linkName="Home" />
-                <NavBarLink to="/about" linkName="About" />
-                <NavBarLink to="/services" linkName="Services" />
-                <NavBarLink to="/contact" linkName="Contact" />
-                <NavBarLink to="/login" linkName="Login" />
+                <NavBarLink to="/" linkName="Home" baseScroll={baseScroll} />
+                <NavBarLink
+                  to="/about"
+                  linkName="About"
+                  baseScroll={baseScroll}
+                />
+                <NavBarLink
+                  to="/services"
+                  linkName="Services"
+                  baseScroll={baseScroll}
+                />
+                <NavBarLink
+                  to="/contact"
+                  linkName="Contact"
+                  baseScroll={baseScroll}
+                />
+                <NavBarLink
+                  to="/login"
+                  linkName="Login"
+                  baseScroll={baseScroll}
+                />
               </Flex>
 
               <Box position="absolute" top="6" left="6">
@@ -146,7 +173,7 @@ const Navbar = ({ show }: { show?: string }) => {
                 padding={10}
                 aria-label="Toggle navigation"
                 size="lg"
-                color="white"
+                color={scroll ? theme.colors.white : theme.colors.black}
                 variant="none"
                 icon={<CloseIcon />}
                 onClick={isOpen ? onClose : onOpen}
