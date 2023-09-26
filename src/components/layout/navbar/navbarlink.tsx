@@ -2,10 +2,13 @@ import { keyframes } from "@emotion/react";
 import { Button } from "@chakra-ui/react";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { theme } from "@/utils/chakratheme";
 
 interface NavbarlinkProps {
   to: string;
   linkName: string;
+  scroll?: boolean;
+  baseScroll?: boolean;
 }
 
 export const animateUnderline = keyframes`
@@ -18,7 +21,7 @@ export const animateUnderline = keyframes`
     transform-origin: center;
 }
 `;
-const NavBarLink = ({ to, linkName }: NavbarlinkProps) => {
+const NavBarLink = ({ to, linkName, scroll, baseScroll }: NavbarlinkProps) => {
   const router = useRouter();
 
   return (
@@ -31,7 +34,11 @@ const NavBarLink = ({ to, linkName }: NavbarlinkProps) => {
         p={{ base: 2, md: 4 }}
         fontSize={"md"}
         // textDecoration="underline"
-        color="white"
+        color={
+          scroll
+            ? theme.colors.white
+            : theme.colors.primary.default || (baseScroll && theme.colors.white)
+        }
         position="relative"
         _before={
           router.pathname === to
@@ -41,7 +48,7 @@ const NavBarLink = ({ to, linkName }: NavbarlinkProps) => {
                 bottom: "-5px",
                 width: "100%",
                 height: "2px",
-                backgroundColor: "white",
+                bg: scroll ? theme.colors.white : theme.colors.primary.default,
                 animation: `${animateUnderline} 0.3s forwards`,
                 transition:
                   "opacity 0.3s ease-out, transform 0.3s ease-out, visibility 0s 0.3s",
@@ -49,14 +56,14 @@ const NavBarLink = ({ to, linkName }: NavbarlinkProps) => {
             : undefined
         }
         _hover={{
-          color: "white",
+          color: theme.colors.warning.default,
           _before: {
             content: "''",
             position: "absolute",
             bottom: "-5px",
             width: "100%",
             height: "2px",
-            backgroundColor: "white",
+            bg: theme.colors.warning.default,
             animation: `${animateUnderline} 0.3s forwards`,
             transition:
               "opacity 0.3s ease-out, transform 0.3s ease-out, visibility 0s 0.3s",

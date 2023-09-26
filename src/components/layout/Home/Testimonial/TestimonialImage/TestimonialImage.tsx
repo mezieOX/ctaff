@@ -4,7 +4,7 @@ import Image from "next/image";
 const TestimonialImage = ({ image }: { image: string }) => {
   return (
     <Box
-      bg="rgba(90, 68, 159, 0.5)"
+      bg="success.default"
       borderRadius={50}
       padding={4}
       boxShadow={

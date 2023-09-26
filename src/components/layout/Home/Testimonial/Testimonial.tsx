@@ -4,6 +4,7 @@ import { Box, Flex, Text } from "@chakra-ui/react";
 import TestimonialImage from "./TestimonialImage/TestimonialImage";
 import TextContent from "./TextContent/TextContent";
 import testimonials from "@/data/Testimonials";
+import { theme } from "@/utils/chakratheme";
 
 const Testimonial = () => {
   return (
@@ -20,7 +21,7 @@ const Testimonial = () => {
           <Box padding={6} mx="auto">
             <Text
               as="div"
-              color="white"
+              color={theme.colors.primary.default}
               fontSize={["2rem", "3rem", "2.1rem"]}
               height={["300px", "270px", "250px"]}
               fontWeight={900}

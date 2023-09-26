@@ -36,7 +36,7 @@ export default function Home() {
           animate={{ opacity: 1 }}
           transition={{ duration: 1 }}
         >
-          <Box bg="#1b1222" minH="100vh">
+          <Box bg="#F0F2F5" minH="100vh">
             <Navbar />
             <GetStartedSection />
             <Categories />

@@ -17,6 +17,7 @@ const Copyright = () => {
       padding={5}
       h={40}
       alignItems="end"
+      paddingBottom={6}
     >
       <Text color="white" mx="auto">
         Copyright &copy; Tutor Twist | Powered by Applead {date}{" "}

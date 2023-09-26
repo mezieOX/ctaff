@@ -9,7 +9,7 @@ import {
   AlertIcon,
 } from "@chakra-ui/react";
 import Confetti from "react-confetti";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 function FormCompleted({ runConfetti }: { runConfetti: boolean }) {
 

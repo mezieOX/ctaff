@@ -1,3 +1,4 @@
+import { theme } from "@/utils/chakratheme";
 import { Box, Flex, Text } from "@chakra-ui/react";
 import { Cards } from "./Cards";
 
@@ -13,7 +14,7 @@ const TextContent = () => {
       <Text
         as="div"
         flex={1}
-        color="white"
+        color={theme.colors.primary.default}
         fontSize={{ base: "2rem", sm: "3rem", md: "2.1rem", xl: "2.1rem" }}
         height={["300px", "270px", "250px"]}
         fontWeight={900}
@@ -27,7 +28,7 @@ const TextContent = () => {
         as="div"
         flex={1}
         marginTop={{ base: ".2rem", sm: -6 }}
-        color="white"
+        color={theme.colors.black}
         textAlign={{ base: "center", xl: "left" }}
       >
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum odit

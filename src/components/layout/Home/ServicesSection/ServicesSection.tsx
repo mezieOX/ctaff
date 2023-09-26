@@ -1,3 +1,4 @@
+import { theme } from "@/utils/chakratheme";
 import { Box, Flex, Text } from "@chakra-ui/react";
 import { Cards } from "./Cards";
 
@@ -18,7 +19,7 @@ const ServicesSection = () => {
           <Box padding={6} marginTop={{ base: -10, lg: 24, xl: -28 }} mx="auto">
             <Text
               as="div"
-              color="white"
+              color={theme.colors.primary.default}
               fontSize={{ base: "2rem", md: "3rem", lg: "2.1rem" }}
               height={["300px", "270px", "250px"]}
               fontWeight={900}

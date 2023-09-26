@@ -1,6 +1,6 @@
-import { Button, Flex, Stack, Text } from "@chakra-ui/react";
-import Link from "next/link";
-import React from "react";
+import UIButton from "@/components/Global/Button/Button";
+import { theme } from "@/utils/chakratheme";
+import { Flex, Stack, Text } from "@chakra-ui/react";
 
 const Aside = () => {
   return (
@@ -16,7 +16,7 @@ const Aside = () => {
       <Text
         as="div"
         flex={1}
-        color="white"
+        color={theme.colors.primary.default}
         fontSize={["2rem", "3rem", "2.1rem"]}
         height={["300px", "270px", "250px"]}
         fontWeight={900}
@@ -24,34 +24,23 @@ const Aside = () => {
       >
         Categories
       </Text>
-      <Text as="div" flex={1} marginTop={-8} color="white">
+      <Text as="div" flex={1} marginTop={-8} color={theme.colors.black}>
         Explore teaching careers and connect with educators in diverse
         categories. Teachers, find job opportunities in your field. Learners,
         discover qualified instructors tailored to your specific needs. Your
         educational journey starts now.
       </Text>
       <Stack direction="row" spacing={4} align="center">
-        <Link href="/about">
-          <Button
-            colorScheme="teal"
-            variant="outline"
-            _hover={{
-              border: "1px solid white",
-              bg: "transparent",
-              color: "white",
-              transition: "all .2s ease-in",
-            }}
-            px={9}
-            py={7}
-            color="#37254b"
-            bg="white"
-            border="none"
-            borderRadius={0}
-            marginTop={-3}
-          >
-            Learn More
-          </Button>
-        </Link>
+        <UIButton
+          link="/about"
+          bg="transparent"
+          hoverBorder="1px solid"
+          borderColor={theme.colors.primary.default}
+          color={theme.colors.primary.default}
+          hoverColor={theme.colors.primary.default}
+        >
+          Learn More
+        </UIButton>
       </Stack>
     </Flex>
   );

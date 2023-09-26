@@ -30,10 +30,10 @@ const Card = () => {
         {categoriesCards.map(
           ({ id, title, description, bc, symbol }: CardsProps) => (
             <GridItem
-              bg="#5A449F"
+              bg="primary.default"
               borderRadius={15}
               padding={6}
-              minHeight={{base: "19rem", sm: "21.8rem", md: 230 }}
+              minHeight={{ base: "19rem", sm: "21.8rem", md: 230 }}
               key={id}
               _hover={{
                 boxShadow:

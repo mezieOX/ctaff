@@ -1,4 +1,3 @@
-// import React, { useState } from "react";
 import {
   FormControl,
   FormLabel,
@@ -6,14 +5,19 @@ import {
   FormErrorMessage,
 } from "@chakra-ui/react";
 
-interface AvailabiltyInputProps{
-    label: string;
-    name: string;
-    handleChange: any;
-    details: any;
+interface AvailabiltyInputProps {
+  label: string;
+  name: string;
+  handleChange: any;
+  details: any;
 }
 
-const AvailabilityInput = ({label, name, handleChange, details}: AvailabiltyInputProps) => {
+const AvailabilityInput = ({
+  label,
+  name,
+  handleChange,
+  details,
+}: AvailabiltyInputProps) => {
   // console.log('register', ref)
   // const {
   //   // formState: { errors },
@@ -25,21 +29,22 @@ const AvailabilityInput = ({label, name, handleChange, details}: AvailabiltyInpu
   // });
 
   return (
-<FormControl mr="5%" isRequired>
-                <FormLabel fontWeight={"normal"}>
-                    What {label} are you available at?
-                </FormLabel>
-                  <Input
-                    pattern="^\S(.*\S)?$"
-                    pr="4.5rem"
-                    name={name}
-                    placeholder={`${label} of availabity`}
-                    bg="#fff"
-                    value={details[name]}
-                    onChange={handleChange}
-                    // onKeyDown={handleKeyDown}
-                    />
-              </FormControl>  );
+    <FormControl mr="5%" isRequired>
+      <FormLabel fontWeight={"normal"}>
+        What {label} are you available at?
+      </FormLabel>
+      <Input
+        pattern="^\S(.*\S)?$"
+        pr="4.5rem"
+        name={name}
+        placeholder={`${label} of availabity`}
+        bg="#fff"
+        value={details[name]}
+        onChange={handleChange}
+        // onKeyDown={handleKeyDown}
+      />
+    </FormControl>
+  );
 };
 
 export default AvailabilityInput;

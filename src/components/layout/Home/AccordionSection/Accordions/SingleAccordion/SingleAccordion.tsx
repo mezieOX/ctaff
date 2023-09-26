@@ -1,4 +1,5 @@
 import questions from "@/data/Questions";
+import { theme } from "@/utils/chakratheme";
 import { AddIcon, MinusIcon } from "@chakra-ui/icons";
 import {
   Accordion,
@@ -28,13 +29,13 @@ const SingleAccordion = () => {
           textAlign={["center", "left"]}
           marginBottom={["2rem", "0"]}
           marginTop={{ base: "5rem", md: "0" }}
-          color="white"
+          color={theme.colors.white}
           w="full"
         >
           {questions.map(({ id, question, answer }: CardsProps) => (
             <AccordionItem
               flex={1}
-              bg="#584FF2"
+              bg="primary.default"
               padding={{ base: 8, md: 3.5 }}
               paddingLeft={{ base: 1, sm: 2, md: 3.5 }}
               paddingRight={{ base: 0, sm: 8, md: 3.5 }}

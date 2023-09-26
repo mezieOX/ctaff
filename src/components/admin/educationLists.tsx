@@ -1,4 +1,3 @@
-import React from "react";
 import { ListItem, Box, Text, Flex, Image } from "@chakra-ui/react";
 
 interface EducationPropsInterface {
@@ -34,8 +33,7 @@ const Education = ({
         <Text fontWeight="700">City:</Text>
         {city}
       </Box>
-      {
-        certificate && (
+      {certificate && (
         <Box display="flex" flexDir="column" gap=".5rem">
           <Text fontWeight="700">Certificate:</Text>
           <Box
@@ -48,7 +46,12 @@ const Education = ({
             onClick={() => handlePreviewCertificationModal(certificate)}
           >
             {checkIfDocument && !checkIfDocument(certificate) ? (
-              <Image width="100%" height="100%" src={certificate} alt="teacher" />
+              <Image
+                width="100%"
+                height="100%"
+                src={certificate}
+                alt="teacher"
+              />
             ) : (
               <Flex
                 alignItems="center"
@@ -62,9 +65,8 @@ const Education = ({
               </Flex>
             )}
           </Box>
-      </Box>
-        )
-      }
+        </Box>
+      )}
 
       <Box display="flex" gap=".5rem" alignItems="center">
         <Text fontWeight="700">Period:</Text>

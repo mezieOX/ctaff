@@ -19,6 +19,10 @@ const MediaIcons = () => {
         cursor="pointer"
         h="2rem"
         w="2rem"
+        _hover={{
+          transition: "transform .5s",
+          transform: "scale(120%)",
+        }}
       >
         <BsFacebook />
       </Flex>
@@ -31,6 +35,10 @@ const MediaIcons = () => {
         h="2rem"
         w="2rem"
         cursor="pointer"
+        _hover={{
+          transition: "transform .5s",
+          transform: "scale(120%)",
+        }}
       >
         <EmailIcon />
       </Flex>
@@ -43,6 +51,10 @@ const MediaIcons = () => {
         h="2rem"
         cursor="pointer"
         w="2rem"
+        _hover={{
+          transition: "transform .5s",
+          transform: "scale(120%)",
+        }}
       >
         <BsTwitter />
       </Flex>
@@ -55,6 +67,10 @@ const MediaIcons = () => {
         h="2rem"
         cursor="pointer"
         w="2rem"
+        _hover={{
+          transition: "transform .5s",
+          transform: "scale(120%)",
+        }}
       >
         <BsLinkedin />
       </Flex>

@@ -1,13 +1,14 @@
+import { theme } from "@/utils/chakratheme";
 import { Box, Flex, Text } from "@chakra-ui/react";
 import { Achievement } from "./Achievement";
 import { Cards } from "./Cards";
 
 const About = () => {
   return (
-    <Box bg="#1b1222">
+    <Box>
       <Achievement />
       <Box
-        backgroundColor="#37254b"
+        bg="gray.lighter"
         marginBottom={{ base: "15rem", xl: "10rem" }}
         paddingBottom={{ base: "15rem", xl: "10rem" }}
       >
@@ -21,7 +22,7 @@ const About = () => {
               >
                 <Text
                   as="div"
-                  color="white"
+                  color={theme.colors.primary.default}
                   fontSize={{ base: "2rem", md: "2.1rem", lg: "2.1rem" }}
                   height={["300px", "270px", "250px"]}
                   fontWeight={900}

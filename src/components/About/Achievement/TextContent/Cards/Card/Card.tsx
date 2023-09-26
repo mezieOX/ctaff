@@ -29,14 +29,17 @@ const Card = () => {
         {achievementCards.map(
           ({ id, title, description, bc, symbol }: CardsProps) => (
             <GridItem
-              bg="#5A449F"
+              bg="primary.default"
               borderRadius={15}
               padding={5}
               textAlign="center"
               key={id}
               _hover={{
+                transition: "transform .5s",
+                border: "1px solid #584FF2",
+                transform: "scale(105%)",
                 boxShadow:
-                  "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 80px 0 rgba(0, 0, 0, 0.19)",
+                  "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
               }}
             >
               <Flex
@@ -49,6 +52,7 @@ const Card = () => {
                 h={{ base: 14, md: "5rem" }}
                 position="relative"
                 mx="auto"
+                boxShadow="0 1px 1px 0 rgba(0, 0, 0, 0.1), 0 3px 1px 0 rgba(0, 0, 0, 0.19)"
               >
                 <Icon
                   color="white"

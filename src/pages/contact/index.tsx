@@ -13,7 +13,7 @@ const Contact = () => {
       animate={{ opacity: 1 }}
       transition={{ duration: 1 }}
     >
-      <Box bg="#1b1222" minH="100vh">
+      <Box minH="100vh">
         <Navbar />
         <ContactPage />
         <Footer />

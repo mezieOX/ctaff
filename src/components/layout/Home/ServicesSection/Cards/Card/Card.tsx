@@ -1,4 +1,6 @@
+import { UIButton } from "@/components/Global";
 import servicesSectionCards from "@/data/ServiceSectionCard";
+import { theme } from "@/utils/chakratheme";
 import { Box, Flex, Text, Button, Stack, Grid } from "@chakra-ui/react";
 import Image from "next/image";
 import Link from "next/link";
@@ -27,16 +29,24 @@ const Card = () => {
         {servicesSectionCards.map(
           ({ id, title, description, image }: CardsProps) => (
             <Flex
+              bg="primary.default"
               flexDirection="column"
               alignItems="space-between"
               justifyItems="space-between"
               flex={1}
               key={id}
               display={{ md: "grid" }}
+              _hover={{
+                transition: "transform .5s",
+                border: "1px solid #584FF2",
+                transform: "scale(105%)",
+                boxShadow:
+                  "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
+              }}
             >
               <Box
                 position="relative"
-                height={{ base: "14rem", md: "220" }}
+                height={{ base: "14rem", md: "230" }}
                 cursor="pointer"
               >
                 <Image
@@ -48,22 +58,21 @@ const Card = () => {
               </Box>
               <Flex
                 flexDirection="column"
-                backgroundColor="#37254b"
+                bg="primary.default"
                 alignItems="space-between"
                 justifyItems="space-between"
+                color={theme.colors.white}
                 flex={1}
                 _hover={{
-                  bg: "transparent",
+                  bg: "white",
                   transition: "background .5s",
-                  borderX: "1px solid #37254b",
+                  color: theme.colors.black,
                   borderBottom: "1px solid #37254b",
                   boxShadow:
                     "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
                 }}
               >
                 <Text
-                  as="div"
-                  color="white"
                   fontSize={{ base: "1.2rem", md: "1.2rem" }}
                   fontWeight={900}
                   marginTop={3}
@@ -73,10 +82,8 @@ const Card = () => {
                   {title}
                 </Text>
                 <Text
-                  as="div"
                   marginTop={{ base: -7, md: -8 }}
-                  marginBottom=".4rem"
-                  color="white"
+                  marginBottom={{ base: "-.9rem", sm: "1.5rem", md: ".4rem" }}
                   fontSize={{ base: "1rem", md: ".9rem" }}
                   textAlign="center"
                   paddingY={6}
@@ -92,22 +99,15 @@ const Card = () => {
                   justifyItems="end"
                   marginBottom={10}
                 >
-                  <Link href="/about">
-                    <Button
-                      colorScheme="teal"
-                      variant="outline"
-                      _hover={{ bg: "red.600", transition: "all .2s ease-in" }}
-                      px={9}
-                      py={7}
-                      color="white"
-                      bg="red.500"
-                      border="none"
-                      borderRadius={12}
-                      marginTop={{ base: 1, md: -3 }}
-                    >
-                      Learn More
-                    </Button>
-                  </Link>
+                  <UIButton
+                    link="/about"
+                    bg="warning.default"
+                    borderColor="transparent"
+                    borderRadius={4}
+                    transform="scale(105%)"
+                  >
+                    Learn More
+                  </UIButton>
                 </Stack>
               </Flex>
             </Flex>

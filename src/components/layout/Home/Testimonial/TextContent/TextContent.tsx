@@ -1,3 +1,4 @@
+import { theme } from "@/utils/chakratheme";
 import { Box, Flex, Grid, Text } from "@chakra-ui/react";
 
 interface TextContentProps {
@@ -11,14 +12,13 @@ const TextContent = ({ name, title, description }: TextContentProps) => {
     <Box w="100%">
       <Flex
         marginBottom={["2rem", "0"]}
-        color="white"
+        color={theme.colors.black}
         flexDirection="column"
         justifyItems="center"
         alignItems="center"
       >
         <Text
           display="flex"
-          color="white"
           marginTop=".7rem"
           fontSize={{ sm: "1.2rem", md: "" }}
         >
@@ -27,7 +27,6 @@ const TextContent = ({ name, title, description }: TextContentProps) => {
         </Text>
         <Text
           display="flex"
-          color="white"
           height="3rem"
           marginTop=".3rem"
           fontSize={{ sm: "1.2rem", md: "" }}
@@ -37,7 +36,7 @@ const TextContent = ({ name, title, description }: TextContentProps) => {
       </Flex>
 
       <Grid
-        bg="#584FF2"
+        bg="primary.default"
         templateColumns="repeat(1, 1fr)"
         gap={4}
         padding={3.5}
