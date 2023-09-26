@@ -4,11 +4,10 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { theme } from "@/utils/chakratheme";
 
-interface NavbarlinkProps {
+interface NavbarLinkProps {
   to: string;
   linkName: string;
   scroll?: boolean;
-  baseScroll?: boolean;
 }
 
 export const animateUnderline = keyframes`
@@ -21,7 +20,7 @@ export const animateUnderline = keyframes`
     transform-origin: center;
 }
 `;
-const NavBarLink = ({ to, linkName, scroll, baseScroll }: NavbarlinkProps) => {
+const NavBarLink = ({ to, linkName, scroll }: NavbarLinkProps) => {
   const router = useRouter();
 
   return (
@@ -36,8 +35,8 @@ const NavBarLink = ({ to, linkName, scroll, baseScroll }: NavbarlinkProps) => {
         // textDecoration="underline"
         color={
           scroll
-            ? theme.colors.white
-            : theme.colors.primary.default || (baseScroll && theme.colors.white)
+            ? { base: theme.colors.white }
+            : { base: theme.colors.white, lg: theme.colors.primary.default }
         }
         position="relative"
         _before={
@@ -48,7 +47,7 @@ const NavBarLink = ({ to, linkName, scroll, baseScroll }: NavbarlinkProps) => {
                 bottom: "-5px",
                 width: "100%",
                 height: "2px",
-                bg: scroll ? theme.colors.white : theme.colors.primary.default,
+                bg: theme.colors.white,
                 animation: `${animateUnderline} 0.3s forwards`,
                 transition:
                   "opacity 0.3s ease-out, transform 0.3s ease-out, visibility 0s 0.3s",

@@ -19,7 +19,6 @@ import { theme } from "@/utils/chakratheme";
 const Navbar = ({ show }: { show?: string }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [scroll, setScroll] = useState(false);
-  const [baseScroll, setBaseScroll] = useState(true);
 
   const container: CSSProperties = {
     backgroundColor: "#0866FF",
@@ -34,10 +33,8 @@ const Navbar = ({ show }: { show?: string }) => {
     const handleScroll = () => {
       if (window.scrollY >= 1) {
         setScroll(true);
-        setBaseScroll(true);
       } else {
         setScroll(false);
-        setBaseScroll(true);
       }
     };
 
@@ -138,27 +135,15 @@ const Navbar = ({ show }: { show?: string }) => {
                 width="100%"
                 height={{ base: "60vh", md: "70vh" }}
               >
-                <NavBarLink to="/" linkName="Home" baseScroll={baseScroll} />
-                <NavBarLink
-                  to="/about"
-                  linkName="About"
-                  baseScroll={baseScroll}
-                />
+                <NavBarLink to="/" linkName="Home" scroll={scroll} />
+                <NavBarLink to="/about" linkName="About" scroll={scroll} />
                 <NavBarLink
                   to="/services"
                   linkName="Services"
-                  baseScroll={baseScroll}
+                  scroll={scroll}
                 />
-                <NavBarLink
-                  to="/contact"
-                  linkName="Contact"
-                  baseScroll={baseScroll}
-                />
-                <NavBarLink
-                  to="/login"
-                  linkName="Login"
-                  baseScroll={baseScroll}
-                />
+                <NavBarLink to="/contact" linkName="Contact" scroll={scroll} />
+                <NavBarLink to="/login" linkName="Login" scroll={scroll} />
               </Flex>
 
               <Box position="absolute" top="6" left="6">
