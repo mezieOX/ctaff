@@ -47,7 +47,10 @@ const NavBarLink = ({ to, linkName, scroll }: NavbarLinkProps) => {
                 bottom: "-5px",
                 width: "100%",
                 height: "2px",
-                bg: theme.colors.white,
+                bg: {
+                  base: theme.colors.white,
+                  lg: theme.colors.primary.default,
+                },
                 animation: `${animateUnderline} 0.3s forwards`,
                 transition:
                   "opacity 0.3s ease-out, transform 0.3s ease-out, visibility 0s 0.3s",
